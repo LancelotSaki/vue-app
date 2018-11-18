@@ -5,33 +5,9 @@
 </template>
 
 <script>
-// 使用
-let throttle = require("lodash.throttle");
 export default {
   name: "app",
-  components: {},
-  created() {
-    // 赋初值
-    this.listenMouse();
-  },
-  mounted() {
-    // 节流函数
-    window.addEventListener("scroll", throttle(this.listenMouse, 500));
-  },
-  methods: {
-    listenMouse: function() {
-      // 兼容浏览器必须要两者都要用起来
-      // 当前浏览器高度
-      const scroll = document.documentElement.scrollTop;
-      const sh = document.documentElement.scrollHeight;
-      const ch = document.documentElement.clientHeight;
-      const maxHeight = sh - ch;
-      // 第二个参数是对应传进来的参数
-      this.$store.commit("changeScrollHeight", scroll);
-      // 当前浏览器滚动条的最大高度
-      this.$store.commit("changeScrollMaxHeight", maxHeight);
-    }
-  }
+  components: {}
 };
 </script>
 

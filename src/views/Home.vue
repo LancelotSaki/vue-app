@@ -46,17 +46,6 @@ export default {
   name: "home",
   data() {
     return {};
-  },
-  computed: {
-    listenCurrentScroll() {
-      return this.$store.state.height;
-    }
-  },
-  watch: {
-    listenCurrentScroll: function(height) {
-      /* eslint-disable no-console */
-      console.log(height);
-    }
   }
 };
 </script>
