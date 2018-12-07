@@ -66,12 +66,30 @@ export default {
     };
   },
   mounted() {
-    const saveTime = localStorage.getItem("time");
+    let jsSHA = this.$store.state.jsSHA;
+    // SHA-1、SHA-256、SHA-384、SHA-512
+    let shaObj = new jsSHA("SHA-1", "TEXT");
+    shaObj.setHMACKey("abc", "TEXT");
+    shaObj.update("This is a ");
+    const hash = shaObj.getHMAC("HEX");
     /* eslint-disable no-console */
+    console.log(hash);
+    // SHA-1、SHA-256、SHA-384、SHA-512
+    shaObj = new jsSHA("SHA-1", "TEXT");
+    shaObj.update("This is a abc");
+    const ha = shaObj.getHash("HEX");
+    console.log(ha);
+    const base64 = this.$store.state.base64;
+    let ba = base64.encode("dankogai"); // ZGFua29nYWk=
+    console.log(ba);
+    ba = base64.encode("小飼弾"); // 5bCP6aO85by+
+    console.log(ba);
+    ba = base64.encodeURI("小飼弾"); // 5bCP6aO85by-
+    console.log(ba);
+    const saveTime = localStorage.getItem("time");
     console.log(saveTime);
     const currentTime = Date.parse(new Date().toString()) / 1000;
     console.log(currentTime);
-    /* eslint-disable no-console */
     if (
       saveTime != null &&
       saveTime !== undefined &&
