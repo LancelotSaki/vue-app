@@ -1,10 +1,23 @@
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const production = process.env.NODE_ENV === "production";
 module.exports = {
-  lintOnSave: process.env.NODE_ENV !== "production",
+  lintOnSave: !production,
+  productionSourceMap: false,
   configureWebpack: config => {
-    if (process.env.NODE_ENV === "production") {
-      //不生成.map文件
-      config.output.publicPath = "";
-      // 为生产环境修改配置...
+    if (production) {// 为生产环境修改配置...
+      config.optimization.minimizer[0] =
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+            warnings: false,
+            drop_debugger: true,
+            drop_console: true, //console
+            pure_funcs: ['console.log']//移除console
+          },
+        },
+        sourceMap: false,
+        parallel: true,
+      })
     } else {
       // 为开发环境修改配置...
     }

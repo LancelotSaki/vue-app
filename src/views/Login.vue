@@ -156,12 +156,18 @@ export default {
       }
       this.checkBox.usernameCheck = "";
       this.checkBox.passwordCheck = "";
+      const jsSHA = this.$store.state.jsSHA;
+      let shaObj = new jsSHA("SHA-256", "TEXT");
+      shaObj.update(p);
+      const hash_pwd = shaObj.getHash("HEX");
+      this.formValue.password = hash_pwd;
+      console.log("password:" + hash_pwd);
       localStorage.setItem("username", u);
-      localStorage.setItem("password", p);
+      localStorage.setItem("password", hash_pwd);
       const current = Date.parse(new Date().toString()) / 1000;
       localStorage.setItem(
-        "expireLoginByUsername",
-        (current + 7200).toString()
+          "expireLoginByUsername",
+          (current + 7200).toString()
       );
       return true;
     },
@@ -301,7 +307,9 @@ export default {
     border-radius: 5px;
     background: rgba(178,175,168,0.27);
   }
-}*/
+}
+*/
+
 /*float: left;tab并排必须加*/
 .loginContainer > li {
   float: left;

@@ -5,7 +5,8 @@ Vue.use(Router);
 
 export default new Router({
   // mode: "history",
-  mode: "hash",
+  // mode: "hash",
+  mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
