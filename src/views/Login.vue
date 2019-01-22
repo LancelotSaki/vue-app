@@ -166,8 +166,8 @@ export default {
       localStorage.setItem("password", hash_pwd);
       const current = Date.parse(new Date().toString()) / 1000;
       localStorage.setItem(
-          "expireLoginByUsername",
-          (current + 7200).toString()
+        "expireLoginByUsername",
+        (current + 7200).toString()
       );
       return true;
     },
