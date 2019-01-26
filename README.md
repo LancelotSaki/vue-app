@@ -1,5 +1,11 @@
 # vue-app
 
+> 基于vue@cli3.0搭建的前端项目
+
+### 说明
+
+
+
 ## Project setup
 ```
 npm install
