@@ -5,7 +5,7 @@
         <p>欢迎</p>
         <p>登录和安全</p>
         <ul>
-          <li>登录Google</li>
+          <li><router-link to="/home/login">登录Google</router-link></li>
           <li>设备活动</li>
           <li>账号访问权限</li>
         </ul>
@@ -35,7 +35,9 @@
         <p>帮助和反馈</p>
       </div>
       <div class="header">hhhhh1161</div>
-      <div class="main">hello</div>
+      <div class="main">
+        <router-view></router-view>
+      </div>
       <div class="footer">hh</div>
     </section>
   </div>

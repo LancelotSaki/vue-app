@@ -14,7 +14,7 @@
 <script>
 /* author : admin */
 export default {
-  name: "",
+  name: "Register",
   data() {
     return {};
   },
