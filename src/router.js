@@ -11,8 +11,7 @@ Vue.use(Router);
  */
 export default new Router({
   // mode: "history",
-  // mode: "hash",
-  mode: "history",
+  mode: "hash",
   base: process.env.BASE_URL,
   routes: [
     {
@@ -41,6 +40,11 @@ export default new Router({
           component: () => import("./views/about/About.vue")
         }
       ]
+    },
+    {
+      path: "/firstPage",
+      name: "firstPage",
+      component: () => import("./views/first/FirstPage.vue")
     },
     {
       path: "/register",

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "echarts": "^4.2.1",
     "element-ui": "^2.4.5",
     "js-base64": "^2.4.9",
     "jssha": "^2.3.1",

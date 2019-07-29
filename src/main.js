@@ -8,6 +8,9 @@ import "./plugins/element.js";
 // ajax
 import axios from "axios";
 import VueAxios from "vue-axios";
+import echarts from "echarts";
+
+Vue.prototype.$echarts = echarts;
 Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
