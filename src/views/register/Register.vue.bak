@@ -1,30 +1,46 @@
 <template>
   <div class="registerPage">
     <main class="registerMain">
-      <div class="registerWay">
-        <input type="radio" name="tab" id="registerTab1" checked><label for="registerTab1">邮箱注册</label>
-        <input type="radio" name="tab" id="registerTab2"><label for="registerTab2">手机注册</label>
-      </div>
-      <form @submit="checkForm1" action="https://www.baidu.com"
-            method="post" class="registerForm">
-        <input type="text" name="email" placeholder="邮箱"
-               maxlength="35" v-model="formValue.email">
-        <input type="password" placeholder="密码" name="password"
-               maxlength="35" v-model="formValue.emailPassword">
-        <input type="text" placeholder="验证码" name="emailCode"
-               maxlength="6" v-model="formValue.emailCode">
-        <input type="button" :value="leftTime === 60 ? '发 送': leftTime + '秒'" :disabled="sendClickDisable"
-               @click="clickSend">
-        <input type="submit" value="注 册">
-        <div class="alterTab1" :data-words="checkBox.emailCheck" :data-alter="checkBox.emailCodeCheck">
-          {{checkBox.passwordCheck}}
-        </div>
-      </form>
+      <ul class="registerContainer">
+        <li>
+          <input type="radio" id="registerTab1" name="tab" checked><label for="registerTab1">邮箱注册</label>
+          <form id="registerCon1" @submit="checkForm1" action="https://www.baidu.com"
+                method="post">
+            <input type="text" name="email" placeholder="邮箱"
+                   maxlength="35" v-model="formValue.email">
+            <input type="password" placeholder="密码" name="password"
+                   maxlength="35" v-model="formValue.emailPassword">
+            <input type="text" placeholder="验证码" name="emailCode"
+                   maxlength="6" v-model="formValue.emailCode">
+            <input type="button" :value="leftTime === 60 ? '发 送': leftTime + '秒'" :disabled="sendClickDisable"
+                   @click="clickSend">
+            <input type="submit" value="注 册">
+            <div class="alterTab1" :data-words="checkBox.emailCheck" :data-alter="checkBox.emailCodeCheck">{{checkBox.passwordCheck}}</div>
+          </form>
+        </li>
+        <li>
+          <input type="radio" name="tab" id="registerTab2"><label for="registerTab2">手机注册</label>
+          <form id="registerCon2" @submit="checkForm2" action="https://www.baidu.com"
+                method="post">
+            <input type="text" placeholder="手机号码" name="phone"
+                   maxlength="11" v-model="formValue.phone">
+            <input type="password" placeholder="密码" name="password"
+                   maxlength="35" v-model="formValue.phonePassword">
+            <input type="text" placeholder="验证码" name="phoneCode"
+                   maxlength="6" v-model="formValue.phoneCode">
+            <input type="button" :value="leftTime === 60 ? '发 送': leftTime + '秒'" :disabled="sendClickDisable"
+                   @click="clickSend">
+            <input type="submit" value="注 册">
+            <div class="alterTab2" :data-words="checkBox.phoneCheck" :data-alter="checkBox.phoneCodeCheck">{{checkBox.password}}</div>
+          </form>
+        </li>
+      </ul>
       <router-link class="toLogin" to="/login">
         <img src="../../assets/images/login.png"/>
       </router-link>
     </main>
   </div>
+
 </template>
 
 <script>
@@ -118,24 +134,14 @@ export default {
     clickSend() {
       this.sendClickDisable = true;
       const phone = this.formValue.phone;
-      const way = this.form.way;
-      const u = this.form.username;
-      if (way === 1) {
-        if (!u) {
-          this.formCheck.usernameCheck = "请先输入邮箱账号";
-          return;
-        } else if (!u.match(emailReg)) {
-          this.formCheck.usernameCheck = "邮箱格式错误!";
-        }
-      } else {
-        if (!phone || phone.length !== 11) {
-          this.formCheck.usernameCheck = "请先输入11位的手机号码!";
-          return;
-        } else if (!phone.match(phoneReg)) {
-          this.formCheck.usernameCheck = "手机号码格式不正确!";
-          return;
-        }
+      if (phone == null || phone.length !== 11) {
+        this.checkBox.phoneCheck = "请先输入11位的手机号码!";
+        return;
+      } else if (!phone.match(phoneReg)) {
+        this.checkBox.phoneCheck = "手机号码格式不正确!";
+        return;
       }
+      this.checkBox.phoneCheck = "";
       const current = Date.parse(new Date().toString()) / 1000;
       localStorage.setItem("time", (current + 60).toString());
       const interval = setInterval(() => {
@@ -161,6 +167,7 @@ export default {
         e.preventDefault();
         return false;
       }
+
       if (!p || p.length < 6) {
         this.checkBox.emailCheck = "";
         this.checkBox.passwordCheck = "请先输入至少六位的密码!";
@@ -297,7 +304,7 @@ export default {
 }
 
 .registerPage,
-.registerMain::before {
+.registerContainer::before {
   background: url("../../assets/images/luori_wanxia-010.jpg") 0 / cover fixed;
 }
 
@@ -312,13 +319,6 @@ export default {
     right: 0;
     left: 0;
     margin: auto;
-    border-radius: 8px;
-    padding: 0;
-    background: hsla(0, 0%, 100%, 0.25) border-box;
-    overflow: hidden;
-    box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.3) inset,
-    0 0.5em 1em rgba(0, 0, 0, 0.6);
-    text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);
   }
 }
 
@@ -332,13 +332,6 @@ export default {
     right: 0;
     left: 0;
     margin: auto;
-    border-radius: 8px;
-    padding: 0;
-    background: hsla(0, 0%, 100%, 0.25) border-box;
-    overflow: hidden;
-    box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.3) inset,
-    0 0.5em 1em rgba(0, 0, 0, 0.6);
-    text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);
   }
 }
 
@@ -352,17 +345,26 @@ export default {
     right: 0;
     left: 0;
     margin: auto;
-    border-radius: 8px;
-    padding: 0;
-    background: hsla(0, 0%, 100%, 0.25) border-box;
-    overflow: hidden;
-    box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.3) inset,
-    0 0.5em 1em rgba(0, 0, 0, 0.6);
-    text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);
   }
 }
 
-.registerMain::before {
+.registerContainer {
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 400px;
+  border-radius: 8px;
+  margin: 0;
+  padding: 0;
+  background: hsla(0, 0%, 100%, 0.25) border-box;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.3) inset,
+    0 0.5em 1em rgba(0, 0, 0, 0.6);
+  text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);
+}
+
+.registerContainer::before {
   content: "";
   position: absolute;
   top: 0;
@@ -375,9 +377,9 @@ export default {
   filter: blur(20px);
 }
 
-.registerWay {
-  display: flex;
-  justify-content: space-evenly;
+/*float: left;tab并排必须加*/
+.registerContainer > li {
+  width: 110px;
 }
 
 .toLogin {
@@ -397,12 +399,12 @@ export default {
 }
 
 /*隐藏radio*/
-input[id^="registerTab"] {
+.registerContainer input[id^="registerTab"] {
   display: none;
 }
 
 /* 将radio相邻的label标签美化一下，可以在这里设置按钮的背景图标*/
-input[id^="registerTab"] + label {
+.registerContainer input[id^="registerTab"] + label {
   height: 35px;
   width: 110px;
   text-align: left;
@@ -414,7 +416,7 @@ input[id^="registerTab"] + label {
 }
 
 /* 聚焦时将radio相邻的label标签添加鼠标手势*/
-input[id^="registerTab"] + label:hover {
+.registerContainer input[id^="registerTab"] + label:hover {
   cursor: pointer;
 }
 
@@ -452,31 +454,27 @@ input[id^="registerTab"]:checked ~ label::before {
   background: white;
 }
 
-.registerForm {
-  padding: 0 35px;
-}
-
-.registerForm > input {
+[id^="registerCon"] > input {
   margin-bottom: 30px;
   border: 0;
   padding-left: 7px;
 }
 
-.registerForm > input:first-child,
-.registerForm > input:nth-child(2) {
+[id^="registerCon"] > input:first-child,
+[id^="registerCon"] > input:nth-child(2) {
   width: 100%;
   height: 35px;
   border-radius: 5px;
 }
 
-.registerForm > input:nth-child(3) {
+[id^="registerCon"] > input:nth-child(3) {
   height: 35px;
   border-radius: 5px;
   width: 65%;
 }
 
 /*这是一个发送短信按键*/
-.registerForm > input:nth-child(4) {
+[id^="registerCon"] > input:nth-child(4) {
   height: 35px;
   border-radius: 5px;
   background: #f0ad24;
@@ -485,15 +483,15 @@ input[id^="registerTab"]:checked ~ label::before {
   margin-left: 5%;
 }
 
-.registerForm > input:nth-child(4):disabled {
+[id^="registerCon"] > input:nth-child(4):disabled {
   background: #a9a9a9;
 }
 
-.registerForm > input:nth-child(4):hover {
+[id^="registerCon"] > input:nth-child(4):hover {
   background: #99ce5f;
 }
 
-.registerForm input[type="submit"] {
+[id^="registerCon"] input[type="submit"] {
   height: 35px;
   border-radius: 5px;
   background: #f0ad24;
@@ -502,7 +500,7 @@ input[id^="registerTab"]:checked ~ label::before {
   width: 100%;
 }
 
-.registerForm input[type="submit"]:hover {
+[id^="registerCon"] input[type="submit"]:hover {
   height: 35px;
   border-radius: 5px;
   background: #99ce5f;
@@ -529,7 +527,8 @@ input[id^="registerTab"]:checked ~ label::before {
   color: #db3a27;
 }
 
-.alterTab1 {
+.alterTab1,
+.alterTab2 {
   position: absolute;
   top: 105px;
   width: 100%;
