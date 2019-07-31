@@ -1,4 +1,5 @@
 <template>
+  <header></header>
   <div class="registerPage">
     <main class="registerMain">
       <div class="registerWay">
