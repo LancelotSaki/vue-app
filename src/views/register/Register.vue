@@ -1,6 +1,6 @@
 <template>
-  <header></header>
   <div class="registerPage">
+    <header>11</header>
     <main class="registerMain">
       <div class="registerWay">
         <input type="radio" name="tab" id="registerTab1" checked><label for="registerTab1">邮箱注册</label>
