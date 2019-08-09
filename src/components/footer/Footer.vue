@@ -64,7 +64,8 @@ export default {
 </script>
 
 <style>
-.rem {
+.rem,
+.ram {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -79,7 +80,8 @@ export default {
   background-size: 100% 100%;
 }
 
-.rem:hover {
+.rem:hover,
+.ram:hover {
   cursor: pointer;
 }
 
@@ -93,12 +95,6 @@ export default {
   transition: width 0.8s, height 0.8s, -webkit-transform 0.8s; /* Safari 和 Chrome */
 }
 
-.ram {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-}
-
 .ram::before {
   content: "";
   display: inline-block;
@@ -106,10 +102,6 @@ export default {
   width: 75px;
   height: 75px;
   background-size: 100% 100%;
-}
-
-.ram:hover {
-  cursor: pointer;
 }
 
 .ram:hover::before {

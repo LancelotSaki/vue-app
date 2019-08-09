@@ -17,7 +17,7 @@ export default new Router({
     {
       path: "/",
       name: "vue",
-      redirect: "/home"
+      redirect: "/register"
     },
     {
       path: "/home",
@@ -49,7 +49,23 @@ export default new Router({
     {
       path: "/register",
       name: "register",
-      component: () => import("./views/register/Register.vue")
+      // 这个只是个容器，实际上children才起实际作用
+      component: () => import("./views/register/index.vue"),
+      children: [
+        {
+          // 进到register渲染该组件
+          path: "/",
+          component: () => import("./views/register/core/Register.vue")
+        },
+        {
+          path: "agreement1",
+          component: () => import("./views/register/agreement/Agreement1.vue")
+        },
+        {
+          path: "agreement2",
+          component: () => import("./views/register/agreement/Agreement2.vue")
+        }
+      ]
     },
     {
       path: "/profile",
