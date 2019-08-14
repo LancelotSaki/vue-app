@@ -8,19 +8,23 @@
       </div>
       <form @submit="submitRegisterForm"
             method="post" class="registerForm">
-        <input type="text" name="username" :placeholder="form.registerTab === '1' ? '邮箱' : '手机'"
-               maxlength="35" v-model="form.username" :data-phone="phoneTemp" :data-email="emailTemp">
+        <input type="text" name="email" placeholder="邮箱"
+               maxlength="35" v-model="form.email" :class="form.registerTab === '1' ? 'show' : 'hide'" >
+        <input type="text" name="phone" placeholder="手机"
+               maxlength="35" v-model="form.phone" :class="form.registerTab === '2' ? 'show' : 'hide'">
         <input type="password" placeholder="密码" name="password"
                maxlength="35" v-model="form.password">
-        <input type="text" :placeholder="form.registerTab === '1' ? '邮箱验证码' : '手机验证码'" name="emailCode"
+        <input type="text" :placeholder="form.registerTab === '1' ? '邮箱验证码' : '手机验证码'" name="verifyCode"
                maxlength="6" v-model="form.code">
-        <input type="button" :value="leftTime === 60 ? '发 送': leftTime + '秒'" :disabled="sendClickDisable"
-               @click="clickSend">
+        <input type="button" class="sendMessageButton" :class="form.registerTab === '1' ? 'show' : 'hide'" :value="leftTime === 60 ? '发 送': leftTime + '秒'" :disabled="sendEmailClickDisable"
+               @click="clickSendEmail">
+        <input type="button" class="sendMessageButton" :class="form.registerTab === '2' ? 'show' : 'hide'" :value="rightTime === 60 ? '发 送' : rightTime + '秒'" :disabled="sendPhoneClickDisable"
+               @click="clickSendPhone">
         <div class="rememberMe"><input type="checkbox"/><label>记住我</label></div>
-        <div class="agreement"><input type="checkbox"/><label>我已阅读<router-link to="/register/agreement1">《xxx协议1》</router-link>
-          和<router-link to="/register/agreement2">《xxx协议2》</router-link></label></div>
+        <div class="agreement"><input type="checkbox"/><label>我已阅读<router-link :to="{ path: 'agreement1'}" append>《xxx协议1》</router-link>
+          和<router-link :to="{ path: 'agreement2'}" append>《xxx协议2》</router-link></label></div>
         <input type="submit" value="注 册">
-        <span class="alterTab1" :data-words="formCheck.usernameCheck" :data-alter="formCheck.codeCheck">
+        <span class="registerAlterLine" :data-words="formCheck.usernameCheck" :data-alter="formCheck.codeCheck">
           {{formCheck.passwordCheck}}
         </span>
       </form>
@@ -45,14 +49,23 @@ const passwordReg = process.env.VUE_APP_PASSWORD_REG;
 export default {
   name: "Register",
   components: { Footer },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      //因为当钩子执行前，组件实例还没被创建
+      // vm 就是当前组件的实例相当于上面的 this，所以在 next 方法里你就可以把 vm 当 this 来用了。
+      vm.setFromPath(from.path);
+    });
+  },
   data() {
     return {
+      from: "",
       phoneTemp: "",
       emailTemp: "",
       // 初始默认是邮箱注册
       form: {
         registerTab: "1",
-        username: "",
+        email: "",
+        phone: "",
         password: "",
         code: ""
       },
@@ -65,7 +78,8 @@ export default {
       height: 0,
       leftTime: 60,
       rightTime: 60,
-      sendClickDisable: true
+      sendEmailClickDisable: true,
+      sendPhoneClickDisable: true
     };
   },
   mounted() {
@@ -89,12 +103,12 @@ export default {
     console.log(ba);
     ba = base64.encodeURI("小飼弾"); // 5bCP6aO85by-
     console.log(ba);
-    const saveTime = localStorage.getItem("time");
-    console.log(saveTime);
+    const leftTime = localStorage.getItem("leftTime");
+    console.log(leftTime);
     const currentTime = Date.parse(new Date().toString()) / 1000;
     console.log(currentTime);
-    if (saveTime && parseInt(saveTime, 10) > currentTime) {
-      this.leftTime = parseInt(saveTime, 10) - currentTime;
+    if (leftTime && parseInt(leftTime, 10) > currentTime) {
+      this.leftTime = parseInt(leftTime, 10) - currentTime;
       const interval = setInterval(() => {
         if (this.leftTime <= 0) {
           this.leftTime = 60;
@@ -104,47 +118,82 @@ export default {
         }
       }, 1000);
     }
+    const rightTime = localStorage.getItem("rightTime");
+    console.log(rightTime);
+    if (rightTime && parseInt(rightTime, 10) > currentTime) {
+      this.rightTime = parseInt(rightTime, 10) - currentTime;
+      const interval = setInterval(() => {
+        if (this.rightTime <= 0) {
+          this.rightTime = 60;
+          clearInterval(interval);
+        } else {
+          this.rightTime--;
+        }
+      }, 1000);
+    }
     console.log("height:" + this.$store.state.height);
     console.log("maxHeight:" + this.$store.state.maxHeight);
   },
+
   methods: {
-    clickSend() {
-      this.sendClickDisable = true;
-      const way = this.form.registerTab;
-      const u = this.form.username;
-      if (way === 1) {
-        if (!u) {
-          this.formCheck.usernameCheck = "请先输入邮箱账号";
-          return;
-        } else if (!u.match(emailReg)) {
-          this.formCheck.usernameCheck = "邮箱格式错误!";
-        }
-      } else {
-        if (!u || u.length !== 11) {
-          this.formCheck.usernameCheck = "请先输入11位的手机号码!";
-          return;
-        } else if (!u.match(phoneReg)) {
-          this.formCheck.usernameCheck = "手机号码格式不正确!";
-          return;
-        }
+    setFromPath(path) {
+      this.from = path;
+    },
+    toLogin() {
+      this.$router.push("/login");
+    },
+    clickSendEmail() {
+      this.sendEmailClickDisable = true;
+      const u = this.form.email;
+      if (!u) {
+        this.formCheck.usernameCheck = "请先输入邮箱账号";
+        return;
+      } else if (!u.match(emailReg)) {
+        this.formCheck.usernameCheck = "邮箱格式错误!";
+        return;
       }
       const current = Date.parse(new Date().toString()) / 1000;
-      localStorage.setItem("time", (current + 60).toString());
+      localStorage.setItem("leftTime", (current + 60).toString());
       const interval = setInterval(() => {
         if (this.leftTime <= 0) {
           this.leftTime = 60;
-          this.sendClickDisable = false;
+          this.sendEmailClickDisable = false;
           clearInterval(interval);
         } else {
-          this.sendClickDisable = true;
+          this.sendEmailClickDisable = true;
           this.leftTime--;
+        }
+      }, 1000);
+
+
+    },
+    clickSendPhone() {
+      this.sendPhoneClickDisable = true;
+      const u = this.form.phone;
+      if (!u || u.length !== 11) {
+        this.formCheck.usernameCheck = "请先输入11位的手机号码!";
+        return;
+      } else if (!u.match(phoneReg)) {
+        this.formCheck.usernameCheck = "手机号码格式不正确!";
+        return;
+      }
+      const current = Date.parse(new Date().toString()) / 1000;
+      localStorage.setItem("rightTime", (current + 60).toString());
+      const interval = setInterval(() => {
+        if (this.rightTime <= 0) {
+          this.rightTime = 60;
+          this.sendPhoneClickDisable = false;
+          clearInterval(interval);
+        } else {
+          this.sendPhoneClickDisable = true;
+          this.rightTime--;
         }
       }, 1000);
     },
     submitRegisterForm(e) {
       // 邮箱提交验证
       const w = this.form.registerTab;
-      const u = this.form.username;
+      let u = this.form.email;
       const p = this.form.password;
       const c = this.form.code;
       if (w === "1") {
@@ -196,6 +245,7 @@ export default {
         );
         return true;
       } else {
+        u = this.form.phone;
         if (!u || u.length !== 11) {
           this.formCheck.usernameCheck = "请先输入11位的手机号码!";
           this.formCheck.passwordCheck = "";
@@ -247,53 +297,48 @@ export default {
       let u = this.emailTemp;
       if (val === "1") {
         if (u && u.match(emailReg)) {
-          this.form.username = u;
+          this.formCheck.usernameCheck = "";
           return;
         }
       } else {
         u = this.phoneTemp;
         if (u && u.match(phoneReg)) {
-          this.form.username = u;
+          this.formCheck.usernameCheck = "";
           return;
         }
       }
       this.formCheck.usernameCheck = "";
       this.formCheck.passwordCheck = "";
       this.formCheck.codeCheck = "";
-      this.form.username = "";
       this.form.password = "";
       this.form.code = "";
     },
-    "form.username": function(val) {
-      const t = this.form.registerTab;
-      if (t === "1") {
-        if (!val) {
-          this.formCheck.usernameCheck = "请先输入邮箱!";
-          return null;
-        }
-        if (!val.match(emailReg)) {
-          this.formCheck.usernameCheck = "邮箱格式不正确!";
-          return null;
-        } else {
-          this.emailTemp = val;
-          this.sendClickDisable = false;
-          this.formCheck.usernameCheck = "";
-          return null;
-        }
-      } else {
-        if (!val || val.length !== 11) {
-          this.formCheck.usernameCheck = "请先输入11位的手机号码!";
-          return null;
-        } else if (!val.match(phoneReg)) {
-          this.formCheck.usernameCheck = "手机号码格式不正确!";
-          return null;
-        } else {
-          this.phoneTemp = val;
-          this.sendClickDisable = false;
-          this.formCheck.usernameCheck = "";
-          return null;
-        }
+    "form.email": function(val) {
+      if (!val) {
+        this.formCheck.usernameCheck = "请先输入邮箱!";
+        return;
       }
+      if (!val.match(emailReg)) {
+        this.formCheck.usernameCheck = "邮箱格式不正确!";
+        return;
+      }
+      this.emailTemp = val;
+      this.sendEmailClickDisable = false;
+      this.formCheck.usernameCheck = "";
+      return;
+    },
+    "form.phone": function (val) {
+      if (!val || val.length !== 11) {
+        this.formCheck.usernameCheck = "请先输入11位的手机号码!";
+        return;
+      } else if (!val.match(phoneReg)) {
+        this.formCheck.usernameCheck = "手机号码格式不正确!";
+        return;
+      }
+      this.phoneTemp = val;
+      this.sendPhoneClickDisable = false;
+      this.formCheck.usernameCheck = "";
+      return;
     },
     "form.password": function(val) {
       if (val == null || val.length < 6) {
@@ -361,7 +406,8 @@ export default {
   left: 0;
   width: 100%;
   height: 2px;
-  box-shadow: 0 0 10px 1px #FD4275, 0 0 1px #FD4275, 0 0 1px #FD4275, 0 0 1px #FD4275, 0 0 1px #FD4275, 0 0 1px #FD4275, 0 0 1px #FD4275;
+  box-shadow: 0 0 10px 1px #fd4275, 0 0 1px #fd4275, 0 0 1px #fd4275,
+    0 0 1px #fd4275, 0 0 1px #fd4275, 0 0 1px #fd4275, 0 0 1px #fd4275;
   background-color: #fff;
   animation: 4s startToEndLine linear infinite normal;
 }
@@ -415,6 +461,7 @@ export default {
     box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.3) inset,
       0 0.5em 1em rgba(0, 0, 0, 0.6);
     text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);
+    display: block;
   }
 }
 
@@ -435,6 +482,7 @@ export default {
     box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.3) inset,
       0 0.5em 1em rgba(0, 0, 0, 0.6);
     text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);
+    display: block;
   }
 }
 
@@ -455,6 +503,7 @@ export default {
     box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.3) inset,
       0 0.5em 1em rgba(0, 0, 0, 0.6);
     text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);
+    display: block;
   }
 }
 
@@ -533,11 +582,13 @@ input[id^="registerTab"]:checked + label::before {
   width: 85px;
   height: 2px;
   background: white;
-  box-shadow: 0px 0px 10px 1px #fd4275, 0 0 1px #fd4275, 0 0 1px #fd4275,
+  box-shadow: 0 0 10px 1px #fd4275, 0 0 1px #fd4275, 0 0 1px #fd4275,
     0 0 1px #fd4275, 0 0 1px #fd4275, 0 0 1px #fd4275, 0 0 1px #fd4275;
 }
 
 .registerForm {
+  display: flex;
+  flex-wrap: wrap;
   padding: 0 35px;
 }
 
@@ -554,62 +605,77 @@ input[id^="registerTab"]:checked + label::before {
   border-radius: 5px;
 }
 
-.registerForm > input:nth-child(3) {
+/*
+.registerForm > input:first-child,
+.registerForm > input:nth-child(2),
+.registerForm > input[type="password"],
+.registerForm > input[name="verifyCode"] {
+  box-shadow: 0 0 10px 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835,
+  0 0 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835;
+}
+*/
+
+.registerForm > input:first-child:focus,
+.registerForm > input:nth-child(2):focus,
+.registerForm > input[type="password"]:focus,
+.registerForm > input[name="verifyCode"]:focus {
+  box-shadow: 0 0 10px 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8,
+  0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8;
+}
+
+.registerForm > input[type="password"] {
+  width: 100%;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.registerForm > input[name="verifyCode"] {
   height: 35px;
   border-radius: 5px;
   width: 65%;
 }
 
 /*这是一个发送短信按键*/
-.registerForm > input:nth-child(4) {
+.registerForm > .sendMessageButton {
   height: 35px;
   border-radius: 5px;
-  background: #f0ad24;
-  color: white;
+  background: #ecf5ff;
+  color: #409eff;
   width: 30%;
   margin-left: 5%;
 }
 
-.registerForm > input:nth-child(4):disabled {
-  background: #ecf5ff;
-  color: #409eff;
+.registerForm > .sendMessageButton:disabled {
+  background: #f4f4f5;
+  color: #909399;
 }
 
-.registerForm > input:nth-child(4):hover {
+.registerForm > .sendMessageButton:hover {
   background: #fdf6ec;
   color: #e6a23c;
 }
 
-.rememberMe {
-  margin-bottom: 5px;
-}
-
-.rememberMe > input[type="checkbox"] {
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px 1px #ac85b4, 0 0 1px #ac85b4, 0 0 1px #ac85b4,
-    0 0 1px #ac85b4, 0 0 1px #ac85b4, 0 0 1px #ac85b4, 0 0 1px #ac85b4;
-  background-color: #fff;
-  width: 15px;
-  height: 15px;
-}
-
-.rememberMe > label {
-  margin-left: 5px;
-}
-
+.rememberMe,
 .agreement {
-  margin-bottom: 5px;
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
 }
 
+.rememberMe > input[type="checkbox"],
 .agreement > input[type="checkbox"] {
+  display: inline-block;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px 1px #ac85b4, 0 0 1px #ac85b4, 0 0 1px #ac85b4,
+  box-shadow: 0 0 10px 1px #ac85b4, 0 0 1px #ac85b4, 0 0 1px #ac85b4,
     0 0 1px #ac85b4, 0 0 1px #ac85b4, 0 0 1px #ac85b4, 0 0 1px #ac85b4;
   background-color: #fff;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
+  margin: auto 5px;
+  vertical-align: middle;
 }
 
+.rememberMe > label,
 .agreement > label {
   margin-left: 5px;
 }
@@ -632,29 +698,38 @@ input[id^="registerTab"]:checked + label::before {
   width: 100%;
 }
 
-[class^="alterTab"]::before {
+[class^="registerAlterLine"]::before {
   content: attr(data-words);
   display: inline-block;
   position: absolute;
   top: -65px;
   width: 100%;
-  color: #db3a27;
+  color: white;
 }
 
-[class^="alterTab"]::after {
+[class^="registerAlterLine"]::after {
   content: attr(data-alter);
   display: inline-block;
   position: absolute;
-  top: 5px;
+  top: 65px;
+  left: 0;
   width: 100%;
-  color: #db3a27;
+  color: white;
 }
 
-.alterTab1 {
+.registerAlterLine {
   position: absolute;
   top: 180px;
   left: 40px;
+  height: 5px;
   width: 100%;
-  color: #db3a27;
+  color: white;
+}
+
+.show {
+  display: block;
+}
+.hide {
+  display: none;
 }
 </style>
