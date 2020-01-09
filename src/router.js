@@ -78,6 +78,11 @@ export default new Router({
       component: () => import("./views/profile/Profile.vue")
     },
     {
+      path: "/auto-find/database/config/LoginConfig",
+      name: "databaseLoginConfig",
+      component: () => import("./views/auto-find/database/config/LoginConfig.vue")
+    },
+    {
       path: "*",
       redirect: "/"
     }

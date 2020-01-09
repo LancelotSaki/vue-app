@@ -44,6 +44,11 @@ ol > li {
   list-style: none;
 }
 
+:root {
+  --submit: #ecf5ff;
+  --submitHover: #fdf6ec;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;

@@ -3,26 +3,33 @@
     <header class="registerHeader"></header>
     <main class="registerMain">
       <div class="registerWay">
-        <input type="radio" v-model="form.registerTab" id="registerTab1" value="1"><label for="registerTab1">邮箱注册</label>
-        <input type="radio" v-model="form.registerTab" id="registerTab2" value="2"><label for="registerTab2">手机注册</label>
+        <input type="radio" v-model="form.registerTab" id="registerTab1" value="1"><label
+              for="registerTab1">邮箱注册</label>
+        <input type="radio" v-model="form.registerTab" id="registerTab2" value="2"><label
+              for="registerTab2">手机注册</label>
       </div>
       <form @submit="submitRegisterForm"
             method="post" class="registerForm">
         <input type="text" name="email" placeholder="邮箱"
-               maxlength="35" v-model="form.email" :class="form.registerTab === '1' ? 'show' : 'hide'" >
+               maxlength="35" v-model="form.email" :class="form.registerTab === '1' ? 'show' : 'hide'">
         <input type="text" name="phone" placeholder="手机"
                maxlength="35" v-model="form.phone" :class="form.registerTab === '2' ? 'show' : 'hide'">
         <input type="password" placeholder="密码" name="password"
                maxlength="35" v-model="form.password">
         <input type="text" :placeholder="form.registerTab === '1' ? '邮箱验证码' : '手机验证码'" name="verifyCode"
                maxlength="6" v-model="form.code">
-        <input type="button" class="sendMessageButton" :class="form.registerTab === '1' ? 'show' : 'hide'" :value="leftTime === 60 ? '发 送': leftTime + '秒'" :disabled="sendEmailClickDisable"
+        <input type="button" class="sendMessageButton" :class="form.registerTab === '1' ? 'show' : 'hide'"
+               :value="leftTime === 60 ? '发 送': leftTime + '秒'" :disabled="sendEmailClickDisable"
                @click="clickSendEmail">
-        <input type="button" class="sendMessageButton" :class="form.registerTab === '2' ? 'show' : 'hide'" :value="rightTime === 60 ? '发 送' : rightTime + '秒'" :disabled="sendPhoneClickDisable"
+        <input type="button" class="sendMessageButton" :class="form.registerTab === '2' ? 'show' : 'hide'"
+               :value="rightTime === 60 ? '发 送' : rightTime + '秒'" :disabled="sendPhoneClickDisable"
                @click="clickSendPhone">
         <div class="rememberMe"><input type="checkbox"/><label>记住我</label></div>
-        <div class="agreement"><input type="checkbox"/><label>我已阅读<router-link :to="{ path: 'agreement1'}" append>《xxx协议1》</router-link>
-          和<router-link :to="{ path: 'agreement2'}" append>《xxx协议2》</router-link></label></div>
+        <div class="agreement"><input type="checkbox"/><label>我已阅读
+          <router-link :to="{ path: 'agreement1'}" append>《xxx协议1》</router-link>
+          和
+          <router-link :to="{ path: 'agreement2'}" append>《xxx协议2》</router-link>
+        </label></div>
         <input type="submit" value="注 册">
         <span class="registerAlterLine" :data-words="formCheck.usernameCheck" :data-alter="formCheck.codeCheck">
           {{formCheck.passwordCheck}}
@@ -41,6 +48,7 @@
 <script>
 // let debounce = require("lodash.debounce");
 import Footer from "../../../components/footer/Footer";
+
 const phoneReg = process.env.VUE_APP_PHONE_REG;
 const emailReg = process.env.VUE_APP_EMAIL_REG;
 const passwordReg = process.env.VUE_APP_PASSWORD_REG;
@@ -164,8 +172,6 @@ export default {
           this.leftTime--;
         }
       }, 1000);
-
-
     },
     clickSendPhone() {
       this.sendPhoneClickDisable = true;
@@ -327,7 +333,7 @@ export default {
       this.formCheck.usernameCheck = "";
       return;
     },
-    "form.phone": function (val) {
+    "form.phone": function(val) {
       if (!val || val.length !== 11) {
         this.formCheck.usernameCheck = "请先输入11位的手机号码!";
         return;
@@ -572,7 +578,7 @@ input[id^="registerTab"]:checked + label {
 }
 
 /*切换tab时触发label标签里的before元素，一定要将input标签放在label之前,
-请注意+跟~选择器的区别，+代表后面紧邻的xxx标签， ~代表之后所有的xxx标签*/
+  请注意+跟~选择器的区别，+代表后面紧邻的xxx标签， ~代表之后所有的xxx标签*/
 input[id^="registerTab"]:checked + label::before {
   position: absolute;
   display: inline-block;
@@ -606,21 +612,21 @@ input[id^="registerTab"]:checked + label::before {
 }
 
 /*
-.registerForm > input:first-child,
-.registerForm > input:nth-child(2),
-.registerForm > input[type="password"],
-.registerForm > input[name="verifyCode"] {
-  box-shadow: 0 0 10px 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835,
-  0 0 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835;
-}
-*/
+  .registerForm > input:first-child,
+  .registerForm > input:nth-child(2),
+  .registerForm > input[type="password"],
+  .registerForm > input[name="verifyCode"] {
+    box-shadow: 0 0 10px 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835,
+    0 0 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835;
+  }
+  */
 
 .registerForm > input:first-child:focus,
 .registerForm > input:nth-child(2):focus,
 .registerForm > input[type="password"]:focus,
 .registerForm > input[name="verifyCode"]:focus {
-  box-shadow: 0 0 10px 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8,
-  0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8, 0 0 1px #3B8CF8;
+  box-shadow: 0 0 10px 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8,
+    0 0 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8;
 }
 
 .registerForm > input[type="password"] {
@@ -683,7 +689,7 @@ input[id^="registerTab"]:checked + label::before {
 .registerForm input[type="submit"] {
   height: 35px;
   border-radius: 5px;
-  background: #ecf5ff;
+  background: var(--submit);
   color: #409eff;
   font-size: 1.1rem;
   width: 100%;
@@ -692,7 +698,7 @@ input[id^="registerTab"]:checked + label::before {
 .registerForm input[type="submit"]:hover {
   height: 35px;
   border-radius: 5px;
-  background: #fdf6ec;
+  background: var(--submitHover);
   color: #e6a23c;
   font-size: 1.1rem;
   width: 100%;
@@ -729,7 +735,10 @@ input[id^="registerTab"]:checked + label::before {
 .show {
   display: block;
 }
+
 .hide {
   display: none;
 }
+
+
 </style>
