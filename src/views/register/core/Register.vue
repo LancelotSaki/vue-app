@@ -446,7 +446,7 @@ export default {
 
 .registerPage,
 .registerMain::before {
-  background: url("../../../assets/images/luori_wanxia-010.jpg") 0 / cover fixed;
+  background: url("../../../assets/images/star.jpg") 0 / cover fixed;
 }
 
 @media screen and (max-width: 400px) {

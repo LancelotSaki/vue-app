@@ -78,9 +78,14 @@ export default new Router({
       component: () => import("./views/profile/Profile.vue")
     },
     {
-      path: "/auto-find/database/config/LoginConfig",
+      path: "/auto-find/database/config/loginConfig",
       name: "databaseLoginConfig",
       component: () => import("./views/auto-find/database/config/LoginConfig.vue")
+    },
+    {
+      path: "/auto-find/result/show",
+      name: "AutoFindResultShow",
+      component: () => import("./views/auto-find/result/Show.vue")
     },
     {
       path: "*",

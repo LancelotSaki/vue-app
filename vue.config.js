@@ -8,8 +8,8 @@ module.exports = {
     if (production) {
       config.optimization.minimizer[0] = new UglifyJsPlugin({
         uglifyOptions: {
+          warnings: false,
           compress: {
-            warnings: false,
             drop_debugger: true,
             drop_console: true, //console
             pure_funcs: ["console.log"] //移除console
