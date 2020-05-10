@@ -29,8 +29,8 @@
           </form>
         </li>
       </ul>
-      <router-link class="toRegister" to="/home">
-        <img src="../assets/images/register.png"/>
+      <router-link class="toRegister" to="/register">
+        <img src="../../assets/images/register.png"/>
       </router-link>
     </div>
   </div>
@@ -266,54 +266,63 @@ export default {
   position: relative;
   background: #aed5ed;
   width: 100vw;
-  min-height: 400px;
+  min-height: 340px;
   overflow-y: auto;
   height: 100vh;
 }
 
-.loginMain {
-  position: absolute;
-  width: 400px;
-  height: 300px;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
-}
 
+@media screen and (max-width: 400px) {
+  .loginMain {
+    position: absolute;
+    width: 340px;
+    min-width: 340px;
+    height: 300px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+@media screen and (min-width: 400px) and (max-width: 800px) {
+  .loginMain {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+}
+@media screen and (min-width: 800px) {
+  .loginMain {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
+}
 .loginContainer {
   position: absolute;
-  width: 400px;
+  width: 100%;
   height: 300px;
   border-radius: 5px;
   margin: 0;
   padding: 0;
   background: rgba(178, 175, 168, 0.27);
 }
-
-/*@media screen and (max-width: 800px){
-
-}
-@media screen and (min-width: 800px){
-  .loginContainer {
-    position: absolute;
-    width: 400px;
-    height: 300px;
-    top: 0;
-    bottom: 0;
-    right: 200px;
-    margin: auto;
-    border-radius: 5px;
-    background: rgba(178,175,168,0.27);
-  }
-}
-*/
-
 /*float: left;tab并排必须加*/
 .loginContainer > li {
   float: left;
-  width: 150px;
+  width: 110px;
+  margin-left: 8%;
 }
 
 .toRegister {
@@ -340,8 +349,8 @@ export default {
 /* 将radio相邻的label标签美化一下，可以在这里设置按钮的背景图标*/
 .loginContainer input[id^="loginTab"] + label {
   height: 35px;
-  width: 150px;
-  text-align: center;
+  width: 110px;
+  text-align: left;
   float: right;
   line-height: 35px;
   color: white;

@@ -1,5 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
+// animate.css
+import animate from 'animate.css'
 // vuex
 import router from "./router";
 import store from "./store";
@@ -8,6 +10,10 @@ import "./plugins/element.js";
 // ajax
 import axios from "axios";
 import VueAxios from "vue-axios";
+import echarts from "echarts";
+
+Vue.use(animate);
+Vue.prototype.$echarts = echarts;
 Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
