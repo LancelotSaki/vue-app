@@ -88,6 +88,11 @@ export default new Router({
       component: () => import("./views/auto-find/result/Show.vue")
     },
     {
+      path: "/auto-find/topo",
+      name: "AutoFindTopo",
+      component: () => import("./views/auto-find/topo/Topo.vue")
+    },
+    {
       path: "*",
       redirect: "/"
     }

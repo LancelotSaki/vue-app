@@ -1,26 +1,9 @@
 # vue-app
+### 注册页
 
-## Project setup
-```
-npm install
-```
+ [本地链接](http://localhost:8080/#/register)
+ 
+### 自动发现拓扑图
+> 用来展示自动发现的结果
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
+ [本地链接](http://localhost:8080/#/auto-find/topo)
