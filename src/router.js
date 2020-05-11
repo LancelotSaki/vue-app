@@ -90,7 +90,14 @@ export default new Router({
     {
       path: "/auto-find/topo",
       name: "AutoFindTopo",
-      component: () => import("./views/auto-find/topo/Topo.vue")
+      component: () => import("./views/auto-find/topo/Topo.vue"),
+      children: [
+        {
+          // 实际上起作用的是这个
+          path: "/",
+          component: () => import("./views/auto-find/topo/Core.vue")
+        }
+      ]
     },
     {
       path: "*",

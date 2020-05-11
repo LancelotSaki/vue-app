@@ -35,6 +35,11 @@ body {
   box-sizing: border-box;
 }
 
+ul,
+ol {
+  padding: 0;
+}
+
 ul > li {
   list-style: none;
   margin-bottom: 10px;
