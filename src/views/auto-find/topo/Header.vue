@@ -45,7 +45,7 @@
     </svg>
     <p>{{title}}</p>
     <aside class="searchKey">
-      <input />
+      <input placeholder="输入回车搜索" type="search"/>
     </aside>
   </header>
 </template>
@@ -63,9 +63,9 @@ export default {
 <style>
 .searchKey {
   position: fixed;
-  right: 20px;
+  right: 5px;
   top: 40px;
-  width: 250px;
+  width: 280px;
   height: 25px;
 }
 .searchKey > input {
@@ -82,8 +82,8 @@ export default {
   content: "";
   position: absolute;
   display: inline-block;
-  width: 11px;
-  height: 11px;
+  width: 12px;
+  height: 12px;
   left: 5px;
   top: 5px;
   border-width: 1px;
@@ -109,6 +109,11 @@ export default {
   background-size: 100% 2px;
   background-repeat: repeat-x;
   -webkit-transform: skewX(-35deg);
-  transform: skewY(35deg);
+  transform: skewY(38deg);
+}
+
+.searchKey>input:focus {
+  box-shadow: 0 0 10px 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8,
+  0 0 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8;
 }
 </style>
