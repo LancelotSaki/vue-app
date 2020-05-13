@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 // animate.css
-import animate from 'animate.css'
+import animate from "animate.css";
 // vuex
 import router from "./router";
 import store from "./store";

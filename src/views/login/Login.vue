@@ -262,13 +262,18 @@ export default {
 </script>
 
 <style>
+
 .loginPage {
   position: relative;
-  background: #aed5ed;
   width: 100vw;
   min-height: 340px;
   overflow-y: auto;
   height: 100vh;
+}
+
+.loginPage,
+.loginMain::before {
+  background: url("../../assets/images/star.jpg") 0 / cover fixed;
 }
 
 

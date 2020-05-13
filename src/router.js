@@ -14,23 +14,19 @@ export default new Router({
   mode: "hash",
   base: process.env.BASE_URL,
   routes: [
-    {
+    /*{
       path: "/",
       name: "vue",
       redirect: "/register"
-    },
+    },*/
     {
-      path: "/home",
+      path: "/",
       name: "home",
-      component: () => import("./views/Home.vue"),
+      component: () => import("./views/home/Home.vue"),
       children: [
         {
           path: "/",
-          component: () => import("./views/Home.vue")
-        },
-        {
-          path: "login",
-          component: () => import("./views/login/Login.vue")
+          component: () => import("./views/home/Core.vue")
         },
         {
           path: "about",
@@ -80,7 +76,8 @@ export default new Router({
     {
       path: "/auto-find/database/config/loginConfig",
       name: "databaseLoginConfig",
-      component: () => import("./views/auto-find/database/config/LoginConfig.vue")
+      component: () =>
+        import("./views/auto-find/database/config/LoginConfig.vue")
     },
     {
       path: "/auto-find/result/show",
