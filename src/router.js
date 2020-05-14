@@ -97,6 +97,11 @@ export default new Router({
       ]
     },
     {
+      path: "/es",
+      name: "ES",
+      component: () => import("./views/es/Es.vue")
+    },
+    {
       path: "*",
       redirect: "/"
     }
