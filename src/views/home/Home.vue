@@ -1,122 +1,136 @@
 <template>
-  <div class="home">
-    <transition name="slide-fade">
-      <router-view></router-view>
-    </transition>
-  </div>
+  <article>
+    <Aside></Aside>
+    <section>
+      <Header></Header>
+      <Main></Main>
+      <Footer></Footer>
+    </section>
+  </article>
 </template>
 
 <script>
-export default {
-  name: "home",
-  data() {
-    return {};
-  }
-};
+  /* author : admin */
+  import Aside from "./layout/Aside";
+  import Main from "./layout/Main";
+  import Header from "./layout/Header";
+  import Footer from "./layout/Footer";
+
+  export default {
+    name: "HomeCore",
+    components: {Aside, Header, Main, Footer},
+    data() {
+      return {
+        nodes: [],
+        edges: []
+      };
+    },
+    mounted() {
+    },
+    methods: {}
+  };
 </script>
-
-<style>
-
-  /* 可以设置不同的进入和离开动画 */
-  /* 设置持续时间和动画函数 */
-  .slide-fade-enter-active {
-    transition: all 0.3s ease;
-  }
-
-  .slide-fade-leave-active {
-    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-  }
-
-  .slide-fade-enter, .slide-fade-leave-to
-    /* .slide-fade-leave-active for below version 2.1.8 */
-  {
-    transform: translateX(10px);
-    opacity: 0;
-  }
-
-@media screen and (min-width: 600px) {
-  .container {
+<style scoped>
+  article {
     width: 100%;
     height: 100%;
   }
 
-  .header {
-    position: fixed;
-    left: 200px;
-    right: 0;
-    top: 0;
-    height: 60px;
-    background: aquamarine;
-    z-index: 99;
+  article:after {
+    content: "";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
   }
 
-  .aside {
-    position: fixed;
-    width: 200px;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    background: white;
-    z-index: 99;
+  @media screen and (min-width: 600px) {
+    aside {
+      position: fixed;
+      width: 200px;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      background: white;
+      z-index: 99;
+    }
+
+    section {
+      margin-left: 200px;
+      width: calc(100% - 200px);
+      display: flex;
+      flex-wrap: wrap;
+      height: auto;
+      overflow-y: auto;
+    }
+
+    header {
+      position: relative;
+      width: 100%;
+      height: 60px;
+      background: rgba(248,248,248,1);
+    }
+
+
+    main {
+      position: relative;
+      width: 100%;
+      height: 2000px;
+      background: blueviolet;
+    }
+
+    footer {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      background: #42b983;
+    }
   }
 
-  .main {
-    position: relative;
-    margin-top: 60px;
-    margin-left: 200px;
-    width: calc(100% - 200px);
-    height: 1200px;
-    background: blueviolet;
+  @media screen and (max-width: 600px) {
+
+    aside {
+      position: fixed;
+      float: left;
+      width: 200px;
+      height: 100vh;
+      background: white;
+      display: none;
+    }
+
+    section {
+      position: fixed;
+      left: 200px;
+      top: 0;
+      width: calc(100% - 200px);
+      height: 100vh;
+      display: flex;
+    }
+
+    header {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      background: aquamarine;
+    }
+
+    main {
+      position: relative;
+      width: 100%;
+      height: 1200px;
+      background: blueviolet;
+    }
+
+    footer {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      background: #42b983;
+    }
   }
 
-  .footer {
-    position: relative;
-    width: calc(100% - 200px);
-    margin-left: 200px;
-    height: 100px;
-    background: #42b983;
+  p {
+    margin-left: 10px;
   }
-}
-
-@media screen and (max-width: 600px) {
-  .container {
-    width: 100%;
-    height: 100%;
-    min-width: 600px;
-  }
-
-  .aside {
-    position: fixed;
-    float: left;
-    width: 200px;
-    height: 100vh;
-    background: white;
-    display: none;
-  }
-
-  .header {
-    position: relative;
-    width: 100%;
-    height: 100px;
-    background: aquamarine;
-  }
-
-  .main {
-    position: relative;
-    width: 100%;
-    height: 1200px;
-    background: blueviolet;
-  }
-
-  .footer {
-    position: relative;
-    width: 100%;
-    height: 100px;
-    background: #42b983;
-  }
-}
-
-p {
-  margin-left: 10px;
-}
 </style>

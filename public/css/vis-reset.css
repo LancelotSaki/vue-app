@@ -1,0 +1,86 @@
+/*重写vis整体风格*/
+
+/*tooltip*/
+
+div.vis-tooltip::before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    left: 0;
+    top: 30px;
+    height: 3px;
+    background: -webkit-linear-gradient(
+            left,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(212, 71, 73, 1) 50%,
+            rgba(0, 0, 0, 0) 100%
+    );
+}
+div.vis-tooltip {
+    font-size: small;
+    border: 0 !important;
+    border-radius: 5px;
+    width: 250px;
+    height: 200px;
+    padding: 10px;
+    box-shadow: 0 1px 4px #ddd !important;
+    background-color: rgba(46, 54, 56, 0.85) !important;
+    color: white !important;
+}
+div.vis-tooltip p {
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+}
+div.vis-tooltip ol {
+    display: flex;
+    color: rgba(241, 221, 56, 1);
+    justify-content: space-evenly;
+}
+
+div.vis-tooltip ol > li:first-child {
+    width: 80px;
+    text-align: right;
+}
+
+div.vis-tooltip ol > li:nth-child(2) {
+    width: calc(100% - 100px);
+}
+div.vis-network div.vis-navigation div.vis-button.vis-up {
+    background-image: url(/images/vis/upArrow.png) !important;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-down {
+    background-image: url(/images/vis/downArrow.png) !important;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-left {
+    background-image: url(/images/vis/leftArrow.png) !important;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-right {
+    background-image: url(/images/vis/rightArrow.png) !important;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomIn {
+    background-image: url(/images/vis/plus.png) !important;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomOut {
+    background-image: url(/images/vis/minus.png) !important;
+}
+
+div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends {
+    background-image: url(/images/vis/zoomExtends.png) !important;
+}
+
+div.vis-network div.vis-navigation div.vis-button:hover {
+    box-shadow: 0px 0px 10px 1px #ac85b4, 0 0 1px #ac85b4, 0 0 1px #ac85b4,
+    0 0 1px #ac85b4, 0 0 1px #ac85b4, 0 0 1px #ac85b4, 0 0 1px #ac85b4 !important;
+}
+
+div.vis-network div.vis-navigation div.vis-button:active {
+    box-shadow: 0px 0px 10px 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8,
+    0 0 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8 !important;
+}

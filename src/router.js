@@ -25,10 +25,6 @@ export default new Router({
       component: () => import("./views/home/Home.vue"),
       children: [
         {
-          path: "/",
-          component: () => import("./views/home/Core.vue")
-        },
-        {
           path: "about",
           // route level code-splitting
           // this generates a separate chunk (about.[hash].js) for this route
@@ -87,14 +83,7 @@ export default new Router({
     {
       path: "/auto-find/topo",
       name: "AutoFindTopo",
-      component: () => import("./views/auto-find/topo/Topo.vue"),
-      children: [
-        {
-          // 实际上起作用的是这个
-          path: "/",
-          component: () => import("./views/auto-find/topo/Core.vue")
-        }
-      ]
+      component: () => import("./views/auto-find/topo/Topo.vue")
     },
     {
       path: "/es",

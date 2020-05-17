@@ -60,7 +60,34 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
+  header svg{
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  header {
+    padding-top: 10px;
+    width: 100%;
+    height: 70px;
+    text-align: center;
+    color: rgba(253, 255, 255, 1);
+    font-weight: bolder;
+    position: relative;
+  }
+
+  header > p {
+    font-size: 1.4em;
+    height: 40px;
+    margin: 5px 5px;
+    padding: 5px 30px 5px 30px;
+    text-shadow: 0 1px rgba(122, 174, 195, 0.15), 0 1px rgba(122, 174, 195, 0.3),
+    0 1px rgba(122, 174, 195, 0.45), 0 1px rgba(122, 174, 195, 0.65),
+    0 1px rgba(122, 174, 195, 0.75), 2px 4px 5px rgba(122, 174, 195, 1);
+    /* border: 1px solid #21A5CA;*/
+    /*  clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);*/
+  }
+
 .searchKey {
   position: fixed;
   right: 5px;
@@ -71,7 +98,9 @@ export default {
 .searchKey > input {
   width: 100%;
   height: 100%;
-  border: 1px solid rgba(102, 51, 103, 1);
+  border: 0;
+  box-shadow: 0 0 10px 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8,
+  0 0 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8;
   border-radius: 5px;
   padding-left: 25px;
   color: white;
@@ -113,7 +142,9 @@ export default {
 }
 
 .searchKey>input:focus {
-  box-shadow: 0 0 10px 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8,
-  0 0 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8;
+  box-shadow: 0px 0px 10px 1px #3F51B5,
+  0 0 1px #3F51B5, 0 0 1px #3F51B5,
+  0 0 1px #3F51B5, 0 0 1px #3F51B5,
+  0 0 1px #3F51B5, 0 0 1px #3F51B5;
 }
 </style>
