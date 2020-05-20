@@ -25,12 +25,26 @@ export default new Router({
       component: () => import("./views/home/Home.vue"),
       children: [
         {
+          path: "/",
+          // route level code-splitting
+          // this generates a separate chunk (about.[hash].js) for this route
+          // which is lazy-loaded when the route is visited.
+          component: () => import("./views/echarts/cmdb/host/Host.vue")
+        },
+        {
           path: "about",
           // route level code-splitting
           // this generates a separate chunk (about.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
           component: () => import("./views/about/About.vue")
-        }
+        },
+        {
+          path: "/auto/topo",
+          // route level code-splitting
+          // this generates a separate chunk (about.[hash].js) for this route
+          // which is lazy-loaded when the route is visited.
+          component: () => import("./views/auto-find/topo/Topo.vue")
+        },
       ]
     },
     {

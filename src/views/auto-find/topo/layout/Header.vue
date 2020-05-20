@@ -89,7 +89,7 @@ export default {
   }
 
 .searchKey {
-  position: fixed;
+  position: absolute;
   right: 5px;
   top: 40px;
   width: 280px;

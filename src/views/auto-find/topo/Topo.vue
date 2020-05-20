@@ -31,7 +31,7 @@ export default {
       // var that = this;
       // create a network
       this.nodes = [];
-      for (var i = 0; i < 300; i++) {
+      for (var i = 0; i < 30; i++) {
         this.nodes.push({
           id: i,
           title:
@@ -53,7 +53,7 @@ export default {
 
       // create an array with edges
       this.edges = [];
-      for (var j = 0; j < 300; j++) {
+      for (var j = 0; j < 30; j++) {
         if (parseInt(j / 10) == j) {
           continue;
         }

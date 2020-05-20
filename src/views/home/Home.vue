@@ -76,7 +76,6 @@
     main {
       position: relative;
       width: 100%;
-      height: 2000px;
     }
 
     footer {
@@ -119,8 +118,6 @@
     main {
       position: relative;
       width: 100%;
-      height: 1200px;
-      background: blueviolet;
     }
 
     footer {

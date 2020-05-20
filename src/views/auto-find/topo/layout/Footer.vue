@@ -8,7 +8,7 @@ export default {
   name: "TopoFooter"
 };
 </script>
-<style>
+<style scoped>
 /*
   footer::before {
     content: "";
