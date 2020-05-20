@@ -77,14 +77,15 @@
       position: relative;
       width: 100%;
       height: 2000px;
-      background: blueviolet;
     }
 
     footer {
       position: relative;
       width: 100%;
-      height: 100px;
-      background: #42b983;
+      height: 40px;
+      background: rgba(250, 250, 250, 0.78);
+      color: rgba(145, 149, 163, 1);
+      line-height: 40px;
     }
   }
 

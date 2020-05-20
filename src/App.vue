@@ -40,11 +40,7 @@ ol {
   padding: 0;
 }
 
-ul > li {
-  list-style: none;
-  margin-bottom: 10px;
-}
-
+ul > li,
 ol > li {
   list-style: none;
 }
