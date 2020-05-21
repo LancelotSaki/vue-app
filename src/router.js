@@ -105,6 +105,11 @@ export default new Router({
       component: () => import("./views/es/Es.vue")
     },
     {
+      path: "/profile",
+      name: "profile",
+      component: () => import("./views/profile/Profile.vue")
+    },
+    {
       path: "*",
       redirect: "/"
     }
