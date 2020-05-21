@@ -4,7 +4,6 @@
     <section>
       <Header></Header>
       <Main></Main>
-      <Footer></Footer>
     </section>
   </article>
 </template>
@@ -14,11 +13,10 @@
   import Aside from "./layout/Aside";
   import Main from "./layout/Main";
   import Header from "./layout/Header";
-  import Footer from "./layout/Footer";
 
   export default {
     name: "HomeCore",
-    components: {Aside, Header, Main, Footer},
+    components: {Aside, Header, Main},
     data() {
       return {
         nodes: [],
@@ -61,12 +59,14 @@
       width: calc(100% - 200px);
       display: flex;
       flex-wrap: wrap;
-      height: auto;
-      overflow-y: auto;
+      height: 100%;
+      position: relative;
     }
 
     header {
-      position: relative;
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 60px;
       background: rgba(248,248,248,1);
@@ -76,6 +76,9 @@
     main {
       position: relative;
       width: 100%;
+      margin-top: 100px;
+      height: calc(100% - 100px);
+      overflow-y: auto;
     }
 
     footer {
