@@ -76,8 +76,8 @@
     main {
       position: relative;
       width: 100%;
-      margin-top: 100px;
-      height: calc(100% - 100px);
+      margin-top: 60px;
+      height: calc(100% - 60px);
       overflow-y: auto;
     }
 
