@@ -1,17 +1,29 @@
 <template>
   <main>
     <section>
-      <select value="">
-        <option>精确检索</option>
-        <option>模糊检索</option>
-      </select>
-      <input id="es-text-id" list="esDataList" autocomplete="off"/>
-      <datalist id="esDataList">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-      </datalist>
-      <input type="button" id="es-btn-id" value="搜  索"/>
+      <ul>
+        <li>
+          <input type="radio" name="selectSearchType" id="fuzzySearch" checked="checked"/>
+          <label for="fuzzySearch">模糊检索</label>
+        </li>
+        <li>
+          <input type="radio" name="selectSearchType" id="preciseSearch"/>
+          <label for="preciseSearch">精确检索</label>
+        </li>
+      </ul>
+      <ol>
+        <li>
+          <input class="es-text-class" list="esDataList" autocomplete="off"/>
+          <datalist id="esDataList">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </datalist>
+        </li>
+        <li>
+          <input type="button" id="es-btn-id" value="搜  索"/>
+        </li>
+      </ol>
     </section>
   </main>
 </template>
@@ -27,7 +39,6 @@
       width: calc(100% - 50px);
       margin: auto 25px;
       position: relative;
-      display: flex;
       padding-top: 60px;
     }
   }
@@ -37,7 +48,6 @@
       width: 600px;
       margin: auto calc(50% - 300px);
       position: relative;
-      display: flex;
       padding-top: 60px;
     }
   }
@@ -76,8 +86,79 @@
     border: 1px solid rgba(112, 142, 245, 0.618);
   }
 
-  #es-text-id {
-    width: calc(100% - 200px);
+  ul, ol {
+    display: flex;
+    width: 100%;
+  }
+
+  ul > li {
+
+  }
+
+  ol > li:first-child {
+    width: calc(100% - 100px);
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  input[type="radio"] + label::before {
+    border-left: 1px rgba(128, 128, 128, 0.618) solid;
+    left: 0;
+    height: 9px;
+  }
+
+  input[type="radio"] + label {
+    margin-right: 1px;
+    position: relative;
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px 17px;
+    color: #464646;
+  }
+
+  input[type="radio"] + label::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    z-index: -1;
+    transform: scale(1.1, 1.3) perspective(.5em) rotateX(2.2deg);
+    transform-origin: bottom left;
+    background: rgba(255, 255, 255, .8);
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+
+  input[type="radio"]:checked + label::before {
+    background: #fff;
+  }
+
+  input[type="radio"]:checked + label {
+    color: #010101;
+    cursor: auto;
+    z-index: 1;
+  }
+
+  input[type="radio"]:checked + label::after {
+    background: #fff;
+    border: 1px rgba(128, 128, 128, 0.618) solid;
+    border-bottom: none;
+  }
+
+  input[type="radio"] + label:hover {
+    cursor: pointer;
+  }
+
+  .es-text-class {
+    width: 100%;
     height: 40px;
     border: 1px solid rgba(128, 128, 128, 0.618);
     padding: 12px 16px;
@@ -85,8 +166,9 @@
     color: #222;
   }
 
-  #es-text-id:focus {
-    border: 1px solid rgba(112, 142, 245, 0.618);
+  .es-text-class:focus {
+    /*去掉input点击后边框颜色*/
+    outline:none;
   }
 
   #es-btn-id {

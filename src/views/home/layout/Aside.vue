@@ -63,6 +63,16 @@
               id: 33,
               label: '全网拓扑'
             }]
+          }, {
+            id: 4,
+            label: '资源搜索',
+            children: [{
+              id: 41,
+              label: '综合查询'
+            }, {
+              id: 42,
+              label: '全文检索'
+            }]
           }],
         defaultProps: {
           children: 'children',
@@ -81,11 +91,13 @@
         if (!value) return true;
         return data.label.indexOf(value) !== -1;
       },
-      treeTrigger(value, data, node) {
+      treeTrigger(value) {
         if (value.id == 'firstIndex') {
           this.$router.push('/');
         } else if (value.id == '31') {
           this.$router.push('/auto/topo');
+        } else if (value.id == '42') {
+          this.$router.push('/cmdb/es');
         }
       }
     },

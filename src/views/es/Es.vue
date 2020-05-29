@@ -1,9 +1,9 @@
 <template>
-  <div class="es-home">
+  <article class="es-home">
     <Header></Header>
     <Main></Main>
     <Footer></Footer>
-  </div>
+  </article>
 </template>
 
 <script>

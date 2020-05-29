@@ -14,7 +14,7 @@ export default {
   name: "HomeHeader",
   data() {
     return {
-      title: "自动发现拓扑图"
+      title: ""
     };
   }
 };

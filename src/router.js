@@ -45,6 +45,11 @@ export default new Router({
           // which is lazy-loaded when the route is visited.
           component: () => import("./views/auto-find/topo/Topo.vue")
         },
+        {
+          path: "/cmdb/es",
+          name: "ES",
+          component: () => import("./views/es/Es.vue")
+        },
       ]
     },
     {
