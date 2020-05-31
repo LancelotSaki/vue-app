@@ -93,11 +93,11 @@
       },
       treeTrigger(value) {
         if (value.id == 'firstIndex') {
-          this.$router.push('/');
+          this.$router.push('/').catch(err => {err});
         } else if (value.id == '31') {
-          this.$router.push('/auto/topo');
+          this.$router.push('/auto/topo').catch(err => {err});
         } else if (value.id == '42') {
-          this.$router.push('/cmdb/es');
+          this.$router.push('/cmdb/es').catch(err => {err});
         }
       }
     },

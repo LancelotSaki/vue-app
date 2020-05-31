@@ -10,6 +10,7 @@
     name: "TopoMain",
     mounted() {
       this.createEcharts1();
+      this.createEcharts2();
     },
     methods: {
       // echarts
@@ -174,6 +175,94 @@
           document.getElementById("allCountEcharts")
         );
         myChart.setOption(option);
+      },
+      createEcharts2() {
+        var option = {
+          tooltip: {
+            formatter: '{c}%的{b}'
+          },
+          series: [
+            {
+              name: '资源',
+              type: 'gauge',
+              min: 0,
+              max: 100,
+              splitNumber: 10,
+              center: ['50%', '65%'],    // 默认全局居中
+              radius: '120px', //图表尺寸
+              axisLine: {            // 坐标轴线
+                lineStyle: {       // 属性lineStyle控制线条样式
+                  color: [[0.09, 'lime'], [0.82, '#1e90ff'], [1, '#ff4500']],
+                  width: 3,
+                  shadowColor: '#fff', //默认透明
+                  shadowBlur: 10
+                }
+              },
+              axisLabel: {            // 坐标轴小标记
+                fontWeight: 'bolder',
+                color: '#fff',
+                shadowColor: '#fff', //默认透明
+                shadowBlur: 10
+              },
+              axisTick: {            // 坐标轴小标记
+                length: 15,        // 属性length控制线长
+                lineStyle: {       // 属性lineStyle控制线条样式
+                  color: 'auto',
+                  shadowColor: '#fff', //默认透明
+                  shadowBlur: 10
+                }
+              },
+              splitLine: {           // 分隔线
+                length: 20,         // 属性length控制线长
+                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                  width: 2,
+                  color: '#fff',
+                  shadowColor: '#fff', //默认透明
+                  shadowBlur: 10
+                }
+              },
+              pointer: {           // 分隔线
+                shadowColor: '#fff', //默认透明
+                shadowBlur: 5,
+                length: '70%',
+                width: 5
+              },
+              title: {
+                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                  fontWeight: 'bolder',
+                  fontSize: 8,
+                  fontStyle: 'italic',
+                  color: '#fff',
+                  shadowColor: '#fff', //默认透明
+                  shadowBlur: 10
+                }
+              },
+              detail: {
+                /*这里就是详情配置*/
+                backgroundColor: 'rgba(30,144,255,0.3)',
+                borderWidth: 1,
+                borderColor: '#fff',
+                shadowColor: '#fff', //默认透明
+                shadowBlur: 5,
+                offsetCenter: [0, '50%'],       // x, y，单位px
+                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                  fontSize: 8,
+                  color: '#fff'
+                }
+              },
+              data: [{value: 40, name: '资源占用率'}]
+            }
+          ]
+        };
+        const myChart = eCharts.init(
+            document.getElementById("everyCountEcharts")
+        );
+        myChart.setOption(option);
+        setInterval(function (){
+          option.series[0].data[0].value = (Math.random()*100).toFixed(2) - 0;
+          myChart.setOption(option);
+        },5000);
+
       }
     }
   };
@@ -185,12 +274,6 @@
     width: 300px;
     height: 300px;
     float: left;
-  }
-
-  #everyCountEcharts {
-    width: 600px;
-    height: 300px;
-    margin-left: 300px;
   }
 
   #allCountEcharts::before {
@@ -238,4 +321,58 @@
     background-repeat: repeat-x;
     transform: skewX(-35deg);
   }
+
+  #everyCountEcharts::before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 15px;
+    left: 0;
+    top: -15px;
+    background: rgba(72, 123, 213, 1);
+    background: linear-gradient(
+            to right,
+            rgba(72, 123, 213, 0.2) 0%,
+            rgba(72, 123, 213, 1) 50%,
+            rgba(72, 123, 213, 0.2) 100%
+    );
+    clip-path: polygon(
+            0 95%,
+            45% 95%,
+            calc(45% + 10px) 0%,
+            100% 0,
+            100% 2px,
+            60% 2px,
+            calc(60% - 10px) 100%,
+            0 100%
+    );
+  }
+
+
+  #everyCountEcharts {
+    width: 300px;
+    height: 300px;
+    margin-left: 300px;
+  }
+
+  #everyCountEcharts::after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    width: 38%;
+    height: 15px;
+    left: 60%;
+    top: -11px;
+    background-image: linear-gradient(
+            to right,
+            rgba(72, 123, 213, 0.5) 0%,
+            rgba(72, 123, 213, 0) 50%,
+            transparent 50%
+    );
+    background-size: 11px 10px;
+    background-repeat: repeat-x;
+    transform: skewX(-35deg);
+  }
+
 </style>
