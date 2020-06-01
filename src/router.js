@@ -50,6 +50,11 @@ export default new Router({
           name: "ES",
           component: () => import("./views/es/Es.vue")
         },
+        {
+          path: "/cmdb/guide",
+          name: "GUIDE",
+          component: () => import("./views/cmdb/guide/Guide.vue")
+        }
       ]
     },
     {
