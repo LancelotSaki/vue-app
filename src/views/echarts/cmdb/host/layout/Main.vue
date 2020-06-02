@@ -3,6 +3,7 @@
     <div id="allCountEcharts">资源</div>
     <div id="everyCountEcharts"></div>
     <div id="resourcePercentEcharts"></div>
+    <div id="resourceSinglePercentEcharts"></div>
   </main>
 </template>
 <script>
@@ -13,6 +14,7 @@ export default {
     this.createEcharts1();
     this.createEcharts2();
     this.createEcharts3();
+    this.createEcharts4();
   },
   methods: {
     // echarts
@@ -106,7 +108,8 @@ export default {
         legend: {
           /*orient: 'vertical',*/
           data: names,
-          icon: "circle",
+          icon:
+            "path://M60.217 633.91S310.415 738.469 434.781 964.54c149.378-279.763 436.11-540.714 521.05-560.014V63.083c-342.237 226.07-506.576 642.342-506.576 642.342l-180.05-191.614-208.988 120.1z",
           right: "0px",
           top: "20px",
           textStyle: {
@@ -303,29 +306,29 @@ export default {
             fontSize: 14,
             color: "#ade3ff"
           },
-          data: ["2016", "2017", "2018"]
+          data: ["最近一个月", "2017", "2018"]
         },
         radar: [
           {
             indicator: [
               {
-                text: "科技创新联盟",
+                text: "中间件发现",
                 max: 100
               },
               {
-                text: "科技成果转化中心",
+                text: "主机发现",
                 max: 100
               },
               {
-                text: "工程技术中心（工程实验室）",
+                text: "网络设备发现",
                 max: 100
               },
               {
-                text: "新型研发机构",
+                text: "数据库发现",
                 max: 100
               },
               {
-                text: "科技创孵化器",
+                text: "IP发现",
                 max: 100
               }
             ],
@@ -372,7 +375,7 @@ export default {
         ],
         series: [
           {
-            name: "雷达图",
+            name: "资源管理",
             type: "radar",
             itemStyle: {
               emphasis: {
@@ -383,7 +386,7 @@ export default {
             },
             data: [
               {
-                name: "2016",
+                name: "最近一个月",
                 value: [85, 65, 55, 90, 82],
                 areaStyle: {
                   normal: {
@@ -439,8 +442,8 @@ export default {
                 //         opacity: 0.5// 图形透明度
                 //     }
                 // }
-              },
-              {
+              }
+              /*{
                 name: "2017",
                 value: [50, 20, 45, 30, 75],
                 symbolSize: 2.5,
@@ -522,13 +525,114 @@ export default {
                     opacity: 1 // 区域透明度
                   }
                 }
-              }
+              }*/
             ]
           }
         ]
       };
       const myChart = eCharts.init(
         document.getElementById("resourcePercentEcharts")
+      );
+      myChart.setOption(option);
+    },
+    createEcharts4() {
+      /**
+       * 图标所需数据
+       */
+      var data = {
+        value: 24.2,
+        text: "-",
+        color: [
+          "rgba(36, 209, 209, 1)",
+          "rgba(252, 142, 108, 1)",
+          "rgba(68, 163, 252, 1)",
+          "rgba(165, 211, 255, 1)"
+        ],
+        xAxis: ["正常运行", "异常运行", "故障", "调试中"],
+        values: ["76", "78", "22", "33"]
+      };
+
+      var seriesData = [];
+      var titleData = [];
+      data.values.forEach(function(item, index) {
+        titleData.push({
+          left: "70%",
+          top: 18 * (index + 1) - 0.5 + "%",
+          textAlign: "center",
+          textStyle: {
+            fontSize: "8",
+            color: "rgba(255,255,255,0.5)",
+            fontWeight: "20"
+          },
+          subtext: data.xAxis[index],
+          subtextStyle: {
+            fontSize: "8",
+            color: "rgba(255,255,255,0.5)",
+            fontWeight: "20"
+          }
+        });
+        seriesData.push({
+          type: "pie",
+          radius: ["26", "30"],
+          center: ["50%", 22 * (index + 1) + "%"],
+          hoverAnimation: false,
+          label: {
+            normal: {
+              position: "center"
+            }
+          },
+          data: [
+            {
+              value: item,
+              name: data.text,
+              itemStyle: {
+                normal: {
+                  color: data.color[index]
+                }
+              },
+              label: {
+                normal: {
+                  show: false
+                }
+              }
+            },
+            {
+              value: 100 - item,
+              name: "占位",
+              tooltip: {
+                show: false
+              },
+              itemStyle: {
+                normal: {
+                  color: "#edf1f4"
+                }
+              },
+              label: {
+                normal: {
+                  formatter: item,
+                  textStyle: {
+                    fontSize: 8,
+                    color: "rgba(255,255,255,1)"
+                  }
+                }
+              }
+            }
+          ]
+        });
+      });
+
+      var option = {
+        title: titleData,
+        series: seriesData,
+        grid: {
+          top: "30px",
+          left: "45px",
+          right: "0",
+          bottom: "39px"
+        }
+      };
+      const myChart = eCharts.init(
+        document.getElementById("resourceSinglePercentEcharts")
       );
       myChart.setOption(option);
     }
@@ -674,6 +778,57 @@ export default {
 }
 
 #resourcePercentEcharts::after {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 38%;
+  height: 15px;
+  left: 60%;
+  top: -11px;
+  background-image: linear-gradient(
+    to right,
+    rgba(72, 123, 213, 0.5) 0%,
+    rgba(72, 123, 213, 0) 50%,
+    transparent 50%
+  );
+  background-size: 11px 10px;
+  background-repeat: repeat-x;
+  transform: skewX(-35deg);
+}
+#resourceSinglePercentEcharts::before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  height: 15px;
+  left: 0;
+  top: -15px;
+  background: rgba(72, 123, 213, 1);
+  background: linear-gradient(
+    to right,
+    rgba(72, 123, 213, 0.2) 0%,
+    rgba(72, 123, 213, 1) 50%,
+    rgba(72, 123, 213, 0.2) 100%
+  );
+  clip-path: polygon(
+    0 95%,
+    45% 95%,
+    calc(45% + 10px) 0%,
+    100% 0,
+    100% 2px,
+    60% 2px,
+    calc(60% - 10px) 100%,
+    0 100%
+  );
+}
+
+#resourceSinglePercentEcharts {
+  width: 300px;
+  height: 300px;
+  position: relative;
+}
+
+#resourceSinglePercentEcharts::after {
   content: "";
   position: absolute;
   display: inline-block;
