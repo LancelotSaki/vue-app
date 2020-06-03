@@ -37,5 +37,6 @@ main {
   position: relative;
   margin-top: 70px;
   display: flex;
+  flex-wrap: wrap;
 }
 </style>
