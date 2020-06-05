@@ -5,7 +5,8 @@
 </template>
 <script>
 const eCharts = require("echarts");
-var path = "M1172.985723 682.049233l-97.748643-35.516964a32.583215 32.583215 " +
+var path =
+  "M1172.985723 682.049233l-97.748643-35.516964a32.583215 32.583215 " +
   "0 0 0-21.830134 61.582735l25.7398 9.123221-488.744218 238.181638L115.670112 " +
   "741.349163l47.245961-19.223356a32.583215 32.583215 0 0 0-22.808051-60.604819l-119.579777 " +
   "47.896905a32.583215 32.583215 0 0 0 0 59.952875l557.820313 251.540496a32.583215 " +
@@ -29,50 +30,244 @@ export default {
   },
   methods: {
     createGuide() {
-      var obj = [{
-        name: "自动发现",
-        path: path,
-        value: [0, 400],
-        offset: [0, 0]
-      }, {
-        name: "IP发现",
-        path: path,
-        value: [50, 400],
-        offset: [0, 0]
-      },{
-        name: "主机发现",
-        path: path,
-        value: [100, 400],
-        offset: [0, 0]
-      }, {
-        name: "网络设备发现",
-        path: path,
-        value: [100, 500],
-        offset: [0, 0]
-      }, {
-        name: "SNMP采集",
-        path: path,
-        value: [150, 500],
-        offset: [0, 0]
-      }, {
-        name: "SSH登录",
-        path: path,
-        value: [150, 400],
-        offset: [0, 0]
-      }, {
-        name: "未知设备",
-        path: path,
-        value: [100, 300],
-        offset: [0, 0]
-      }];
+      var obj = [
+        {
+          name: "自动发现",
+          path: path,
+          value: [0, 400],
+          offset: [0, 0]
+        },
+        {
+          name: "IP发现",
+          path: path,
+          value: [50, 400],
+          offset: [0, 0]
+        },
+        {
+          name: "主机发现",
+          path: path,
+          value: [100, 300],
+          offset: [0, 0]
+        },
+        {
+          name: "网络设备发现",
+          path: path,
+          value: [100, 500],
+          offset: [0, 0]
+        },
+        {
+          name: "SNMP采集",
+          path: path,
+          value: [150, 500],
+          offset: [0, 0]
+        },
+        {
+          name: "SSH登录",
+          path: path,
+          value: [150, 300],
+          offset: [0, 0]
+        },
+        {
+          name: "文件系统",
+          path: path,
+          value: [200, 300],
+          offset: [0, 0]
+        },
+        {
+          name: "中间件",
+          path: path,
+          value: [200, 200],
+          offset: [0, 0]
+        },
+        {
+          name: "主机网卡",
+          path: path,
+          value: [200, 100],
+          offset: [0, 0]
+        },
+        {
+          name: "未知设备",
+          path: path,
+          value: [100, 400],
+          offset: [0, 0]
+        },
+        {
+          name: "CMDB",
+          path: path,
+          value: [1000, 400],
+          offset: [0, 0]
+        },
+        {
+          name: "EXCEL导入",
+          path: path,
+          value: [900, 450],
+          offset: [0, 0]
+        },
+        {
+          name: "前台页面新增",
+          path: path,
+          value: [900, 400],
+          offset: [0, 0]
+        },
+        {
+          name: "前台新增",
+          path: path,
+          value: [900, 350],
+          offset: [0, 0]
+        },
+        {
+          name: "资源入库",
+          path: path,
+          value: [800, 400],
+          offset: [0, 0]
+        },
+        {
+          name: "SaaS类",
+          path: path,
+          value: [700, 1000],
+          offset: [0, 0]
+        },
+        {
+          name: "PaaS类",
+          path: path,
+          value: [700, 800],
+          offset: [0, 0]
+        },
+        {
+          name: "IaaS类",
+          path: path,
+          value: [700, 500],
+          offset: [0, 0]
+        },
+        {
+          name: "其他类类",
+          path: path,
+          value: [700, 200],
+          offset: [0, 0]
+        },
+        {
+          name: "业务系统",
+          path: path,
+          value: [600, 1050],
+          offset: [0, 0]
+        },
+        {
+          name: "应用服务",
+          path: path,
+          value: [600, 1000],
+          offset: [0, 0]
+        },
+        {
+          name: "CMDB-进程",
+          path: path,
+          value: [600, 950],
+          offset: [0, 0]
+        },
+        {
+          name: "CMDB-中间件",
+          path: path,
+          value: [600, 900],
+          offset: [0, 0]
+        },
+        {
+          name: "CMDB-数据库对象",
+          path: path,
+          value: [600, 850],
+          offset: [0, 0]
+        },
+        {
+          name: "CMDB-数据库实例",
+          path: path,
+          value: [600, 800],
+          offset: [0, 0]
+        },
+        {
+          name: "CMDB-文件系统",
+          path: path,
+          value: [600, 750],
+          offset: [0, 0]
+        },
+        {
+          name: "非关系型数据库",
+          path: path,
+          value: [600, 700],
+          offset: [0, 0]
+        },
+        {
+          name: "资源池",
+          path: path,
+          value: [600, 650],
+          offset: [0, 0]
+        },
+        {
+          name: "虚拟机",
+          path: path,
+          value: [600, 600],
+          offset: [0, 0]
+        },
+        {
+          name: "储存",
+          path: path,
+          value: [600, 550],
+          offset: [0, 0]
+        },
+        {
+          name: "网卡",
+          path: path,
+          value: [600, 500],
+          offset: [0, 0]
+        },
+        {
+          name: "物理机",
+          path: path,
+          value: [600, 450],
+          offset: [0, 0]
+        },
+        {
+          name: "交换机",
+          path: path,
+          value: [600, 400],
+          offset: [0, 0]
+        },
+        {
+          name: "路由器",
+          path: path,
+          value: [600, 350],
+          offset: [0, 0]
+        },
+        {
+          name: "防火墙",
+          path: path,
+          value: [600, 300],
+          offset: [0, 0]
+        },
+        {
+          name: "关键地市",
+          path: path,
+          value: [600, 250],
+          offset: [0, 0]
+        },
+        {
+          name: "手册",
+          path: path,
+          value: [600, 200],
+          offset: [0, 0]
+        },
+        {
+          name: "合同",
+          path: path,
+          value: [600, 150],
+          offset: [0, 0]
+        }
+      ];
 
       var seriesData = function(data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
           res.push({
             name: data[i].name,
-            symbol: "path://"+data[i].path,
-            symbolSize: 28,               //图标大小
+            symbol: "path://" + data[i].path,
+            symbolSize: 20, //图标大小
             symbolOffset: data[i].offset,
             draggable: false,
             fixed: true,
@@ -80,10 +275,10 @@ export default {
             label: {
               normal: {
                 position: data[i].direction ? data[i].direction : "bottom",
-                distance: 10,	//离图标多远
+                distance: 10, //离图标多远
                 show: true,
                 textStyle: {
-                  fontSize: 14,
+                  fontSize: 8,
                   color: "#0ca361",
                   fontWeight: 700
                 }
@@ -92,18 +287,18 @@ export default {
             itemStyle: {
               color: "#0ca361"
             }
-          })
+          });
         }
         return res;
-      }
+      };
 
       var option = {
-        backgroundColor: '#fff',
+        backgroundColor: "#fff",
         grid: {
           left: "18%",
-          bottom: '-10%',
-          top: '20%',
-          right: '15%'
+          bottom: "-10%",
+          top: "20%",
+          right: "15%"
         },
         xAxis: {
           show: false,
@@ -143,30 +338,33 @@ export default {
               symbol: "arrow",
               color: "#0ca361",
               symbolSize: 8,
-              period: 4,    //特效动画的时间
+              period: 4, //特效动画的时间
               loop: true
             },
             lineStyle: {
               curveness: 0,
-              color: '#0ca361',
+              color: "#0ca361",
               opacity: 0.6,
               width: 1,
               type: "dashed"
             },
             data: [
-              {coords: [[0, 400], [50, 400]]},
-              {coords: [[50, 400], [100, 500]]},
-              {coords: [[100, 500], [150, 500]]},
-              {coords: [[50, 400], [100, 400]]},
-              {coords: [[100, 400], [150, 400]]},
-              {coords: [[50, 400], [100, 300]]}
+              { coords: [[0, 400], [50, 400]] },
+              { coords: [[50, 400], [100, 500]] },
+              { coords: [[100, 500], [150, 500]] },
+              { coords: [[50, 400], [100, 400]] },
+              { coords: [[100, 400], [150, 500]] },
+              { coords: [[100, 400], [150, 300]] },
+              { coords: [[100, 300], [150, 300]] },
+              { coords: [[150, 300], [200, 100]] },
+              { coords: [[150, 300], [200, 200]] },
+              { coords: [[150, 300], [200, 300]] },
+              { coords: [[50, 400], [100, 300]] }
             ]
           }
         ]
-      }
-      const myChart = eCharts.init(
-        document.getElementById("cmdbGuideEcharts")
-      );
+      };
+      const myChart = eCharts.init(document.getElementById("cmdbGuideEcharts"));
       myChart.setOption(option);
     }
   }
@@ -175,7 +373,7 @@ export default {
 <style scoped>
 #cmdbGuideEcharts {
   width: 100%;
-  height: 600px;
+  height: 1000px;
   float: left;
 }
 

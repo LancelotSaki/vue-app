@@ -11,7 +11,8 @@ import "./plugins/element.js";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import echarts from "echarts";
-
+var VueDragula = require("vue-dragula");
+Vue.use(VueDragula);
 Vue.use(animate);
 Vue.prototype.$echarts = echarts;
 Vue.use(VueAxios, axios);
