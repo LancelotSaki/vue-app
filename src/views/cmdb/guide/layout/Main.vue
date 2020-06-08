@@ -68,6 +68,42 @@ export default {
           offset: [0, 0]
         },
         {
+          name: "网络-交换机",
+          path: path,
+          value: [200, 650],
+          offset: [0, 0]
+        },
+        {
+          name: "网络-路由器",
+          path: path,
+          value: [200, 600],
+          offset: [0, 0]
+        },
+        {
+          name: "网络-防火墙",
+          path: path,
+          value: [200, 550],
+          offset: [0, 0]
+        },
+        {
+          name: "网络-VPN接入",
+          path: path,
+          value: [200, 500],
+          offset: [0, 0]
+        },
+        {
+          name: "数据库",
+          path: path,
+          value: [200, 400],
+          offset: [0, 0]
+        },
+        {
+          name: "数据库表空间",
+          path: path,
+          value: [200, 350],
+          offset: [0, 0]
+        },
+        {
           name: "文件系统",
           path: path,
           value: [200, 300],
@@ -76,11 +112,23 @@ export default {
         {
           name: "中间件",
           path: path,
-          value: [200, 200],
+          value: [200, 250],
           offset: [0, 0]
         },
         {
           name: "主机网卡",
+          path: path,
+          value: [200, 200],
+          offset: [0, 0]
+        },
+        {
+          name: "物理机",
+          path: path,
+          value: [200, 150],
+          offset: [0, 0]
+        },
+        {
+          name: "虚拟机",
           path: path,
           value: [200, 100],
           offset: [0, 0]
@@ -94,31 +142,31 @@ export default {
         {
           name: "CMDB",
           path: path,
-          value: [1000, 400],
+          value: [1000, 600],
           offset: [0, 0]
         },
         {
           name: "EXCEL导入",
           path: path,
-          value: [900, 450],
+          value: [900, 650],
           offset: [0, 0]
         },
         {
           name: "前台页面新增",
           path: path,
-          value: [900, 400],
+          value: [900, 600],
           offset: [0, 0]
         },
         {
-          name: "前台新增",
+          name: "走流程工单",
           path: path,
-          value: [900, 350],
+          value: [900, 550],
           offset: [0, 0]
         },
         {
           name: "资源入库",
           path: path,
-          value: [800, 400],
+          value: [800, 600],
           offset: [0, 0]
         },
         {
@@ -140,7 +188,7 @@ export default {
           offset: [0, 0]
         },
         {
-          name: "其他类类",
+          name: "其他类",
           path: path,
           value: [700, 200],
           offset: [0, 0]
@@ -194,49 +242,49 @@ export default {
           offset: [0, 0]
         },
         {
-          name: "资源池",
+          name: "CMDB-资源池",
           path: path,
           value: [600, 650],
           offset: [0, 0]
         },
         {
-          name: "虚拟机",
+          name: "CMDB-虚拟机",
           path: path,
           value: [600, 600],
           offset: [0, 0]
         },
         {
-          name: "储存",
+          name: "CMDB-储存",
           path: path,
           value: [600, 550],
           offset: [0, 0]
         },
         {
-          name: "网卡",
+          name: "CMDB-网卡",
           path: path,
           value: [600, 500],
           offset: [0, 0]
         },
         {
-          name: "物理机",
+          name: "CMDB-物理机",
           path: path,
           value: [600, 450],
           offset: [0, 0]
         },
         {
-          name: "交换机",
+          name: "CMDB-交换机",
           path: path,
           value: [600, 400],
           offset: [0, 0]
         },
         {
-          name: "路由器",
+          name: "CMDB-路由器",
           path: path,
           value: [600, 350],
           offset: [0, 0]
         },
         {
-          name: "防火墙",
+          name: "CMDB-防火墙",
           path: path,
           value: [600, 300],
           offset: [0, 0]
@@ -267,7 +315,7 @@ export default {
           res.push({
             name: data[i].name,
             symbol: "path://" + data[i].path,
-            symbolSize: 20, //图标大小
+            symbolSize: 25, //图标大小
             symbolOffset: data[i].offset,
             draggable: false,
             fixed: true,
@@ -275,7 +323,7 @@ export default {
             label: {
               normal: {
                 position: data[i].direction ? data[i].direction : "bottom",
-                distance: 10, //离图标多远
+                distance: 2, //离图标多远
                 show: true,
                 textStyle: {
                   fontSize: 8,
@@ -293,12 +341,11 @@ export default {
       };
 
       var option = {
-        backgroundColor: "#fff",
         grid: {
-          left: "18%",
-          bottom: "-10%",
-          top: "20%",
-          right: "15%"
+          left: "5%",
+          bottom: "0%",
+          top: "0%",
+          right: "5%"
         },
         xAxis: {
           show: false,
@@ -356,10 +403,57 @@ export default {
               { coords: [[100, 400], [150, 500]] },
               { coords: [[100, 400], [150, 300]] },
               { coords: [[100, 300], [150, 300]] },
+
               { coords: [[150, 300], [200, 100]] },
+              { coords: [[150, 300], [200, 150]] },
               { coords: [[150, 300], [200, 200]] },
+              { coords: [[150, 300], [200, 250]] },
               { coords: [[150, 300], [200, 300]] },
-              { coords: [[50, 400], [100, 300]] }
+              { coords: [[150, 300], [200, 350]] },
+              { coords: [[150, 300], [200, 400]] },
+
+              { coords: [[150, 500], [200, 650]] },
+              { coords: [[150, 500], [200, 600]] },
+              { coords: [[150, 500], [200, 550]] },
+              { coords: [[150, 500], [200, 500]] },
+
+              { coords: [[50, 400], [100, 300]] },
+
+              { coords: [[1000, 600], [900, 650]] },
+              { coords: [[1000, 600], [900, 600]] },
+              { coords: [[1000, 600], [900, 550]] },
+
+              { coords: [[900, 650], [800, 600]] },
+              { coords: [[900, 600], [800, 600]] },
+              { coords: [[900, 550], [800, 600]] },
+
+              { coords: [[800, 600], [700, 1000]] },
+              { coords: [[800, 600], [700, 800]] },
+              { coords: [[800, 600], [700, 500]] },
+              { coords: [[800, 600], [700, 200]] },
+
+              { coords: [[700, 1000], [600, 1050]] },
+              { coords: [[700, 1000], [600, 1000]] },
+
+              { coords: [[700, 800], [600, 950]] },
+              { coords: [[700, 800], [600, 900]] },
+              { coords: [[700, 800], [600, 850]] },
+              { coords: [[700, 800], [600, 800]] },
+              { coords: [[700, 800], [600, 750]] },
+              { coords: [[700, 800], [600, 700]] },
+
+              { coords: [[700, 500], [600, 650]] },
+              { coords: [[700, 500], [600, 600]] },
+              { coords: [[700, 500], [600, 550]] },
+              { coords: [[700, 500], [600, 500]] },
+              { coords: [[700, 500], [600, 450]] },
+              { coords: [[700, 500], [600, 400]] },
+              { coords: [[700, 500], [600, 350]] },
+              { coords: [[700, 500], [600, 300]] },
+
+              { coords: [[700, 200], [600, 250]] },
+              { coords: [[700, 200], [600, 200]] },
+              { coords: [[700, 200], [600, 150]] }
             ]
           }
         ]

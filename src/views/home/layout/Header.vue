@@ -20,23 +20,23 @@ export default {
 };
 </script>
 <style scoped>
-  header::before {
-    content: "CMDB";
-    position: absolute;
-    display: inline-block;
-    width: 200px;
-    height: 100%;
-    line-height: 60px;
-    text-align: center;
-    font-size: 24px;
-    left: 15px;
-    top: 0;
-  }
-  ul {
-    margin-left: 200px;
-    width: calc(100% - 200px);
-    display: flex;
-  }
-  ul>li {
-  }
+header::before {
+  content: "CMDB";
+  position: absolute;
+  display: inline-block;
+  width: 200px;
+  height: 100%;
+  line-height: 60px;
+  text-align: center;
+  font-size: 24px;
+  left: 15px;
+  top: 0;
+}
+ul {
+  margin-left: 200px;
+  width: calc(100% - 200px);
+  display: flex;
+}
+ul > li {
+}
 </style>

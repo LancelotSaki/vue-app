@@ -1,6 +1,6 @@
 <template>
   <article class="model-create">
-    <Main></Main>
+    <Main :mySubId="1"></Main>
     <Footer></Footer>
   </article>
 </template>

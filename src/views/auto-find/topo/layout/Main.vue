@@ -427,6 +427,7 @@ export default {
     background: rgba(73, 68, 65, 0.31);
     margin-left: 15px;
     margin-right: 5px;
+    margin-bottom: 10px;
     height: 30px;
     line-height: 30px;
     clip-path: polygon(
@@ -663,6 +664,7 @@ table.legend_table td {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 10px;
 }
 
 .myDefined > ol > li:first-child {

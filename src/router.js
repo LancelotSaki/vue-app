@@ -54,6 +54,11 @@ export default new Router({
           path: "/cmdb/guide",
           name: "GUIDE",
           component: () => import("./views/cmdb/guide/Guide.vue")
+        },
+        {
+          path: "/cmdb/model/create",
+          name: "model-create",
+          component: () => import("./views/cmdb/model/create/Create/Create.vue")
         }
       ]
     },

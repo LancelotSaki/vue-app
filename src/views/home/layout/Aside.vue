@@ -44,6 +44,8 @@ export default {
     treeTrigger(value) {
       if (value.id === "firstIndex") {
         this.$router.push("/");
+      } else if(value.id === "20")  {
+        this.$router.push("/cmdb/model/create");
       } else if (value.id === "31") {
         this.$router.push("/auto/topo");
       } else if (value.id === "42") {
