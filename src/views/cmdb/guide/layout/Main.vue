@@ -38,7 +38,7 @@ export default {
           offset: [0, 0]
         },
         {
-          name: "IP发现",
+          name: "NMAP-IP发现",
           path: path,
           value: [50, 400],
           offset: [0, 0]
