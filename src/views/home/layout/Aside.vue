@@ -48,6 +48,8 @@ export default {
         this.$router.push("/cmdb/model/create");
       } else if (value.id === "31") {
         this.$router.push("/auto/topo");
+      } else if (value.id === "34") {
+        this.$router.push("/device/topo");
       } else if (value.id === "42") {
         this.$router.push("/cmdb/es");
       } else if (value.id === "50") {

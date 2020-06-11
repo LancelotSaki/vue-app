@@ -125,6 +125,11 @@ export default new Router({
       component: () => import("./views/profile/Profile.vue")
     },
     {
+      path: "/device/topo",
+      name: "topo",
+      component: () => import("./views/cmdb/device-topo/Topo.vue")
+    },
+    {
       path: "*",
       redirect: "/"
     }
