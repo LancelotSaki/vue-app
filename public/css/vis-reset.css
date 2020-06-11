@@ -1,5 +1,29 @@
 /*重写vis整体风格*/
 
+div.vis-edit-mode {
+    background-color: rgba(208,206,238,0) !important;
+    color: white !important;
+    text-shadow: 0 1px rgba(122, 174, 195, 0.15),
+    0 1px rgba(122, 174, 195, 0.3),
+    0 1px rgba(122, 174, 195, 0.45),
+    0 1px rgba(122, 174, 195, 0.65),
+    0 1px rgba(122, 174, 195, 0.75),
+    2px 4px 5px rgba(122, 174, 195, 1);
+    width: 80px;
+    border: 0 !important;
+}
+
+div.vis-manipulation {
+    background: rgba(208,206,238,0) !important;
+    color: white !important;
+    text-shadow: 0 1px rgba(122, 174, 195, 0.15),
+    0 1px rgba(122, 174, 195, 0.3),
+    0 1px rgba(122, 174, 195, 0.45),
+    0 1px rgba(122, 174, 195, 0.65),
+    0 1px rgba(122, 174, 195, 0.75),
+    2px 4px 5px rgba(122, 174, 195, 1);
+}
+
 /*tooltip*/
 
 div.vis-tooltip::before {
