@@ -3,17 +3,17 @@
     <section>
       <ul>
         <li>
-          <input type="radio" name="selectSearchType" id="fuzzySearch" checked="checked"/>
+          <input type="radio" name="selectSearchType" id="fuzzySearch" v-model="term" value="fuzzy"/>
           <label for="fuzzySearch">模糊检索</label>
         </li>
         <li>
-          <input type="radio" name="selectSearchType" id="preciseSearch"/>
+          <input type="radio" name="selectSearchType" id="preciseSearch" v-model="term" value="precise"/>
           <label for="preciseSearch">精确检索</label>
         </li>
       </ul>
       <ol>
         <li>
-          <input class="es-text-class" list="esDataList" autocomplete="off"/>
+          <input class="es-text-class" list="esDataList" autocomplete="off" v-model="keyword"/>
           <datalist id="esDataList">
             <option>1</option>
             <option>2</option>
@@ -21,15 +21,31 @@
           </datalist>
         </li>
         <li>
-          <input type="button" id="es-btn-id" value="搜  索"/>
+          <input type="button" class="es-btn-class" value="搜  索" @click="search"/>
         </li>
       </ol>
     </section>
   </main>
 </template>
 <script>
+const debounce = require("lodash.debounce");
 export default {
-  name: "EsMain"
+  name: "EsMain",
+  data() {
+    return {
+      term: "fuzzy",
+      keyword: ""
+    };
+  },
+  methods: {
+    search: debounce(function() {
+      console.log(this.term + ":" + this.keyword);
+      let api = "http://localhost:8080/es-service/result";
+      this.axios.get(api).then((response) => {
+        console.log(response.data)
+      })
+    }, 500)
+  }
 };
 </script>
 <style scoped>
@@ -170,7 +186,7 @@ input[type="radio"] + label:hover {
   outline: none;
 }
 
-#es-btn-id {
+.es-btn-class {
   background: rgba(78, 110, 242, 1);
   cursor: pointer;
   width: 100px;
