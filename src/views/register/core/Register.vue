@@ -10,10 +10,10 @@
       </div>
       <form @submit="submitRegisterForm"
             method="post" class="registerForm">
-        <input type="text" name="email" placeholder="邮箱"
+        <input type="email" name="email" placeholder="邮箱"
                maxlength="35" v-model="form.email" :class="form.registerTab === '1' ? 'show' : 'hide'">
-        <input type="text" name="phone" placeholder="手机"
-               maxlength="35" v-model="form.phone" :class="form.registerTab === '2' ? 'show' : 'hide'">
+        <input type="text" name="phone" placeholder="手机" class="phone"
+               maxlength="12" v-model="form.phone" :class="form.registerTab === '2' ? 'show' : 'hide'">
         <input type="password" placeholder="密码" name="password"
                maxlength="35" v-model="form.password">
         <input type="text" :placeholder="form.registerTab === '1' ? '邮箱验证码' : '手机验证码'" name="verifyCode"
@@ -26,9 +26,9 @@
                @click="clickSendPhone">
         <div class="rememberMe"><input type="checkbox"/><label>记住我</label></div>
         <div class="agreement"><input type="checkbox"/><label>我已阅读
-          <router-link :to="{ path: 'agreement1'}" append>《xxx协议1》</router-link>
+          <router-link :to="{ path: 'agreement1'}" append>《用户注册协议》</router-link>
           和
-          <router-link :to="{ path: 'agreement2'}" append>《xxx协议2》</router-link>
+          <router-link :to="{ path: 'agreement2'}" append>《上网规范协议》</router-link>
         </label></div>
         <input type="submit" value="注 册">
         <span class="registerAlterLine" :data-words="formCheck.usernameCheck" :data-alter="formCheck.codeCheck">
@@ -393,8 +393,8 @@ export default {
   }
 };
 </script>
-
-<style scoped>
+<style lang="scss" scoped>
+@import "../../../../public/css/label-reset.css";
 .registerHeader {
   position: fixed;
   left: 0;
@@ -559,11 +559,16 @@ input[id^="registerTab"] + label {
   text-align: left;
   float: right;
   line-height: 35px;
-  color: white;
+  color: rgba(253, 255, 255, 1);
   font-size: 1.3rem;
   margin-top: 30px;
   margin-bottom: 10px;
-  text-shadow: black 0.1em 0.1em 0.2em;
+  text-shadow: 0 1px rgba(122, 174, 195, 0.15),
+  0 1px rgba(122, 174, 195, 0.3),
+  0 1px rgba(122, 174, 195, 0.45),
+  0 1px rgba(122, 174, 195, 0.65),
+  0 1px rgba(122, 174, 195, 0.75),
+  2px 4px 5px rgba(122, 174, 195, 1);
 }
 
 /* 聚焦时将radio相邻的label标签添加鼠标手势*/
@@ -573,7 +578,7 @@ input[id^="registerTab"] + label:hover {
 
 /*切换tab时显示对应的tab内容*/
 input[id^="registerTab"]:checked + label {
-  color: red;
+  color: #fd4275;
   text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.8);
 }
 
@@ -601,7 +606,6 @@ input[id^="registerTab"]:checked + label::before {
 .registerForm > input {
   margin-bottom: 30px;
   border: 0;
-  padding-left: 7px;
 }
 
 .registerForm > input:first-child,
@@ -739,6 +743,5 @@ input[id^="registerTab"]:checked + label::before {
 .hide {
   display: none;
 }
-
 
 </style>
