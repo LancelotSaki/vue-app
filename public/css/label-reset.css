@@ -53,3 +53,17 @@ form input[name="verifyCode"]:focus {
     background-color: white;
     padding-left: 35px;
 }
+
+form input[name="username"] {
+    background: url("../../public/images/common/user-grey.svg") no-repeat 5px center;
+    background-size: 25px 25px;
+    background-color: white;
+    padding-left: 35px;
+}
+
+form input[name="username"]:focus {
+    background: url("../../public/images/common/user-blue.svg") no-repeat 5px center;
+    background-size: 25px 25px;
+    background-color: white;
+    padding-left: 35px;
+}

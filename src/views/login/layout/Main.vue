@@ -1,13 +1,16 @@
 <template>
-  <main class="loginMain">
-    <form id="loginCon1" class="loginContainer" @submit="checkForm1" action="https://www.baidu.com"
+  <main>
+    <p class="title">CMDB资源管理系统</p>
+    <form @submit="checkForm1" action="https://www.baidu.com"
           method="post">
-      <input type="text" name="username" placeholder="用户名"
+      <input type="text" name="username" placeholder="邮箱/手机号码"
              maxlength="35" v-model="form.username">
       <input type="password" placeholder="密码" name="password"
              maxlength="35" v-model="form.password">
       <input type="text" placeholder="验证码" name="verifyCode"
              maxlength="6" v-model="form.code">
+      <input type="button" :value="leftTime === 60 ? '发 送': leftTime + '秒'" :disabled="sendClickDisable"
+             @click="clickSend">
       <input type="submit" value="登 录">
       <a href="http://www.baidu.com" target="_blank">忘记密码?</a>
       <div class="alterTab1" :data-words="checkBox.usernameCheck">{{checkBox.passwordCheck}}</div>
@@ -250,21 +253,18 @@
 
 <style lang="scss" scoped>
 
-  .loginContainer {
-    position: absolute;
-    width: 100%;
-    height: 300px;
-    border-radius: 5px;
-    margin: 0;
-    padding: 0;
-    background: rgba(178, 175, 168, 0.27);
-  }
-
-  /*float: left;tab并排必须加*/
-  .loginContainer > li {
-    float: left;
-    width: 110px;
-    margin-left: 8%;
+  .title {
+    color: rgba(253, 255, 255, 1);
+    font-size: 1.6rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-shadow: 0 1px rgba(122, 174, 195, 0.15),
+    0 1px rgba(122, 174, 195, 0.3),
+    0 1px rgba(122, 174, 195, 0.45),
+    0 1px rgba(122, 174, 195, 0.65),
+    0 1px rgba(122, 174, 195, 0.75),
+    2px 4px 5px rgba(122, 174, 195, 1);
+    text-align: center;
   }
 
   .toRegister {
@@ -283,78 +283,25 @@
     height: 140px;
   }
 
-  /*隐藏radio*/
-  .loginContainer input[id^="loginTab"] {
-    display: none;
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 35px 10px 35px;
   }
 
-  /* 将radio相邻的label标签美化一下，可以在这里设置按钮的背景图标*/
-  .loginContainer input[id^="loginTab"] + label {
-    height: 35px;
-    width: 110px;
-    text-align: left;
-    float: right;
-    line-height: 35px;
-    color: white;
-    font-size: 1.3rem;
-    margin-top: 10px;
-  }
-
-  /* 聚焦时将radio相邻的label标签添加鼠标手势*/
-  .loginContainer input[id^="loginTab"] + label:hover {
-    cursor: pointer;
-  }
-
-  /*绝对定位内容显示必须*/
-  [id^="loginCon"] {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50px;
-    margin-left: 8%;
-    margin-top: auto;
-    margin-bottom: auto;
-    display: none;
-    width: 75%;
-  }
-
-  /*切换tab时显示对应的tab内容*/
-  input[id^="loginTab"]:checked ~ [id^="loginCon"] {
-    display: block;
-  }
-
-  /*切换tab时显示对应的tab内容*/
-  input[id^="loginTab"]:checked ~ label {
-    color: #fd4275;
-  }
-
-  /*切换tab时触发label标签里的before元素，一定要将input标签放在label之前*/
-  input[id^="loginTab"]:checked ~ label::before {
-    position: absolute;
-    display: inline-block;
-    content: "";
-    top: 44px;
-    left: auto;
-    width: 85px;
-    height: 2px;
-    background: white;
-    box-shadow: 0 0 10px 1px #fd4275, 0 0 1px #fd4275, 0 0 1px #fd4275,
-    0 0 1px #fd4275, 0 0 1px #fd4275, 0 0 1px #fd4275, 0 0 1px #fd4275;
-  }
-
-  [id^="loginCon"] > input {
+  form > input {
     margin-bottom: 30px;
     border: 0;
   }
 
-  [id^="loginCon"] > input:first-child,
-  [id^="loginCon"] > input:nth-child(2) {
+  form > input:first-child,
+  form > input:nth-child(2) {
     width: 100%;
     height: 35px;
     border-radius: 5px;
   }
 
-  [id^="loginCon"] > a {
+  form a {
     width: 75px;
     height: 35px;
     text-align: right;
@@ -362,44 +309,45 @@
     color: #db3a27;
   }
 
-  [id="loginCon2"] > input:nth-child(2) {
-    height: 35px;
-    border-radius: 5px;
+  form > input:nth-child(3) {
     width: 65%;
-  }
-
-  /*这是一个发送短信按键*/
-  [id="loginCon2"] > input:nth-child(3) {
     height: 35px;
     border-radius: 5px;
-    background: #f0ad24;
-    color: white;
+  }
+  /*这是一个发送短信按键*/
+  form > input:nth-child(4) {
+    height: 35px;
+    border-radius: 5px;
+    background: #ecf5ff;
+    color: #409eff;
     width: 30%;
     margin-left: 5%;
   }
 
-  [id="loginCon2"] > input:nth-child(3):disabled {
-    background: #a9a9a9;
+  form > input:nth-child(4):disabled {
+    background: #f4f4f5;
+    color: #909399;
   }
 
-  [id="loginCon2"] > input:nth-child(3):hover {
-    background: #99ce5f;
+  form > input:nth-child(4):hover {
+    background: #fdf6ec;
+    color: #e6a23c;
   }
 
-  [id^="loginCon"] input[type="submit"] {
+  form input[type="submit"] {
     height: 35px;
     border-radius: 5px;
-    background: #f0ad24;
-    color: white;
+    background: var(--submit);
+    color: #409eff;
     font-size: 1.1rem;
     width: 100%;
   }
 
-  [id^="loginCon"] input[type="submit"]:hover {
+  form input[type="submit"]:hover {
     height: 35px;
     border-radius: 5px;
-    background: #99ce5f;
-    color: white;
+    background: var(--submitHover);
+    color: #e6a23c;
     font-size: 1.1rem;
     width: 100%;
   }
