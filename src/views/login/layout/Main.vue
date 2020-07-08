@@ -358,14 +358,14 @@
     position: absolute;
     top: -65px;
     width: 100%;
-    color: #db3a27;
+    color: #fd4275;
   }
 
   .alterTab1 {
     position: absolute;
-    top: 105px;
+    top: 185px;
     width: 100%;
-    color: #db3a27;
+    color: #fd4275;
   }
 
   .alterTab2::before {
@@ -374,14 +374,14 @@
     position: absolute;
     top: -65px;
     width: 100%;
-    color: #db3a27;
+    color: #fd4275;
   }
 
   .alterTab2 {
     position: absolute;
-    top: 105px;
+    top: 185px;
     width: 100%;
-    color: #db3a27;
+    color: #fd4275;
   }
 </style>
 

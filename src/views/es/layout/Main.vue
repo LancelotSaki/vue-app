@@ -1,6 +1,6 @@
 <template>
   <main>
-    <section>
+    <section data-word="CMDB全文检索">
       <ul>
         <li>
           <input type="radio" name="selectSearchType" id="fuzzySearch" v-model="term" value="fuzzy"/>
@@ -79,16 +79,19 @@ section::before {
 }
 
 section::after {
-  content: "CMDB全文检索";
+  content: attr(data-word);
   position: absolute;
   display: inline-block;
   width: 55%;
   height: 48px;
   line-height: 48px;
-  font-size: 20px;
   left: 45%;
   top: 0;
-  color: rgba(165, 153, 153, 1);
+  color: rgba(252, 249, 240, 0.9);
+  font-size: 1.4em;
+  text-shadow: 0 1px rgba(122, 174, 195, 0.15), 0 1px rgba(122, 174, 195, 0.3),
+  0 1px rgba(122, 174, 195, 0.45), 0 1px rgba(122, 174, 195, 0.65),
+  0 1px rgba(122, 174, 195, 0.75), 2px 4px 5px rgba(122, 174, 195, 1);
 }
 
 select {

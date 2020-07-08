@@ -27,12 +27,14 @@ export default {
   .es-home {
     width: 100%;
     height: 100vh;
+    background: rgba(252,250,248,0.76);
   }
 }
 @media screen and (min-width: 600px) {
   .es-home {
     width: 100%;
     height: 100vh;
+    background: rgba(252,250,248,0.76);
   }
 }
 
