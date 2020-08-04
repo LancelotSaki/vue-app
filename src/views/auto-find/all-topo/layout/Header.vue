@@ -44,42 +44,25 @@
       </g>
     </svg>
     <p>{{title}}</p>
-    <aside class="searchKey">
-      <input placeholder="输入IP或设备名称搜索" type="search" list="esDataList" autocomplete="off" v-model="keyword"/>
-      <datalist id="esDataList">
-        <option v-for="item in allContext" :id="item.id">{{item.sysName}}-{{item.ip}}</option>
-      </datalist>
-    </aside>
   </header>
 </template>
 
 <script>
-  import networkData from "../../../../../public/json/network.json";
-
-  export default {
-    name: "TopoHeader",
-    data() {
-      return {
-        keyword: "",
-        title: "自动发现网络拓扑图",
-        allContext: [],
-      };
-    },
-    methods: {
-
-    },
-    mounted() {
-      this.allContext = networkData;
-    }
-  };
+export default {
+  name: "TopoHeader",
+  data() {
+    return {
+      title: "CMDB资源主干网络拓扑图"
+    };
+  }
+};
 </script>
 <style scoped>
-  header svg {
+  header svg{
     position: absolute;
     left: 0;
     top: 0;
   }
-
   header {
     padding-top: 10px;
     width: 100%;
@@ -101,67 +84,4 @@
     /* border: 1px solid #21A5CA;*/
     /*  clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);*/
   }
-
-  .searchKey {
-    position: absolute;
-    right: 5px;
-    top: 40px;
-    width: 280px;
-    height: 25px;
-  }
-
-  .searchKey input {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    box-shadow: 0 0 10px 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8,
-    0 0 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8, 0 0 1px #3b8cf8;
-    border-radius: 5px;
-    padding-left: 25px;
-    color: white;
-    background: rgba(0, 0, 0, 0);
-  }
-
-  .searchKey::before {
-    content: "";
-    position: absolute;
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    left: 5px;
-    top: 5px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgba(0, 99, 255, 0.78);
-    border-image: initial;
-    border-radius: 50%;
-  }
-
-  .searchKey::after {
-    content: "";
-    position: absolute;
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    left: 15px;
-    top: 18px;
-    background-image: linear-gradient(
-            to right,
-            rgba(24, 88, 130, 1) 0%,
-            rgba(24, 88, 130, 0.1) 100%,
-            transparent 50%
-    );
-    background-size: 100% 2px;
-    background-repeat: repeat-x;
-    -webkit-transform: skewX(-35deg);
-    transform: skewY(38deg);
-  }
-
-  .searchKey input:focus {
-    box-shadow: 0px 0px 10px 1px #3F51B5,
-    0 0 1px #3F51B5, 0 0 1px #3F51B5,
-    0 0 1px #3F51B5, 0 0 1px #3F51B5,
-    0 0 1px #3F51B5, 0 0 1px #3F51B5;
-  }
-
 </style>

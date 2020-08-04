@@ -45,8 +45,8 @@ div.vis-tooltip {
     font-size: small;
     border: 0 !important;
     border-radius: 5px;
-    width: 250px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     padding: 10px;
     box-shadow: 0 1px 4px #ddd !important;
     background-color: rgba(46, 54, 56, 0.85) !important;
@@ -58,18 +58,20 @@ div.vis-tooltip p {
     margin: 0;
 }
 div.vis-tooltip ol {
+    padding-left: 5px;
     display: flex;
-    color: rgba(241, 221, 56, 1);
     justify-content: space-evenly;
 }
 
 div.vis-tooltip ol > li:first-child {
-    width: 80px;
+    width: 100px;
     text-align: right;
+    color: rgba(241, 221, 56, 1);
 }
 
 div.vis-tooltip ol > li:nth-child(2) {
-    width: calc(100% - 100px);
+    width: calc(100% - 110px);
+    color: white;
 }
 div.vis-network div.vis-navigation div.vis-button.vis-up {
     background-image: url(/images/vis/upArrow.png) !important;

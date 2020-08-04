@@ -35,12 +35,6 @@ body {
   box-sizing: border-box;
 }
 
-ul,
-ol {
-  padding: 0;
-  margin: 0;
-}
-
 ul > li,
 ol > li {
   list-style: none;

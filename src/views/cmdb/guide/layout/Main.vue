@@ -34,109 +34,109 @@ export default {
         {
           name: "自动发现",
           path: path,
-          value: [0, 400],
+          value: [0, 600],
           offset: [0, 0]
         },
         {
           name: "NMAP-IP发现",
           path: path,
-          value: [50, 400],
+          value: [50, 600],
           offset: [0, 0]
         },
         {
           name: "主机发现",
           path: path,
-          value: [100, 300],
+          value: [100, 400],
           offset: [0, 0]
         },
         {
           name: "网络设备发现",
           path: path,
-          value: [100, 500],
+          value: [100, 800],
           offset: [0, 0]
         },
         {
           name: "SNMP采集",
           path: path,
-          value: [150, 500],
+          value: [150, 800],
           offset: [0, 0]
         },
         {
           name: "SSH登录",
           path: path,
-          value: [150, 300],
+          value: [150, 400],
           offset: [0, 0]
         },
         {
           name: "网络-交换机",
           path: path,
-          value: [200, 650],
+          value: [200, 900],
           offset: [0, 0]
         },
         {
           name: "网络-路由器",
           path: path,
-          value: [200, 600],
+          value: [200, 850],
           offset: [0, 0]
         },
         {
           name: "网络-防火墙",
           path: path,
-          value: [200, 550],
+          value: [200, 800],
           offset: [0, 0]
         },
         {
           name: "网络-VPN接入",
           path: path,
-          value: [200, 500],
+          value: [200, 750],
           offset: [0, 0]
         },
         {
           name: "数据库",
           path: path,
-          value: [200, 400],
+          value: [200, 550],
           offset: [0, 0]
         },
         {
           name: "数据库表空间",
           path: path,
-          value: [200, 350],
+          value: [200, 500],
           offset: [0, 0]
         },
         {
           name: "文件系统",
           path: path,
-          value: [200, 300],
+          value: [200, 450],
           offset: [0, 0]
         },
         {
           name: "中间件",
           path: path,
-          value: [200, 250],
+          value: [200, 400],
           offset: [0, 0]
         },
         {
           name: "主机网卡",
           path: path,
-          value: [200, 200],
+          value: [200, 350],
           offset: [0, 0]
         },
         {
           name: "物理机",
           path: path,
-          value: [200, 150],
+          value: [200, 300],
           offset: [0, 0]
         },
         {
           name: "虚拟机",
           path: path,
-          value: [200, 100],
+          value: [200, 250],
           offset: [0, 0]
         },
         {
           name: "未知设备",
           path: path,
-          value: [100, 400],
+          value: [100, 600],
           offset: [0, 0]
         },
         {
@@ -396,29 +396,28 @@ export default {
               type: "dashed"
             },
             data: [
-              { coords: [[0, 400], [50, 400]] },
-              { coords: [[50, 400], [100, 500]] },
-              { coords: [[100, 500], [150, 500]] },
-              { coords: [[50, 400], [100, 400]] },
-              { coords: [[100, 400], [150, 500]] },
-              { coords: [[100, 400], [150, 300]] },
-              { coords: [[100, 300], [150, 300]] },
+               // IP发现
+              { coords: [[0, 600], [50, 600]] },
+              // 未知设备
+              { coords: [[50, 600], [100, 600]] },
+              // 网络设备发现
+              { coords: [[50, 600], [100, 800]] },
+              { coords: [[100, 800], [150, 800]] },
+              { coords: [[150, 800], [200, 900]] },
+              { coords: [[150, 800], [200, 850]] },
+              { coords: [[150, 800], [200, 800]] },
+              { coords: [[150, 800], [200, 750]] },
+                // 主机发现
+              { coords: [[50, 600], [100, 400]] },
+              { coords: [[100, 400], [150, 400]] },
+              { coords: [[150, 400], [200, 550]] },
+              { coords: [[150, 400], [200, 500]] },
+              { coords: [[150, 400], [200, 450]] },
+              { coords: [[150, 400], [200, 400]] },
+              { coords: [[150, 400], [200, 350]] },
+              { coords: [[150, 400], [200, 300]] },
 
-              { coords: [[150, 300], [200, 100]] },
-              { coords: [[150, 300], [200, 150]] },
-              { coords: [[150, 300], [200, 200]] },
-              { coords: [[150, 300], [200, 250]] },
-              { coords: [[150, 300], [200, 300]] },
-              { coords: [[150, 300], [200, 350]] },
-              { coords: [[150, 300], [200, 400]] },
-
-              { coords: [[150, 500], [200, 650]] },
-              { coords: [[150, 500], [200, 600]] },
-              { coords: [[150, 500], [200, 550]] },
-              { coords: [[150, 500], [200, 500]] },
-
-              { coords: [[50, 400], [100, 300]] },
-
+              // CMDB
               { coords: [[1000, 600], [900, 650]] },
               { coords: [[1000, 600], [900, 600]] },
               { coords: [[1000, 600], [900, 550]] },

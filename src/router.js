@@ -58,7 +58,7 @@ export default new Router({
         {
           path: "/cmdb/model/create",
           name: "model-create",
-          component: () => import("./views/cmdb/model/create/Create/Create.vue")
+          component: () => import("./views/cmdb/model/create/Create.vue")
         }
       ]
     },
@@ -128,6 +128,11 @@ export default new Router({
       path: "/device/topo",
       name: "topo",
       component: () => import("./views/cmdb/device-topo/Topo.vue")
+    },
+    {
+      path: "/all-network/topo",
+      name: "topo",
+      component: () => import("./views/auto-find/all-topo/Topo.vue")
     },
     {
       path: "*",
