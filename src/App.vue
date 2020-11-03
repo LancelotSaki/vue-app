@@ -28,6 +28,10 @@ body {
   padding: 0;
 }
 
+body {
+  background-color: rgba(255, 255, 255, 0.618) !important;
+}
+
 *,
 *::before,
 *::after {

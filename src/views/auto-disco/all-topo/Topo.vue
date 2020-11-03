@@ -131,7 +131,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     background: rgba(255, 255, 255, 1) !important;
-    /* background: url("../../../../npage/cmdb/auto-find/topo/1.png") fixed no-repeat;*/
+    /* background: url("../../../../npage/cmdb/auto-disco/topo/1.png") fixed no-repeat;*/
     background-size: cover;
   }
 

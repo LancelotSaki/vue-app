@@ -47,13 +47,17 @@ export default {
       } else if(value.id === "20")  {
         this.$router.push("/cmdb/model/create");
       } else if (value.id === "31") {
-        this.$router.push("/auto/topo");
+        this.$router.push("/auto-disco/topo");
       } else if (value.id === "34") {
         this.$router.push("/device/topo");
       } else if (value.id === "42") {
-        this.$router.push("/cmdb/es");
+        this.$router.push("/es");
       } else if (value.id === "50") {
         this.$router.push("/cmdb/guide");
+      } else if (value.id === "51") {
+        this.$router.push("/cmdb/deploy");
+      } else if (value.id === "52") {
+        this.$router.push("/auto-disco");
       }
     }
   }

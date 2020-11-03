@@ -62,17 +62,19 @@ article:after {
   }
 
   header {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100px;
-    background: aquamarine;
+    height: 60px;
+    background: rgba(248, 248, 248, 1);
   }
 
   main {
     position: relative;
     width: 100%;
     margin-top: 60px;
-    height: calc(100% - 60px);
+    height: calc(100vh - 60px);
     overflow-y: auto;
   }
 
@@ -118,7 +120,7 @@ article:after {
     position: relative;
     width: 100%;
     margin-top: 60px;
-    height: calc(100% - 60px);
+    height: calc(100vh - 60px);
     overflow-y: auto;
   }
 }

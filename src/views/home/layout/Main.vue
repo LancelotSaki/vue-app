@@ -8,5 +8,5 @@ export default {
   name: "HomeMain"
 };
 </script>
-<style scoped>
+<style>
 </style>

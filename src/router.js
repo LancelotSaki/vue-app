@@ -17,7 +17,7 @@ export default new Router({
     /*{
       path: "/",
       name: "vue",
-      redirect: "/register"
+      redirect: "/"
     },*/
     {
       path: "/",
@@ -37,28 +37,6 @@ export default new Router({
           // this generates a separate chunk (about.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
           component: () => import("./views/about/About.vue")
-        },
-        {
-          path: "/auto/topo",
-          // route level code-splitting
-          // this generates a separate chunk (about.[hash].js) for this route
-          // which is lazy-loaded when the route is visited.
-          component: () => import("./views/auto-find/topo/Topo.vue")
-        },
-        {
-          path: "/cmdb/es",
-          name: "ES",
-          component: () => import("./views/es/Es.vue")
-        },
-        {
-          path: "/cmdb/guide",
-          name: "GUIDE",
-          component: () => import("./views/cmdb/guide/Guide.vue")
-        },
-        {
-          path: "/cmdb/model/create",
-          name: "model-create",
-          component: () => import("./views/cmdb/model/create/Create.vue")
         }
       ]
     },
@@ -94,25 +72,62 @@ export default new Router({
       ]
     },
     {
-      path: "/profile",
-      name: "profile",
-      component: () => import("./views/profile/Profile.vue")
+      path: "/cmdb",
+      name: "cmdb",
+      component: () => import("./views/cmdb/Index.vue"),
+      children: [
+        {
+          path: "topo",
+          component: () => import("./views/cmdb/device-topo/Topo.vue")
+        },
+        {
+          path: "ai",
+          component: () => import("./views/cmdb/ai/Ai.vue")
+        },
+        {
+          path: "es",
+          component: () => import("./views/es/Es.vue")
+        },
+        {
+          path: "guide",
+          component: () => import("./views/cmdb/guide/Guide.vue")
+        },
+        {
+          path: "deploy",
+          component: () => import("./views/cmdb/deploy/Deploy.vue")
+        },
+        {
+          path: "model/create",
+          component: () => import("./views/cmdb/model/create/Create.vue")
+        }
+      ]
     },
     {
-      path: "/auto-find/database/config/loginConfig",
-      name: "databaseLoginConfig",
-      component: () =>
-        import("./views/auto-find/database/config/LoginConfig.vue")
-    },
-    {
-      path: "/auto-find/result/show",
-      name: "AutoFindResultShow",
-      component: () => import("./views/auto-find/result/Show.vue")
-    },
-    {
-      path: "/auto-find/topo",
-      name: "AutoFindTopo",
-      component: () => import("./views/auto-find/topo/Topo.vue")
+      path: "/auto-disco",
+      name: "auto-disco",
+      component: () => import("./views/auto-disco/Index.vue"),
+      children: [
+        {
+          path: "database/config/loginConfig",
+          component: () => import("./views/auto-disco/database/config/LoginConfig.vue")
+        },
+        {
+          path: "result/show",
+          component: () => import("./views/auto-disco/result/Show.vue")
+        },
+        {
+          path: "compare/config/show",
+          component: () => import("./views/auto-disco/compare/config/Show.vue")
+        },
+        {
+          path: "topo",
+          component: () => import("./views/auto-disco/topo/Topo.vue")
+        },
+        {
+          path: "topo/all-network",
+          component: () => import("./views/auto-disco/all-topo/Topo.vue")
+        }
+      ]
     },
     {
       path: "/es",
@@ -123,16 +138,6 @@ export default new Router({
       path: "/profile",
       name: "profile",
       component: () => import("./views/profile/Profile.vue")
-    },
-    {
-      path: "/device/topo",
-      name: "topo",
-      component: () => import("./views/cmdb/device-topo/Topo.vue")
-    },
-    {
-      path: "/all-network/topo",
-      name: "topo",
-      component: () => import("./views/auto-find/all-topo/Topo.vue")
     },
     {
       path: "*",

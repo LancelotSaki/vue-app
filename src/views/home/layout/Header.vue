@@ -20,6 +20,9 @@ export default {
 };
 </script>
 <style scoped>
+
+
+
 header::before {
   content: "CMDB";
   position: absolute;

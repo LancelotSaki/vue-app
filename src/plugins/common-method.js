@@ -5,14 +5,14 @@ const _common_method = function () {
    */
   function formatArray(array, type) {
     var dataArray = {};
-    $.each(array, function () {
-      if (dataArray[this.name]) {
-        if (!dataArray[this.name].push) {
-          dataArray[this.name] = [dataArray[this.name]];
+    array.forEach(function (item) {
+      if (dataArray[item.name]) {
+        if (!dataArray[item.name].push) {
+          dataArray[item.name] = [dataArray[item.name]];
         }
-        dataArray[this.name].push(this.value || '');
+        dataArray[item.name].push(item.value || '');
       } else {
-        dataArray[this.name] = this.value || '';
+        dataArray[item.name] = item.value || '';
       }
     });
     return ((type == "json") ? JSON.stringify(dataArray) : dataArray);
