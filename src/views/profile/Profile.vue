@@ -2,27 +2,47 @@
   <div class="profile">
     <main>
       <ul>
-        <li><input id="personBase" type="radio" name="profileMenu"><label for="personBase">基础信息</label>
+        <li>
+          <input id="personBase" type="radio" name="profileMenu" /><label
+            for="personBase"
+            >基础信息</label
+          >
           <div>1</div>
         </li>
       </ul>
       <ul>
-        <li><input id="personExtra" type="radio" name="profileMenu"><label for="personExtra">扩展信息</label>
+        <li>
+          <input id="personExtra" type="radio" name="profileMenu" /><label
+            for="personExtra"
+            >扩展信息</label
+          >
           <div>2</div>
         </li>
       </ul>
       <ul>
-        <li><input id="personConfig" type="radio" name="profileMenu"><label for="personConfig">个人配置</label>
+        <li>
+          <input id="personConfig" type="radio" name="profileMenu" /><label
+            for="personConfig"
+            >个人配置</label
+          >
           <div>3</div>
         </li>
       </ul>
       <ul>
-        <li><input id="personLevel" type="radio" name="profileMenu"><label for="personLevel">个人等级</label>
+        <li>
+          <input id="personLevel" type="radio" name="profileMenu" /><label
+            for="personLevel"
+            >个人等级</label
+          >
           <div>4</div>
         </li>
       </ul>
       <ul>
-        <li><input id="personHelp" type="radio" name="profileMenu"><label for="personHelp">帮助</label>
+        <li>
+          <input id="personHelp" type="radio" name="profileMenu" /><label
+            for="personHelp"
+            >帮助</label
+          >
           <div>5</div>
         </li>
       </ul>
@@ -43,7 +63,7 @@ export default {
 .profile ul > li input[type="radio"] {
   display: none;
 }
-.profile ul > li input[type="radio"] + label{
+.profile ul > li input[type="radio"] + label {
   height: 35px;
   width: 110px;
   text-align: left;
@@ -53,7 +73,7 @@ export default {
   font-size: 1.3rem;
   margin-top: 40px;
 }
-.profile ul > li input[type="radio"] + label:hover{
+.profile ul > li input[type="radio"] + label:hover {
   cursor: pointer;
 }
 /*切换tab时显示对应的tab内容*/
@@ -82,6 +102,4 @@ input[id^="registerTab"]:checked ~ label::before {
   height: 2px;
   background: white;
 }
-
-
 </style>

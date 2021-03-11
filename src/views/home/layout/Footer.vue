@@ -14,13 +14,13 @@ export default {
 };
 </script>
 <style scoped>
-  ul {
-    margin: 0 auto;
-    width: calc(100% - 200px);
-    display: flex;
-    flex-wrap: nowrap;
-  }
-  ul>li {
-    width: 100px;
-  }
+ul {
+  margin: 0 auto;
+  width: calc(100% - 200px);
+  display: flex;
+  flex-wrap: nowrap;
+}
+ul > li {
+  width: 100px;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <article class="registerIndex">
+  <article class="cmdb">
     <transition name="slide-fade">
       <router-view></router-view>
     </transition>
@@ -9,7 +9,7 @@
 <script>
 /* author : admin */
 export default {
-  name: "RegisterIndex"
+  name: "CMDB"
 };
 </script>
 <style>
@@ -25,5 +25,11 @@ export default {
     /* .slide-fade-leave-active for below version 2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
+}
+
+.cmdb {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 </style>

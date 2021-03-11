@@ -1,18 +1,46 @@
 <template>
   <main>
-    <div id="allCountEcharts">资源</div>
-    <div id="everyCountEcharts"></div>
-    <div id="resourcePercentEcharts"></div>
-    <div id="resourceSinglePercentEcharts"></div>
+    <section>
+      <div id="cmdbMapEcharts" data-word="全国省份分布情况"></div>
+    </section>
+    <aside>
+      <div
+        class="myEcharts"
+        id="allCountEcharts"
+        data-word="资源分布情况"
+      ></div>
+      <div class="myEcharts" id="everyCountEcharts" data-word="资源总数"></div>
+      <div
+        class="myEcharts"
+        id="resourcePercentEcharts"
+        data-word="资源占用百分比"
+      ></div>
+      <div
+        class="myEcharts"
+        id="resourceSinglePercentEcharts"
+        data-word="单资源占用百分比"
+      ></div>
+    </aside>
   </main>
 </template>
 <script>
 const eCharts = require("echarts");
-const tick = "path://M60.217 633.91S310.415 738.469 434.781 964.54c149.378-279.763 436.11-540.714 521.05-560.014V63.083c-342.237 226.07-506.576 642.342-506.576 642.342l-180.05-191.614-208.988 120.1z";
-const eye = "path://M16 6c-6.979 0-13.028 4.064-16 10 2.972 5.936 9.021 10 16 10s13.027-4.064 16-10c-2.972-5.936-9.021-10-16-10zM23.889 11.303c1.88 1.199 3.473 2.805 4.67 4.697-1.197 1.891-2.79 3.498-4.67 4.697-2.362 1.507-5.090 2.303-7.889 2.303s-5.527-0.796-7.889-2.303c-1.88-1.199-3.473-2.805-4.67-4.697 1.197-1.891 2.79-3.498 4.67-4.697 0.122-0.078 0.246-0.154 0.371-0.228-0.311 0.854-0.482 1.776-0.482 2.737 0 4.418 3.582 8 8 8s8-3.582 8-8c0-0.962-0.17-1.883-0.482-2.737 0.124 0.074 0.248 0.15 0.371 0.228v0zM16 13c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z";
+const tick =
+  "path://M60.217 633.91S310.415 738.469 434.781 964.54c149.378-279.763 436.11-540.714 521.05-560.014V63.083c-342.237 226.07-506.576 642.342-506.576 642.342l-180.05-191.614-208.988 120.1z";
+const eye =
+  "path://M16 6c-6.979 0-13.028 4.064-16 10 2.972 5.936 9.021 10 16 10s13.027-4.064 16-10c-2.972-5.936-9.021-10-16-10zM23.889 11.303c1.88 1.199 3.473 2.805 4.67 4.697-1.197 1.891-2.79 3.498-4.67 4.697-2.362 1.507-5.090 2.303-7.889 2.303s-5.527-0.796-7.889-2.303c-1.88-1.199-3.473-2.805-4.67-4.697 1.197-1.891 2.79-3.498 4.67-4.697 0.122-0.078 0.246-0.154 0.371-0.228-0.311 0.854-0.482 1.776-0.482 2.737 0 4.418 3.582 8 8 8s8-3.582 8-8c0-0.962-0.17-1.883-0.482-2.737 0.124 0.074 0.248 0.15 0.371 0.228v0zM16 13c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z";
 export default {
   name: "TopoMain",
+  data() {
+    return {
+      chinaMap: {}
+    };
+  },
   mounted() {
+    this.$http.get("/json/map/china-map.json").then(response => {
+      this.chinaMap = response.data;
+      this.createMapEcharts();
+    });
     this.createEcharts1();
     this.createEcharts2();
     this.createEcharts3();
@@ -20,17 +48,380 @@ export default {
   },
   methods: {
     // echarts
+    createMapEcharts() {
+      var geoCoordMap = {
+        台湾: [121.5135, 25.0308],
+        黑龙江: [127.9688, 45.368],
+        内蒙古: [110.3467, 41.4899],
+        吉林: [125.8154, 44.2584],
+        北京市: [116.4551, 40.2539],
+        辽宁: [123.1238, 42.1216],
+        河北: [114.4995, 38.1006],
+        天津: [117.4219, 39.4189],
+        山西: [112.3352, 37.9413],
+        陕西: [109.1162, 34.2004],
+        甘肃: [103.5901, 36.3043],
+        宁夏: [106.3586, 38.1775],
+        青海: [101.4038, 36.8207],
+        新疆: [87.9236, 43.5883],
+        西藏: [91.11, 29.97],
+        四川: [103.9526, 30.7617],
+        重庆: [108.384366, 30.439702],
+        山东: [117.1582, 36.8701],
+        河南: [113.4668, 34.6234],
+        江苏: [118.8062, 31.9208],
+        安徽: [117.29, 32.0581],
+        湖北: [114.3896, 30.6628],
+        浙江: [119.5313, 29.8773],
+        福建: [119.4543, 25.9222],
+        江西: [116.0046, 28.6633],
+        湖南: [113.0823, 28.2568],
+        贵州: [106.6992, 26.7682],
+        云南: [102.9199, 25.4663],
+        广东: [113.12244, 23.009505],
+        广西: [108.479, 23.1152],
+        海南: [110.3893, 19.8516],
+        上海: [121.4648, 31.2891]
+      };
+
+      var colors = [
+        [
+          "#1DE9B6",
+          "#F46E36",
+          "#04B9FF",
+          "#5DBD32",
+          "#FFC809",
+          "#FB95D5",
+          "#BDA29A",
+          "#6E7074",
+          "#546570",
+          "#C4CCD3"
+        ],
+        [
+          "#37A2DA",
+          "#67E0E3",
+          "#32C5E9",
+          "#9FE6B8",
+          "#FFDB5C",
+          "#FF9F7F",
+          "#FB7293",
+          "#E062AE",
+          "#E690D1",
+          "#E7BCF3",
+          "#9D96F5",
+          "#8378EA",
+          "#8378EA"
+        ],
+        [
+          "#DD6B66",
+          "#759AA0",
+          "#E69D87",
+          "#8DC1A9",
+          "#EA7E53",
+          "#EEDD78",
+          "#73A373",
+          "#73B9BC",
+          "#7289AB",
+          "#91CA8C",
+          "#F49F42"
+        ]
+      ];
+      var colorIndex = 0;
+      var year = ["2018"];
+      var mapData = [[], []];
+
+      /*柱子Y名称*/
+      for (var key in geoCoordMap) {
+        mapData[0].push({
+          year: "2018",
+          name: key,
+          value: 10
+        });
+      }
+      eCharts.registerMap("china", this.chinaMap);
+      var convertData = function(data) {
+        var res = [];
+        for (var i = 0; i < data.length; i++) {
+          var geoCoord = geoCoordMap[data[i].name];
+          if (geoCoord) {
+            res.push({
+              name: data[i].name,
+              value: geoCoord.concat(data[i].value)
+            });
+          }
+        }
+        return res;
+      };
+
+      var convertToLineData = [
+        [
+          {
+            coord: [108.479, 23.1152]
+          },
+          {
+            coord: [116.0046, 28.6633]
+          }
+        ]
+      ];
+
+      var optionXyMap01 = {
+        timeline: {
+          data: year,
+          axisType: "category",
+          autoPlay: true,
+          playInterval: 3000,
+          left: "10%",
+          right: "10%",
+          bottom: "3%",
+          width: "80%",
+          //  height: null,
+          label: {
+            normal: {
+              textStyle: {
+                color: "#ddd"
+              }
+            },
+            emphasis: {
+              textStyle: {
+                color: "#fff"
+              }
+            }
+          },
+          symbolSize: 10,
+          lineStyle: {
+            color: "#555"
+          },
+          checkpointStyle: {
+            borderColor: "#777",
+            borderWidth: 2
+          },
+          controlStyle: {
+            showNextBtn: true,
+            showPrevBtn: true,
+            normal: {
+              color: "#666",
+              borderColor: "#666"
+            },
+            emphasis: {
+              color: "#aaa",
+              borderColor: "#aaa"
+            }
+          }
+        },
+        baseOption: {
+          animation: true,
+          animationDuration: 1000,
+          animationEasing: "cubicInOut",
+          animationDurationUpdate: 1000,
+          animationEasingUpdate: "cubicInOut",
+          grid: {
+            right: "1%",
+            top: "15%",
+            bottom: "10%",
+            width: "20%"
+          },
+          tooltip: {
+            trigger: "axis", // hover触发器
+            axisPointer: {
+              // 坐标轴指示器，坐标轴触发有效
+              type: "shadow", // 默认为直线，可选为：'line' | 'shadow'
+              shadowStyle: {
+                color: "rgba(150,150,150,0.1)" //hover颜色
+              }
+            }
+          },
+          geo: {
+            show: true,
+            map: "china",
+            roam: true,
+            zoom: 1,
+            center: [113.83531246, 34.0267395887],
+            label: {
+              emphasis: {
+                show: false
+              }
+            },
+            itemStyle: {
+              normal: {
+                borderColor: "rgba(147, 235, 248, 1)",
+                borderWidth: 1,
+                areaColor: {
+                  type: "radial",
+                  x: 0.5,
+                  y: 0.5,
+                  r: 0.8,
+                  colorStops: [
+                    {
+                      offset: 0,
+                      color: "rgba(147, 235, 248, 0)" // 0% 处的颜色
+                    },
+                    {
+                      offset: 1,
+                      color: "rgba(147, 235, 248, .2)" // 100% 处的颜色
+                    }
+                  ],
+                  globalCoord: false // 缺省为 false
+                },
+                shadowColor: "rgba(128, 217, 248, 1)",
+                // shadowColor: 'rgba(255, 255, 255, 1)',
+                shadowOffsetX: -2,
+                shadowOffsetY: 2,
+                shadowBlur: 10
+              },
+              emphasis: {
+                areaColor: "#389BB7",
+                borderWidth: 0
+              }
+            }
+          }
+        },
+        options: []
+      };
+      for (var n = 0; n < year.length; n++) {
+        optionXyMap01.options.push({
+          series: [
+            //未知作用
+            {
+              //文字和标志
+              name: "light",
+              type: "scatter",
+              coordinateSystem: "geo",
+              data: convertData(mapData[n]),
+              symbolSize: function(val) {
+                return val[2] / 10;
+              },
+              label: {
+                normal: {
+                  formatter: "{b}",
+                  position: "right",
+                  show: true
+                },
+                emphasis: {
+                  show: true
+                }
+              },
+              itemStyle: {
+                normal: {
+                  color: colors[colorIndex][n]
+                }
+              }
+            },
+            //地图？
+            {
+              type: "map",
+              map: "china",
+              geoIndex: 0,
+              aspectScale: 0.75, //长宽比
+              showLegendSymbol: false, // 存在legend时显示
+              label: {
+                normal: {
+                  show: false
+                },
+                emphasis: {
+                  show: false,
+                  textStyle: {
+                    color: "#fff"
+                  }
+                }
+              },
+              roam: true,
+              itemStyle: {
+                normal: {
+                  areaColor: "#031525",
+                  borderColor: "#FFFFFF"
+                },
+                emphasis: {
+                  areaColor: "#2B91B7"
+                }
+              },
+              animation: false,
+              data: mapData
+            },
+            //地图点的动画效果
+            {
+              //  name: 'Top 5',
+              type: "effectScatter",
+              coordinateSystem: "geo",
+              data: convertData(
+                mapData[n]
+                  .sort(function(a, b) {
+                    return b.value - a.value;
+                  })
+                  .slice(0, 20)
+              ),
+              symbolSize: function(val) {
+                return val[2] / 10;
+              },
+              showEffectOn: "render",
+              rippleEffect: {
+                brushType: "stroke"
+              },
+              hoverAnimation: true,
+              label: {
+                normal: {
+                  formatter: "{b}",
+                  position: "right",
+                  show: true
+                }
+              },
+              itemStyle: {
+                normal: {
+                  color: colors[colorIndex][n],
+                  shadowBlur: 10,
+                  shadowColor: colors[colorIndex][n]
+                }
+              },
+              zlevel: 1
+            },
+            //地图线的动画效果
+            {
+              type: "lines",
+              zlevel: 2,
+              effect: {
+                show: true,
+                period: 4, //箭头指向速度，值越小速度越快
+                trailLength: 0.02, //特效尾迹长度[0,1]值越大，尾迹越长重
+                symbol: "arrow", //箭头图标
+                symbolSize: 3 //图标大小
+              },
+              lineStyle: {
+                normal: {
+                  color: colors[colorIndex][n],
+                  width: 0.1, //尾迹线条宽度
+                  opacity: 0.5, //尾迹线条透明度
+                  curveness: 0.3 //尾迹线条曲直度
+                }
+              },
+              data: convertToLineData
+            }
+          ]
+        });
+      }
+      const myChart = eCharts.init(document.getElementById("cmdbMapEcharts"));
+      myChart.setOption(optionXyMap01, true);
+    },
     createEcharts1() {
-      let color = [
-        "#f69846",
+      var color = [
+        "#f33768",
         "#f6d54a",
         "#45dbf7",
         "#f69846",
-        "#44aff0",
+        "#f845f1",
         "#4777f5",
         "#5045f6",
         "#ad46f3",
-        "#f845f1"
+        "#f845f1",
+        "#24f352",
+        "#f8f819",
+        "#96e8f3",
+        "#f86614",
+        "#3ff3ce",
+        "#f8f6dd",
+        "#9577f3",
+        "#f8ae9f",
+        "#dbf3af",
+        "#e286f8",
+        "#7babf8"
       ];
       let names = ["物理机", "虚拟机", "网络设备", "存储", "其他"];
       let data = [444, 501, 468, 478, 431];
@@ -213,7 +604,11 @@ export default {
               // 坐标轴线
               lineStyle: {
                 // 属性lineStyle控制线条样式
-                color: [[0.09, "lime"], [0.82, "#1e90ff"], [1, "#ff4500"]],
+                color: [
+                  [0.09, "lime"],
+                  [0.82, "#1e90ff"],
+                  [1, "#ff4500"]
+                ],
                 width: 3,
                 shadowColor: "#fff", //默认透明
                 shadowBlur: 10
@@ -641,210 +1036,115 @@ export default {
 };
 </script>
 <style scoped>
-#allCountEcharts {
+section {
+  flex: 1;
+}
+aside {
   width: 300px;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.myEcharts {
+  width: 100%;
   height: 300px;
+  margin-top: 20px;
   position: relative;
 }
 
-#allCountEcharts::before {
-  content: "";
-  position: absolute;
-  display: inline-block;
-  width: 100%;
-  height: 15px;
-  left: 0;
-  top: -15px;
-  background: rgba(72, 123, 213, 1);
-  background: linear-gradient(
-    to right,
-    rgba(72, 123, 213, 0.2) 0%,
-    rgba(72, 123, 213, 1) 50%,
-    rgba(72, 123, 213, 0.2) 100%
-  );
-  clip-path: polygon(
-    0 95%,
-    45% 95%,
-    calc(45% + 10px) 0%,
-    100% 0,
-    100% 2px,
-    60% 2px,
-    calc(60% - 10px) 100%,
-    0 100%
-  );
+#cmdbMapEcharts {
+  flex: 1;
+  height: 100%;
 }
 
-#allCountEcharts::after {
-  content: "";
-  position: absolute;
-  display: inline-block;
-  width: 38%;
-  height: 15px;
-  left: 60%;
-  top: -11px;
-  background-image: linear-gradient(
-    to right,
-    rgba(72, 123, 213, 0.5) 0%,
-    rgba(72, 123, 213, 0) 50%,
-    transparent 50%
-  );
-  background-size: 11px 10px;
-  background-repeat: repeat-x;
-  transform: skewX(-35deg);
-}
-
-#everyCountEcharts::before {
-  content: "";
-  position: absolute;
-  display: inline-block;
-  width: 100%;
-  height: 15px;
-  left: 0;
-  top: -15px;
-  background: rgba(72, 123, 213, 1);
-  background: linear-gradient(
-    to right,
-    rgba(72, 123, 213, 0.2) 0%,
-    rgba(72, 123, 213, 1) 50%,
-    rgba(72, 123, 213, 0.2) 100%
-  );
-  clip-path: polygon(
-    0 95%,
-    45% 95%,
-    calc(45% + 10px) 0%,
-    100% 0,
-    100% 2px,
-    60% 2px,
-    calc(60% - 10px) 100%,
-    0 100%
-  );
-}
-
-#everyCountEcharts {
-  width: 300px;
-  height: 300px;
-  position: relative;
-}
-
-#everyCountEcharts::after {
-  content: "";
-  position: absolute;
-  display: inline-block;
-  width: 38%;
-  height: 15px;
-  left: 60%;
-  top: -11px;
-  background-image: linear-gradient(
-    to right,
-    rgba(72, 123, 213, 0.5) 0%,
-    rgba(72, 123, 213, 0) 50%,
-    transparent 50%
-  );
-  background-size: 11px 10px;
-  background-repeat: repeat-x;
-  transform: skewX(-35deg);
-}
-
-#resourcePercentEcharts::before {
-  content: "";
-  position: absolute;
-  display: inline-block;
-  width: 100%;
-  height: 15px;
-  left: 0;
-  top: -15px;
-  background: rgba(72, 123, 213, 1);
-  background: linear-gradient(
-    to right,
-    rgba(72, 123, 213, 0.2) 0%,
-    rgba(72, 123, 213, 1) 50%,
-    rgba(72, 123, 213, 0.2) 100%
-  );
-  clip-path: polygon(
-    0 95%,
-    45% 95%,
-    calc(45% + 10px) 0%,
-    100% 0,
-    100% 2px,
-    60% 2px,
-    calc(60% - 10px) 100%,
-    0 100%
-  );
-}
-
-#resourcePercentEcharts {
-  width: 300px;
-  height: 300px;
-  position: relative;
-}
-
-#resourcePercentEcharts::after {
-  content: "";
-  position: absolute;
-  display: inline-block;
-  width: 38%;
-  height: 15px;
-  left: 60%;
-  top: -11px;
-  background-image: linear-gradient(
-    to right,
-    rgba(72, 123, 213, 0.5) 0%,
-    rgba(72, 123, 213, 0) 50%,
-    transparent 50%
-  );
-  background-size: 11px 10px;
-  background-repeat: repeat-x;
-  transform: skewX(-35deg);
-}
+#allCountEcharts::before,
+#everyCountEcharts::before,
+#resourcePercentEcharts::before,
 #resourceSinglePercentEcharts::before {
-  content: "";
+  content: attr(data-word);
   position: absolute;
   display: inline-block;
   width: 100%;
   height: 15px;
+  line-height: 12px;
   left: 0;
+  padding-left: 20px;
+  font-size: 0.8rem;
   top: -15px;
-  background: rgba(72, 123, 213, 1);
-  background: linear-gradient(
-    to right,
-    rgba(72, 123, 213, 0.2) 0%,
-    rgba(72, 123, 213, 1) 50%,
-    rgba(72, 123, 213, 0.2) 100%
-  );
-  clip-path: polygon(
-    0 95%,
-    45% 95%,
-    calc(45% + 10px) 0%,
-    100% 0,
-    100% 2px,
-    60% 2px,
-    calc(60% - 10px) 100%,
-    0 100%
-  );
+  background: transparent;
+  color: #dfd5e0;
+  text-shadow: 0 1px rgba(122, 174, 195, 0.15), 0 1px rgba(122, 174, 195, 0.3),
+    0 1px rgba(122, 174, 195, 0.45), 0 1px rgba(122, 174, 195, 0.65),
+    0 1px rgba(122, 174, 195, 0.75), 2px 2px 2px rgba(122, 174, 195, 1);
 }
-
-#resourceSinglePercentEcharts {
-  width: 300px;
-  height: 300px;
-  position: relative;
-}
-
+#allCountEcharts::after,
+#everyCountEcharts::after,
+#resourcePercentEcharts::after,
 #resourceSinglePercentEcharts::after {
   content: "";
   position: absolute;
   display: inline-block;
-  width: 38%;
+  width: 100%;
   height: 15px;
-  left: 60%;
-  top: -11px;
-  background-image: linear-gradient(
+  left: 0;
+  top: -15px;
+  background: linear-gradient(
     to right,
-    rgba(72, 123, 213, 0.5) 0%,
-    rgba(72, 123, 213, 0) 50%,
-    transparent 50%
+    rgba(166, 162, 162, 0.5) 0%,
+    rgb(28, 94, 192) 50%,
+    rgba(70, 83, 201, 0.5) 100%
   );
-  background-size: 11px 10px;
-  background-repeat: repeat-x;
-  transform: skewX(-35deg);
+  clip-path: polygon(
+    0 95%,
+    45% 95%,
+    calc(45% + 4%) 0%,
+    100% 0,
+    100% 2px,
+    calc(100% - 4%) 100%,
+    calc(100% - 6%) 100%,
+    calc(100% - 2%) 2px,
+    calc(100% - 4%) 2px,
+    calc(100% - 8%) 100%,
+    calc(100% - 10%) 100%,
+    calc(100% - 6%) 2px,
+    calc(100% - 8%) 2px,
+    calc(100% - 12%) 100%,
+    calc(100% - 14%) 100%,
+    calc(100% - 10%) 2px,
+    calc(100% - 12%) 2px,
+    calc(100% - 16%) 100%,
+    calc(100% - 18%) 100%,
+    calc(100% - 14%) 2px,
+    calc(100% - 16%) 2px,
+    calc(100% - 20%) 100%,
+    calc(100% - 22%) 100%,
+    calc(100% - 18%) 2px,
+    calc(100% - 20%) 2px,
+    calc(100% - 24%) 100%,
+    calc(100% - 26%) 100%,
+    calc(100% - 22%) 2px,
+    calc(100% - 24%) 2px,
+    calc(100% - 28%) 100%,
+    calc(100% - 30%) 100%,
+    calc(100% - 26%) 2px,
+    calc(100% - 28%) 2px,
+    calc(100% - 32%) 100%,
+    calc(100% - 34%) 100%,
+    calc(100% - 30%) 2px,
+    calc(100% - 32%) 2px,
+    calc(100% - 36%) 100%,
+    calc(100% - 38%) 100%,
+    calc(100% - 34%) 2px,
+    calc(100% - 36%) 2px,
+    calc(100% - 40%) 100%,
+    calc(100% - 42%) 100%,
+    calc(100% - 38%) 2px,
+    calc(100% - 40%) 2px,
+    60% 2px,
+    calc(60% - 4%) 100%,
+    0 100%
+  );
 }
 </style>

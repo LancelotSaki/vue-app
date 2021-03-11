@@ -1,22 +1,22 @@
 <template>
   <article>
-    <Aside></Aside>
-    <section>
-      <Header></Header>
-      <Main></Main>
-    </section>
+    <Header></Header>
+    <main>
+      <Aside></Aside>
+      <Section></Section>
+    </main>
   </article>
 </template>
 
 <script>
 /* author : admin */
 import Aside from "./layout/Aside";
-import Main from "./layout/Main";
+import Section from "./layout/Section";
 import Header from "./layout/Header";
 
 export default {
   name: "HomeCore",
-  components: { Aside, Header, Main },
+  components: { Aside, Header, Section },
   data() {
     return {
       nodes: [],
@@ -31,6 +31,8 @@ export default {
 article {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 article:after {
@@ -42,7 +44,32 @@ article:after {
   visibility: hidden;
 }
 
-@media screen and (max-width: 600px) {
+header {
+  position: relative;
+  height: 60px;
+}
+
+main {
+  flex: 1;
+  flex-direction: row;
+  display: flex;
+  background: rgba(248, 248, 248, 1);
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  height: 100%;
+}
+
+section {
+  display: flex;
+  height: 100%;
+  flex: 1;
+}
+
+/*@media screen and (max-width: 600px) {
   aside {
     position: fixed;
     float: left;
@@ -53,21 +80,12 @@ article:after {
   }
 
   section {
-    position: fixed;
+
     left: 200px;
     top: 0;
     width: calc(100% - 200px);
     height: 100vh;
     display: flex;
-  }
-
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background: rgba(248, 248, 248, 1);
   }
 
   main {
@@ -98,15 +116,6 @@ article:after {
     z-index: 99;
   }
 
-  section {
-    margin-left: 200px;
-    width: calc(100% - 200px);
-    display: flex;
-    flex-wrap: wrap;
-    height: 100%;
-    position: relative;
-  }
-
   header {
     position: fixed;
     top: 0;
@@ -123,7 +132,7 @@ article:after {
     height: calc(100vh - 60px);
     overflow-y: auto;
   }
-}
+}*/
 
 p {
   margin-left: 10px;

@@ -8,7 +8,7 @@
 import Header from "./layout/Header";
 import Main from "./layout/Main";
 export default {
-  name: "LoginCore",
+  name: "RegisterCore",
   components: { Header, Main },
   data() {
     return {
@@ -67,7 +67,8 @@ main {
   box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.3) inset,
     0 0.5em 1em rgba(0, 0, 0, 0.6);
   text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 400px) {

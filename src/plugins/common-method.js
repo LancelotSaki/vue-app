@@ -1,32 +1,32 @@
-const _common_method = function () {
+const _common_method = (function() {
   /* 数组转json
    * @param array 数组
    * @param type 类型 json array
    */
   function formatArray(array, type) {
     var dataArray = {};
-    array.forEach(function (item) {
+    array.forEach(function(item) {
       if (dataArray[item.name]) {
         if (!dataArray[item.name].push) {
           dataArray[item.name] = [dataArray[item.name]];
         }
-        dataArray[item.name].push(item.value || '');
+        dataArray[item.name].push(item.value || "");
       } else {
-        dataArray[item.name] = item.value || '';
+        dataArray[item.name] = item.value || "";
       }
     });
-    return ((type == "json") ? JSON.stringify(dataArray) : dataArray);
+    return type == "json" ? JSON.stringify(dataArray) : dataArray;
   }
   function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+    var r = window.location.search.substr(1).match(reg); //匹配目标参数
     if (r != null) {
       return unescape(r[2]);
     }
     return null; //返回参数值
   }
   function sleep(d) {
-    for (var t = Date.now(); Date.now() - t <= d;) ;
+    for (var t = Date.now(); Date.now() - t <= d; );
   }
   function formatDate(now) {
     var year = now.getFullYear();
@@ -35,7 +35,9 @@ const _common_method = function () {
     var hour = ("0" + now.getHours()).slice(-2);
     var minute = ("0" + now.getMinutes()).slice(-2);
     var second = ("0" + now.getSeconds()).slice(-2);
-    return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+    return (
+      year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second
+    );
   }
 
   var d = {};
@@ -44,4 +46,4 @@ const _common_method = function () {
   d.sleep = sleep;
   d.formatDate = formatDate;
   return d;
-}();
+})();

@@ -1,12 +1,11 @@
 <template>
-  <main>
-      <router-view></router-view>
-  </main>
+  <section>
+    <router-view></router-view>
+  </section>
 </template>
 <script>
 export default {
   name: "HomeMain"
 };
 </script>
-<style>
-</style>
+<style></style>

@@ -14,11 +14,15 @@ export default {
 </script>
 <style scoped>
 .hostContainer {
+  width: 100%;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   background: rgba(0, 0, 0, 0.85) !important;
   /* background: url("../../../../npage/cmdb/auto-disco/topo/1.png") fixed no-repeat;*/
   background-size: cover;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -29,14 +33,11 @@ header {
   color: rgba(253, 255, 255, 1);
   font-weight: bolder;
   position: relative;
+  margin-bottom: 20px;
 }
 
 main {
-  width: 100%;
-  height: auto;
-  position: relative;
-  margin-top: 70px;
+  flex: 1;
   display: flex;
-  flex-wrap: wrap;
 }
 </style>

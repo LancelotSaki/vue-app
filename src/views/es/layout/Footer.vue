@@ -1,6 +1,5 @@
 <template>
-  <footer>
-  </footer>
+  <footer></footer>
 </template>
 
 <script>
@@ -8,6 +7,4 @@ export default {
   name: "EsFooter"
 };
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,6 +1,5 @@
 <template>
-  <footer>
-  </footer>
+  <footer></footer>
 </template>
 
 <script>
@@ -27,11 +26,11 @@ export default {
   }
 */
 
-  footer {
-    position: fixed;
-    width: calc(100% - 550px);
-    height: 100px;
-    left: 450px;
-    bottom: 0;
-  }
+footer {
+  position: fixed;
+  width: calc(100% - 550px);
+  height: 100px;
+  left: 450px;
+  bottom: 0;
+}
 </style>

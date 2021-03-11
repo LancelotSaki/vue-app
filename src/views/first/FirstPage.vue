@@ -3,62 +3,81 @@
     <div id="echartsFirstPage"></div>
     <div id="echartsSecondPage"></div>
     <div id="echartsCenterPage">
-      <table cellspacing="0" style='border-collapse: collapse;width: 100%; text-align:center;'>
-        <thead style='background: #c11d2e; color: white; display:table; table-layout:fixed; width: calc( 100%);'>
-        <tr>
-          <th style='border: 1px solid white;'>新发现IP</th>
-          <th style='border: 1px solid white;'>资源类型</th>
-        </tr>
+      <table
+        cellspacing="0"
+        style="border-collapse: collapse;width: 100%; text-align:center;"
+      >
+        <thead
+          style="background: #c11d2e; color: white; display:table; table-layout:fixed; width: calc( 100%);"
+        >
+          <tr>
+            <th style="border: 1px solid white;">新发现IP</th>
+            <th style="border: 1px solid white;">资源类型</th>
+          </tr>
         </thead>
-        <tbody style="display:block; height:200px; overflow-x: scroll; overflow-y:scroll; -webkit-overflow-scrolling: touch;">
-        <tr style='display:table; width:100%; table-layout:fixed;'>
-          <td style='border: 1px solid white;'>新发现IP</td>
-          <td style='border: 1px solid white;'>资源类型</td>
-        </tr>
-        <tr style='background:#e5f7d7; display:table; width:100%; table-layout:fixed;'>
-          <td style='border: 1px solid white;'>新发现IP</td>
-          <td style='border: 1px solid white;'>资源类型</td>
-        </tr>
-        <tr style='display:table; width:100%; table-layout:fixed;'>
-          <td style='border: 1px solid white;'>新发现IP</td>
-          <td style='border: 1px solid white;'>资源类型</td>
-        </tr>
-        <tr style='background:#e5f7d7; display:table; width:100%; table-layout:fixed;'>
-          <td style='border: 1px solid white;'>新发现IP</td>
-          <td style='border: 1px solid white;'>资源类型</td>
-        </tr>
-        <tr style='display:table; width:100%; table-layout:fixed;'>
-          <td style='border: 1px solid white;'>新发现IP</td>
-          <td style='border: 1px solid white;'>资源类型</td>
-        </tr>
-        <tr style='background:#e5f7d7; display:table; width:100%; table-layout:fixed;'>
-          <td style='border: 1px solid white;'>新发现IP</td>
-          <td style='border: 1px solid white;'>资源类型</td>
-        </tr>
-        <tr style='display:table; width:100%; table-layout:fixed;'>
-          <td style='border: 1px solid white;'>新发现IP</td>
-          <td style='border: 1px solid white;'>资源类型</td>
-        </tr>
-        <tr style='background:#e5f7d7; display:table; width:100%; table-layout:fixed;'>
-          <td style='border: 1px solid white;'>新发现IP</td>
-          <td style='border: 1px solid white;'>资源类型</td>
-        </tr>
-        <tr style='display:table; width:100%; table-layout:fixed;'>
-          <td style='border: 1px solid white;'>新发现IP</td>
-          <td style='border: 1px solid white;'>资源类型</td>
-        </tr>
-        <tr style='background:#e5f7d7; display:table; width:100%; table-layout:fixed;'>
-          <td style='border: 1px solid white;'>新发现IP</td>
-          <td style='border: 1px solid white;'>资源类型</td>
-        </tr>
-        <tr style='display:table; width:100%; table-layout:fixed;'>
-          <td style='border: 1px solid white;'>新发现IP</td>
-          <td style='border: 1px solid white;'>资源类型</td>
-        </tr>
-        <tr style='background:#e5f7d7; display:table; width:100%; table-layout:fixed;'>
-          <td style='border: 1px solid white;'>新发现IP</td>
-          <td style='border: 1px solid white;'>资源类型</td>
-        </tr>
+        <tbody
+          style="display:block; height:200px; overflow-x: scroll; overflow-y:scroll; -webkit-overflow-scrolling: touch;"
+        >
+          <tr style="display:table; width:100%; table-layout:fixed;">
+            <td style="border: 1px solid white;">新发现IP</td>
+            <td style="border: 1px solid white;">资源类型</td>
+          </tr>
+          <tr
+            style="background:#e5f7d7; display:table; width:100%; table-layout:fixed;"
+          >
+            <td style="border: 1px solid white;">新发现IP</td>
+            <td style="border: 1px solid white;">资源类型</td>
+          </tr>
+          <tr style="display:table; width:100%; table-layout:fixed;">
+            <td style="border: 1px solid white;">新发现IP</td>
+            <td style="border: 1px solid white;">资源类型</td>
+          </tr>
+          <tr
+            style="background:#e5f7d7; display:table; width:100%; table-layout:fixed;"
+          >
+            <td style="border: 1px solid white;">新发现IP</td>
+            <td style="border: 1px solid white;">资源类型</td>
+          </tr>
+          <tr style="display:table; width:100%; table-layout:fixed;">
+            <td style="border: 1px solid white;">新发现IP</td>
+            <td style="border: 1px solid white;">资源类型</td>
+          </tr>
+          <tr
+            style="background:#e5f7d7; display:table; width:100%; table-layout:fixed;"
+          >
+            <td style="border: 1px solid white;">新发现IP</td>
+            <td style="border: 1px solid white;">资源类型</td>
+          </tr>
+          <tr style="display:table; width:100%; table-layout:fixed;">
+            <td style="border: 1px solid white;">新发现IP</td>
+            <td style="border: 1px solid white;">资源类型</td>
+          </tr>
+          <tr
+            style="background:#e5f7d7; display:table; width:100%; table-layout:fixed;"
+          >
+            <td style="border: 1px solid white;">新发现IP</td>
+            <td style="border: 1px solid white;">资源类型</td>
+          </tr>
+          <tr style="display:table; width:100%; table-layout:fixed;">
+            <td style="border: 1px solid white;">新发现IP</td>
+            <td style="border: 1px solid white;">资源类型</td>
+          </tr>
+          <tr
+            style="background:#e5f7d7; display:table; width:100%; table-layout:fixed;"
+          >
+            <td style="border: 1px solid white;">新发现IP</td>
+            <td style="border: 1px solid white;">资源类型</td>
+          </tr>
+          <tr style="display:table; width:100%; table-layout:fixed;">
+            <td style="border: 1px solid white;">新发现IP</td>
+            <td style="border: 1px solid white;">资源类型</td>
+          </tr>
+          <tr
+            style="background:#e5f7d7; display:table; width:100%; table-layout:fixed;"
+          >
+            <td style="border: 1px solid white;">新发现IP</td>
+            <td style="border: 1px solid white;">资源类型</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -2609,7 +2628,7 @@ export default {
 <style>
 .firstPage,
 #echartsCenterPage::before {
-  background: url("../../assets/images/star.jpg") 0 / cover fixed;
+  background: url("../../assets/images/background/star.jpg") 0 / cover fixed;
 }
 #echartsFirstPage {
   display: inline-block;

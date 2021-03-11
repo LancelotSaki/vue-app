@@ -2,20 +2,20 @@
   <div name="Exe">
     <main>
       <form class="test-demo">
-           <ul>
-             <li>自动发现1</li>
-             <li>自动发现2</li>
-             <li>自动发现3</li>
-             <li>自动发现4</li>
-             <li>自动发现1</li>
-             <li>自动发现2</li>
-             <li>自动发现3</li>
-             <li>自动发现4</li>
-             <li>自动发现1</li>
-             <li>自动发现2</li>
-             <li>自动发现3</li>
-             <li>自动发现4</li>
-           </ul>
+        <ul>
+          <li>自动发现1</li>
+          <li>自动发现2</li>
+          <li>自动发现3</li>
+          <li>自动发现4</li>
+          <li>自动发现1</li>
+          <li>自动发现2</li>
+          <li>自动发现3</li>
+          <li>自动发现4</li>
+          <li>自动发现1</li>
+          <li>自动发现2</li>
+          <li>自动发现3</li>
+          <li>自动发现4</li>
+        </ul>
       </form>
     </main>
   </div>
@@ -33,18 +33,17 @@ export default {
 </script>
 
 <style>
+.test-demo {
+  width: 800px;
+}
 
-  .test-demo {
-    width: 800px;
-  }
-
-  .test-demo ul {
-    display: flex;
-    width: 100%;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-  }
-  .test-demo ul li {
-    min-width: 100px;
-  }
+.test-demo ul {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.test-demo ul li {
+  min-width: 100px;
+}
 </style>

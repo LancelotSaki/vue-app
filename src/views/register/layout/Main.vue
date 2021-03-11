@@ -1,101 +1,96 @@
 <template>
-  <div class="registerPage">
-    <header class="registerHeader"></header>
-    <main class="registerMain">
-      <div class="registerWay">
-        <input
-          type="radio"
-          v-model="form.registerTab"
-          id="registerTab1"
-          value="1"
-        /><label for="registerTab1">邮箱注册</label>
-        <input
-          type="radio"
-          v-model="form.registerTab"
-          id="registerTab2"
-          value="2"
-        /><label for="registerTab2">手机注册</label>
+  <main>
+    <p class="title">IT资源管理系统</p>
+    <div class="registerWay">
+      <input
+        type="radio"
+        v-model="form.registerTab"
+        id="registerTab1"
+        value="1"
+      /><label for="registerTab1">邮箱注册</label>
+      <input
+        type="radio"
+        v-model="form.registerTab"
+        id="registerTab2"
+        value="2"
+      /><label for="registerTab2">手机注册</label>
+    </div>
+    <form @submit="submitRegisterForm" method="post" class="registerForm">
+      <input
+        type="email"
+        name="email"
+        placeholder="邮箱"
+        maxlength="35"
+        v-model="form.email"
+        :class="form.registerTab === '1' ? 'show' : 'hide'"
+      />
+      <input
+        type="text"
+        name="phone"
+        placeholder="手机"
+        class="phone"
+        maxlength="12"
+        v-model="form.phone"
+        :class="form.registerTab === '2' ? 'show' : 'hide'"
+      />
+      <input
+        type="password"
+        placeholder="密码"
+        name="password"
+        maxlength="35"
+        v-model="form.password"
+      />
+      <input
+        type="text"
+        :placeholder="form.registerTab === '1' ? '邮箱验证码' : '手机验证码'"
+        name="verifyCode"
+        maxlength="6"
+        v-model="form.code"
+      />
+      <input
+        type="button"
+        class="sendMessageButton"
+        :class="form.registerTab === '1' ? 'show' : 'hide'"
+        :value="leftTime === 60 ? '发 送' : leftTime + '秒'"
+        :disabled="sendEmailClickDisable"
+        @click="clickSendEmail"
+      />
+      <input
+        type="button"
+        class="sendMessageButton"
+        :class="form.registerTab === '2' ? 'show' : 'hide'"
+        :value="rightTime === 60 ? '发 送' : rightTime + '秒'"
+        :disabled="sendPhoneClickDisable"
+        @click="clickSendPhone"
+      />
+      <div class="rememberMe">
+        <input type="checkbox" /><label>记住我</label>
       </div>
-      <form @submit="submitRegisterForm" method="post" class="registerForm">
-        <input
-          type="email"
-          name="email"
-          placeholder="邮箱"
-          maxlength="35"
-          v-model="form.email"
-          :class="form.registerTab === '1' ? 'show' : 'hide'"
-        />
-        <input
-          type="text"
-          name="phone"
-          placeholder="手机"
-          class="phone"
-          maxlength="12"
-          v-model="form.phone"
-          :class="form.registerTab === '2' ? 'show' : 'hide'"
-        />
-        <input
-          type="password"
-          placeholder="密码"
-          name="password"
-          maxlength="35"
-          v-model="form.password"
-        />
-        <input
-          type="text"
-          :placeholder="form.registerTab === '1' ? '邮箱验证码' : '手机验证码'"
-          name="verifyCode"
-          maxlength="6"
-          v-model="form.code"
-        />
-        <input
-          type="button"
-          class="sendMessageButton"
-          :class="form.registerTab === '1' ? 'show' : 'hide'"
-          :value="leftTime === 60 ? '发 送' : leftTime + '秒'"
-          :disabled="sendEmailClickDisable"
-          @click="clickSendEmail"
-        />
-        <input
-          type="button"
-          class="sendMessageButton"
-          :class="form.registerTab === '2' ? 'show' : 'hide'"
-          :value="rightTime === 60 ? '发 送' : rightTime + '秒'"
-          :disabled="sendPhoneClickDisable"
-          @click="clickSendPhone"
-        />
-        <div class="rememberMe">
-          <input type="checkbox" /><label>记住我</label>
-        </div>
-        <div class="agreement">
-          <input type="checkbox" /><label
-            >我已阅读
-            <router-link :to="{ path: 'agreement1' }" append
-              >《用户注册协议》</router-link
-            >
-            和
-            <router-link :to="{ path: 'agreement2' }" append
-              >《上网规范协议》</router-link
-            >
-          </label>
-        </div>
-        <input type="submit" value="注 册" />
-        <span
-          class="registerAlterLine"
-          :data-words="formCheck.usernameCheck"
-          :data-alter="formCheck.codeCheck"
-        >
-          {{ formCheck.passwordCheck }}
-        </span>
-      </form>
-      <router-link class="toLogin" to="/login">
-        <img src="../../../assets/images/login.png" />
-      </router-link>
-    </main>
-    <footer>
-      <Footer></Footer>
-    </footer>
-  </div>
+      <div class="agreement">
+        <input type="checkbox" /><label
+          >我已阅读
+          <router-link :to="{ path: '/register/agreement1' }"
+            >《用户注册协议》</router-link
+          >
+          和
+          <router-link :to="{ path: '/register/agreement2' }"
+            >《上网规范协议》</router-link
+          >
+        </label>
+      </div>
+      <input type="submit" value="注 册" />
+      <span
+        class="registerAlterLine"
+        :data-words="formCheck.usernameCheck"
+        :data-alter="formCheck.codeCheck"
+      >
+        {{ formCheck.passwordCheck }}
+      </span>
+    </form>
+    <router-link class="toLogin" to="/login">
+      <img src="../../../assets/images/login.png" />
+    </router-link>
+  </main>
 </template>
 
 <script>
@@ -448,6 +443,18 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../../../../public/css/label-reset.css";
+
+.title {
+  color: rgba(253, 255, 255, 1);
+  font-size: 1.6rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-shadow: 0 1px rgba(122, 174, 195, 0.15), 0 1px rgba(122, 174, 195, 0.3),
+    0 1px rgba(122, 174, 195, 0.45), 0 1px rgba(122, 174, 195, 0.65),
+    0 1px rgba(122, 174, 195, 0.75), 2px 4px 5px rgba(122, 174, 195, 1);
+  text-align: center;
+}
+
 .registerHeader {
   position: fixed;
   left: 0;
@@ -489,99 +496,10 @@ export default {
   }
 }
 
-.registerPage {
-  position: relative;
-  width: 100vw;
-  min-height: 340px;
-  overflow-y: auto;
-  height: 100vh;
-}
-
-.registerPage,
-.registerMain::before {
-  background: url("../../../assets/images/background/star.jpg") 0 / cover fixed;
-}
-
-@media screen and (max-width: 400px) {
-  .registerMain {
-    position: absolute;
-    width: 340px;
-    min-width: 340px;
-    height: 430px;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin: auto;
-    border-radius: 8px;
-    padding: 0;
-    background: hsla(0, 0%, 100%, 0.25) border-box;
-    overflow: hidden;
-    box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.3) inset,
-      0 0.5em 1em rgba(0, 0, 0, 0.6);
-    text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);
-    display: block;
-  }
-}
-
-@media screen and (min-width: 400px) and (max-width: 800px) {
-  .registerMain {
-    position: absolute;
-    width: 400px;
-    height: 430px;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin: auto;
-    border-radius: 8px;
-    padding: 0;
-    background: hsla(0, 0%, 100%, 0.25) border-box;
-    overflow: hidden;
-    box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.3) inset,
-      0 0.5em 1em rgba(0, 0, 0, 0.6);
-    text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);
-    display: block;
-  }
-}
-
-@media screen and (min-width: 800px) {
-  .registerMain {
-    position: absolute;
-    width: 500px;
-    height: 430px;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin: auto;
-    border-radius: 8px;
-    padding: 0;
-    background: hsla(0, 0%, 100%, 0.25) border-box;
-    overflow: hidden;
-    box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.3) inset,
-      0 0.5em 1em rgba(0, 0, 0, 0.6);
-    text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.3);
-    display: block;
-  }
-}
-
-.registerMain::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: -30px;
-  z-index: -1;
-  -webkit-filter: blur(20px);
-  filter: blur(20px);
-}
-
 .registerWay {
   display: flex;
   justify-content: space-evenly;
+  margin: 0 35px;
 }
 
 .toLogin {
@@ -607,14 +525,10 @@ input[id^="registerTab"] {
 
 /* 将radio相邻的label标签美化一下，可以在这里设置按钮的背景图标*/
 input[id^="registerTab"] + label {
-  height: 35px;
-  width: 110px;
-  text-align: left;
-  float: right;
-  line-height: 35px;
+  position: relative;
+  flex: 1;
   color: rgba(253, 255, 255, 1);
   font-size: 1.3rem;
-  margin-top: 30px;
   margin-bottom: 10px;
   text-shadow: 0 1px rgba(122, 174, 195, 0.15), 0 1px rgba(122, 174, 195, 0.3),
     0 1px rgba(122, 174, 195, 0.45), 0 1px rgba(122, 174, 195, 0.65),
@@ -633,13 +547,13 @@ input[id^="registerTab"]:checked + label {
 }
 
 /*切换tab时触发label标签里的before元素，一定要将input标签放在label之前,
-  请注意+跟~选择器的区别，+代表后面紧邻的xxx标签， ~代表之后所有的xxx标签*/
+    请注意+跟~选择器的区别，+代表后面紧邻的xxx标签， ~代表之后所有的xxx标签*/
 input[id^="registerTab"]:checked + label::before {
   position: absolute;
   display: inline-block;
   content: "";
-  top: 65px;
-  left: auto;
+  bottom: -5px;
+  left: 0;
   width: 85px;
   height: 2px;
   background: white;
@@ -651,6 +565,7 @@ input[id^="registerTab"]:checked + label::before {
   display: flex;
   flex-wrap: wrap;
   padding: 0 35px;
+  flex: 1;
 }
 
 .registerForm > input {
@@ -666,14 +581,14 @@ input[id^="registerTab"]:checked + label::before {
 }
 
 /*
-  .registerForm > input:first-child,
-  .registerForm > input:nth-child(2),
-  .registerForm > input[type="password"],
-  .registerForm > input[name="verifyCode"] {
-    box-shadow: 0 0 10px 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835,
-    0 0 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835;
-  }
-  */
+    .registerForm > input:first-child,
+    .registerForm > input:nth-child(2),
+    .registerForm > input[type="password"],
+    .registerForm > input[name="verifyCode"] {
+      box-shadow: 0 0 10px 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835,
+      0 0 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835, 0 0 1px #FDD835;
+    }
+    */
 
 .registerForm > input:first-child:focus,
 .registerForm > input:nth-child(2):focus,
@@ -779,7 +694,7 @@ input[id^="registerTab"]:checked + label::before {
 
 .registerAlterLine {
   position: absolute;
-  top: 180px;
+  top: 210px;
   left: 40px;
   height: 5px;
   width: 100%;

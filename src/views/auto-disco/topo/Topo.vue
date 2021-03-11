@@ -38,7 +38,7 @@ export default {
         var sysName = this.networkData[i].sysName;
         var type = this.networkData[i].type;
         var image = "default";
-        if(type.indexOf("交换机") > 0) {
+        if (type.indexOf("交换机") > 0) {
           image = "switch";
         } else if (type.indexOf("路由器") > 0) {
           image = "router";
@@ -74,7 +74,10 @@ export default {
       // create an array with edges
       this.edges = [];
       for (var j = 0; j < this.linkData.length; j++) {
-        this.edges.push({ from: this.linkData[j].from, to: this.linkData[j].to });
+        this.edges.push({
+          from: this.linkData[j].from,
+          to: this.linkData[j].to
+        });
       }
       var container = document.getElementById("mynetwork");
       var data = {
@@ -121,9 +124,10 @@ export default {
         }
       };
       var net = new vis.Network(container, data, options);
-      net.on("doubleClick", e => { //双击完成
+      net.on("doubleClick", e => {
+        //双击完成
         var _nodeId = e.nodes[0];
-        if (typeof _nodeId === 'undefined') {
+        if (typeof _nodeId === "undefined") {
           return;
         }
         net.focus(_nodeId, {
@@ -131,7 +135,7 @@ export default {
           animation: {
             duration: 1500,
             easingFunction: "linear"
-          },
+          }
         });
       });
     }
@@ -139,13 +143,47 @@ export default {
 };
 </script>
 <style scoped>
-  @import '../../../../public/css/vis-reset.css';
-  .autoDiscoTopo {
-    overflow-x: hidden;
-    overflow-y: auto;
-    background: rgba(0, 0, 0, 0.85) !important;
-    /* background: url("../../../../npage/cmdb/auto-disco/topo/1.png") fixed no-repeat;*/
-    background-size: cover;
-  }
+@import "../../../../public/css/vis-reset.css";
+.autoDiscoTopo {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85) !important;
+  /* background: url("../../../../npage/cmdb/auto-disco/topo/1.png") fixed no-repeat;*/
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
 
+header {
+  padding-top: 10px;
+  width: 100%;
+  height: 70px;
+  text-align: center;
+  color: rgba(253, 255, 255, 1);
+  font-weight: bolder;
+  position: relative;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: space-evenly;
+  min-width: 650px;
+  flex-wrap: wrap;
+}
+
+>>> ::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: #f4f4f4;
+}
+
+>>> ::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+>>> ::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background-color: #afb3bf !important;
+}
 </style>

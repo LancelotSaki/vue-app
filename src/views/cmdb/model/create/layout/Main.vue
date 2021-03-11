@@ -1,7 +1,7 @@
 <template>
   <main>
     <section>
-      <p>{{mySubId}}</p>
+      <p>{{ mySubId }}</p>
     </section>
   </main>
 </template>
@@ -11,6 +11,4 @@ export default {
   props: ["mySubId"]
 };
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>

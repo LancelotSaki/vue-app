@@ -20,6 +20,4 @@ export default {
 };
 </script>
 <!--加scoped 样式局部有效-->
-<style scoped>
-
-</style>
+<style scoped></style>
