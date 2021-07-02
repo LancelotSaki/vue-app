@@ -46,6 +46,23 @@ ol > li {
   list-style: none;
 }
 
+/** 修改滚动条样式 部分浏览器不支持 */
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: #f4f4f4;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 50px;
+  background-color: #afb3bf !important;
+}
+
 :root {
   --submit: #ecf5ff;
   --submitHover: #fdf6ec;

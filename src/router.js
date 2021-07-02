@@ -135,6 +135,17 @@ export default new Router({
       ]
     },
     {
+      path: "/aiops",
+      name: "aiops",
+      component: () => import("./views/aiops/AIOps.vue"),
+      children: [
+        {
+          path: "topo",
+          component: () => import("./views/aiops/busiTopo/preview/Preview.vue")
+        }
+      ]
+    },
+    {
       path: "/auto-disco",
       name: "auto-disco",
       component: () => import("./views/auto-disco/Index.vue"),

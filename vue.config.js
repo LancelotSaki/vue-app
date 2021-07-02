@@ -1,8 +1,19 @@
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const production = process.env.NODE_ENV === "production";
+const path = require("path");
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
 module.exports = {
   lintOnSave: !production,
   productionSourceMap: false,
+  chainWebpack: config => {
+    config.resolve.alias
+        .set("@", resolve("src"))
+        .set("assets", resolve("src/assets"))
+        .set("components", resolve("src/components"))
+        .set("public", resolve("public"));
+  },
   configureWebpack: config => {
     // 为生产环境修改配置...
     if (production) {
