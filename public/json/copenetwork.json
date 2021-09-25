@@ -276,18 +276,18 @@
     "group":"1"
   },
   {
-  "isCmdb":"1",
-  "serial":"210231A90NB115000024",
-  "ip":"172.21.3.14",
-  "sysName":"NC-HGT-S7510E-B",
-  "model":"S7510E",
-  "ifUseNum":"42",
-  "id":"xn48a38f373d4ead8e5cc353e780a114",
-  "type":"网络-虚拟机",
-  "brand":"华三",
-  "ifNum":"50",
-  "group":"1"
-},
+    "isCmdb":"1",
+    "serial":"210231A90NB115000024",
+    "ip":"172.21.3.14",
+    "sysName":"NC-HGT-S7510E-B",
+    "model":"S7510E",
+    "ifUseNum":"42",
+    "id":"xn48a38f373d4ead8e5cc353e780a114",
+    "type":"网络-虚拟机",
+    "brand":"华三",
+    "ifNum":"50",
+    "group":"1"
+  },
   {
     "isCmdb":"1",
     "serial":"210231A90NB115000126",
@@ -314,6 +314,7 @@
     "ifNum":"50",
     "group":"1"
   }
+
 
 
 ]

@@ -1,14 +1,16 @@
 <template>
   <article class="autoDiscoTopo">
     <Header></Header>
-    <Main></Main>
+    <Main ref="main" v-on:childFn="childFn"></Main>
     <Footer></Footer>
   </article>
 </template>
-
 <script>
 import networkData from "../../../../public/json/network.json";
+import copenetwork from "../../../../public/json/copenetwork.json";
 import linkData from "../../../../public/json/link.json";
+import copelinkData from "../../../../public/json/copelink.json";
+
 /* author : admin */
 import Main from "./layout/Main";
 import Header from "./layout/Header";
@@ -31,6 +33,22 @@ export default {
     this.createVisNetwork();
   },
   methods: {
+    childFn(val){
+      //得到日期并得到对应的数据
+      var data=this.networkData;
+      switch (val){
+        case "auto_20210727000000" :
+          this.networkData,
+              this.linkData=linkData,
+          this.createVisNetwork();
+          break;
+        case "auto_20210726000000" :
+          this.networkData=copenetwork,
+              this.linkData=copelinkData
+              this.createVisNetwork();
+          break;
+      }
+    },
     createVisNetwork() {
       // create a network
       this.nodes = [];
@@ -50,6 +68,10 @@ export default {
           image = "nlb";
         } else if (type.indexOf("防御系统") > 0) {
           image = "ips";
+        } else if (type.indexOf("物理机") > 0) {
+          image = "machine";
+        } else if (type.indexOf("虚拟机") > 0) {
+          image = "virtual";
         }
         this.nodes.push({
           id: this.networkData[i].id,
@@ -70,7 +92,6 @@ export default {
           </div>`
         });
       }
-
       // create an array with edges
       this.edges = [];
       for (var j = 0; j < this.linkData.length; j++) {
@@ -84,7 +105,6 @@ export default {
         nodes: this.nodes,
         edges: this.edges
       };
-
       var options = {
         locale: "cn",
         nodes: {
@@ -165,8 +185,10 @@ header {
 }
 
 main {
-  flex: 1;
+  width: 100%;
+  height: calc(100% - 70%);
   display: flex;
+  flex: 1;
   justify-content: space-evenly;
   min-width: 650px;
   flex-wrap: wrap;

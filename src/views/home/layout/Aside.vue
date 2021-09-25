@@ -49,7 +49,9 @@ export default {
         this.$router.push("/home/auto-disco/topo");
       } else if (value.id === "34") {
         this.$router.push("/home/device/topo");
-      } else if (value.id === "42") {
+      } else if (value.id === "35") {
+        this.$router.push("/aiops/topo");
+      }else if (value.id === "42") {
         this.$router.push("/home/es");
       } else if (value.id === "50") {
         this.$router.push("/home/guide");

@@ -33,6 +33,7 @@ export default {
       left: 0
     };
   },
+
   mounted() {
     this.nodesConfig = new vis.DataSet();
     this.edgesConfig = new vis.DataSet();
@@ -234,7 +235,7 @@ export default {
     createVisNetwork: function() {
       // create a network
       var nodes = [];
-      for (var i = 1; i <= 1900; i++) {
+      for (var i = 1; i <= 100; i++) {
         nodes.push({
           id: i,
           /* title:

@@ -69,6 +69,7 @@
           v-model="currentSelect"
           filterable
           placeholder="请选择"
+          @change="change"
         >
           <el-option
             v-for="item in options"
@@ -79,93 +80,73 @@
           </el-option>
         </el-select>
       </p>
-      <aside class="myDefined">
-        <ol>
-          <li>网络设备总数</li>
-          <li>107台</li>
-        </ol>
-        <ol>
-          <li>端口总数</li>
-          <li>12143个</li>
-        </ol>
-        <ol>
-          <li>活动端口总数</li>
-          <li>6254个</li>
-        </ol>
-        <ol>
-          <li>CMDB已入库</li>
-          <li>107台</li>
-        </ol>
-        <ol>
-          <li>使用中</li>
-          <li>107台</li>
-        </ol>
-        <ol>
-          <li>与上次相比</li>
-          <li>
-            2台<span style="margin-left: 5px; color: rgba(232,79,138,0.85)"
-              >↓</span
+      <div style="display: flex; flex-direction: column;">
+        <aside class="myDefined">
+          <ol>
+            <li>网络设备总数</li>
+            <li>24台</li>
+          </ol>
+          <ol>
+            <li>端口总数</li>
+            <li>121个</li>
+          </ol>
+          <ol>
+            <li>活动端口总数</li>
+            <li>62个</li>
+          </ol>
+          <ol>
+            <li>CMDB已入库</li>
+            <li>24台</li>
+          </ol>
+          <ol>
+            <li>使用中</li>
+            <li>24台</li>
+          </ol>
+          <ol>
+            <li>与上次相比</li>
+            <li>
+              2台<span style="margin-left: 5px; color: rgba(232,79,138,0.85)"
+            >↓</span
             >
-          </li>
-        </ol>
-        <ol>
-          <li>采集时间</li>
-          <li>2020-07-27 19:50:01</li>
-        </ol>
-      </aside>
-      <aside class="collectDataCount">
-        <ul>
-          <li>交换机</li>
-          <li>
-            45台<span style="margin-left: 40px; color: rgba(232,79,138,0.85)"
-              >↓</span
+            </li>
+          </ol>
+          <ol>
+            <li>采集时间</li>
+            <li>2020-07-27 19:50:01</li>
+          </ol>
+        </aside>
+        <aside id="echartsResultShow"></aside>
+        <aside class="collectDataCount">
+          <ul>
+            <li>交换机</li>
+            <li>
+              4台<span style="margin-left: 40px; color: rgba(232,79,138,0.85)"
+            >↓</span
             >
-          </li>
-        </ul>
-        <ul>
-          <li>路由器</li>
-          <li>
-            18台<span style="margin-left: 40px; color: rgba(232,79,138,0.85)"
-              >↓</span
+            </li>
+          </ul>
+          <ul>
+            <li>路由器</li>
+            <li>
+              3台<span style="margin-left: 40px; color: rgba(232,79,138,0.85)"
+            >↓</span
             >
-          </li>
-        </ul>
-        <ul>
-          <li>防火墙</li>
-          <li>20台</li>
-        </ul>
-        <ul>
-          <li>负载均衡</li>
-          <li>16台</li>
-        </ul>
-        <ul>
-          <li>VPN接入</li>
-          <li>2台</li>
-        </ul>
-        <ul>
-          <li>入侵防御系统</li>
-          <li>2台</li>
-        </ul>
-        <ul>
-          <li>ARRAY</li>
-          <li>2台</li>
-        </ul>
-        <ul>
-          <li>清洗设备</li>
-          <li>2台</li>
-        </ul>
-      </aside>
-      <aside class="topoImageShow">
-        <ul v-for="item in showImage">
-          <li>
-            <img :src="item.img" width="25" height="25" />
-            <p>
-              {{ item.name }}
-            </p>
-          </li>
-        </ul>
-      </aside>
-      <div id="echartsResultShow" style="display: none;"></div>
+            </li>
+          </ul>
+          <ul>
+            <li>防火墙</li>
+            <li>4台</li>
+          </ul>
+          <ul>
+            <li>物理主机</li>
+            <li>7台</li>
+          </ul>
+          <ul>
+            <li>虚拟机</li>
+            <li>6台</li>
+          </ul>
+        </aside>
+      </div>
     </aside>
     <section id="mynetwork"></section>
   </main>
@@ -206,341 +187,247 @@ export default {
           img: "/images/network/ips.svg"
         },
         {
+          name: "物理机",
+          img: "/images/network/machine.svg"
+        },
+        {
+          name: "虚拟机",
+          img: "/images/network/virtual.svg"
+        },
+        {
           name: "其他",
           img: "/images/network/default.svg"
         }
       ],
       options: [
         {
-          value: "auto_20200727000000",
-          label: "auto_20200727000000"
+          value: "auto_20210727000000",
+          label: "auto_20210727000000"
         },
         {
-          value: "auto_20200726000000",
-          label: "auto_20200726000000"
+          value: "auto_20210726000000",
+          label: "auto_20210726000000"
         },
         {
-          value: "auto_20200725000000",
-          label: "auto_20200725000000"
+          value: "auto_20210725000000",
+          label: "auto_20210725000000"
         },
         {
-          value: "auto_20200724000000",
-          label: "auto_20200724000000"
+          value: "auto_20210724000000",
+          label: "auto_20210724000000"
         },
         {
-          value: "auto_20200723000000",
-          label: "auto_20200723000000"
+          value: "auto_20210723000000",
+          label: "auto_20210723000000"
         },
         {
-          value: "auto_20200722000000",
-          label: "auto_20200722000000"
+          value: "auto_20210722000000",
+          label: "auto_20210722000000"
         },
         {
-          value: "auto_20200721000000",
-          label: "auto_20200721000000"
+          value: "auto_20210721000000",
+          label: "auto_20210721000000"
         },
         {
-          value: "auto_20200720000000",
-          label: "auto_20200720000000"
+          value: "auto_20210720000000",
+          label: "auto_20210720000000"
         }
       ],
-      currentSelect: "auto_20200727000000"
+      currentSelect: "auto_20210727000000"
     };
   },
   mounted() {
     this.createEcharts();
   },
   methods: {
+    //change
+    change(item){
+      //得到点击的item点击后跳转到相应日期的数据
+      this.$emit('childFn', item);
+    },
     // echarts
     createEcharts() {
-      var category = [
-        {
-          name: "数据库",
-          value: 2500
-        },
-        {
-          name: "进程数",
-          value: 8000
-        },
-        {
-          name: "主机",
-          value: 3000
-        },
-        {
-          name: "网络设备",
-          value: 3000
-        },
-        {
-          name: "未知设备",
-          value: 3000
-        }
-      ]; // 类别
-      var total = 10000; // 数据总数
-      var datas = [];
-      category.forEach(value => {
-        datas.push(value.value);
-      });
-      var option = {
-        xAxis: {
-          max: total,
-          splitLine: {
-            show: false
-          },
-          axisLine: {
-            show: false
-          },
-          axisLabel: {
-            show: false
-          },
-          axisTick: {
-            show: false
-          }
-        },
-        grid: {
-          left: 80,
-          top: 20, // 设置条形图的边距
-          right: 80,
-          bottom: 20
-        },
-        yAxis: [
-          {
-            type: "category",
-            inverse: false,
-            data: category,
-            axisLine: {
-              show: false
+      var titleColor = "#f8f6dd";
+      var fontColor = "#f4f2f1";
+      var color = [
+        "#f33768",
+        "#f6d54a",
+        "#45dbf7",
+        "#f69846",
+        "#f845f1",
+        "#4777f5",
+        "#5045f6",
+        "#ad46f3",
+        "#f845f1",
+        "#24f352",
+        "#f8f819",
+        "#96e8f3",
+        "#f86614",
+        "#3ff3ce",
+        "#f8f6dd",
+        "#9577f3",
+        "#f8ae9f",
+        "#dbf3af",
+        "#e286f8",
+        "#7babf8"
+      ];
+      let list = [];
+      var names = ["物理机", "虚拟机", "交换机", "路由器", "防火墙", "VPN接入"];
+      var data = [2444, 4501, 45, 128, 31, 51];
+      var total = 0;
+      for (var i in data) {
+        total += data[i];
+      }
+      for (let i in data) {
+        list.push(
+            {
+              value: data[i],
+              name: names[i],
+              itemStyle: {
+                normal: {
+                  borderWidth: 5,
+                  shadowBlur: 20,
+                  borderColor: color[i],
+                  shadowColor: color[i],
+                  color: color[i]
+                }
+              }
             },
-            axisTick: {
-              show: false
-            },
-            axisLabel: {
-              show: false
+            {
+              value: total / 30,
+              name: "",
+              itemStyle: {
+                normal: {
+                  label: {
+                    show: false
+                  },
+                  labelLine: {
+                    show: false
+                  },
+                  color: "rgba(0, 0, 0, 0)",
+                  borderColor: "rgba(0, 0, 0, 0)",
+                  borderWidth: 0
+                }
+              }
             }
+        );
+      }
+      var option = {
+        title: {
+          text: "资源分布情况",
+          textStyle: {
+            fontSize: 10,
+            fontWeight: "normal",
+            color: titleColor
+          },
+          x: "center"
+        },
+        tooltip: {
+          show: false
+        },
+        legend: {
+          /*orient: 'vertical',*/
+          data: names,
+          icon: "path://M60.217 633.91S310.415 738.469 434.781 964.54c149.378-279.763 436.11-540.714 521.05-560.014V63.083c-342.237 226.07-506.576 642.342-506.576 642.342l-180.05-191.614-208.988 120.1z",
+          right: "0px",
+          top: "20px",
+          textStyle: {
+            color: fontColor,
+            fontSize: 8
           }
-        ],
+        },
         series: [
           {
-            // 内
-            type: "bar",
-            barWidth: 18,
-
-            legendHoverLink: false,
-            silent: true,
+            name: "",
+            type: "pie",
+            clockWise: false,
+            startAngle: "90",
+            center: ["49%", "60%"],
+            radius: ["35%", "35%"],
+            hoverAnimation: false,
             itemStyle: {
               normal: {
-                color: function(params) {
-                  var color;
-                  if (params.dataIndex == 19) {
-                    color = {
-                      type: "linear",
-                      x: 0,
-                      y: 0,
-                      x2: 1,
-                      y2: 0,
-                      colorStops: [
-                        {
-                          offset: 0,
-                          color: "#EB5118" // 0% 处的颜色
-                        },
-                        {
-                          offset: 1,
-                          color: "#F21F02" // 100% 处的颜色
-                        }
-                      ]
-                    };
-                  } else if (params.dataIndex == 18) {
-                    color = {
-                      type: "linear",
-                      x: 0,
-                      y: 0,
-                      x2: 1,
-                      y2: 0,
-                      colorStops: [
-                        {
-                          offset: 0,
-                          color: "#FFA048" // 0% 处的颜色
-                        },
-                        {
-                          offset: 1,
-                          color: "#B25E14" // 100% 处的颜色
-                        }
-                      ]
-                    };
-                  } else if (params.dataIndex == 17) {
-                    color = {
-                      type: "linear",
-                      x: 0,
-                      y: 0,
-                      x2: 1,
-                      y2: 0,
-                      colorStops: [
-                        {
-                          offset: 0,
-                          color: "#F8E972" // 0% 处的颜色
-                        },
-                        {
-                          offset: 1,
-                          color: "#E5C206" // 100% 处的颜色
-                        }
-                      ]
-                    };
-                  } else {
-                    color = {
-                      type: "linear",
-                      x: 0,
-                      y: 0,
-                      x2: 1,
-                      y2: 0,
-                      colorStops: [
-                        {
-                          offset: 0,
-                          color: "#1588D1" // 0% 处的颜色
-                        },
-                        {
-                          offset: 1,
-                          color: "#0F4071" // 100% 处的颜色
-                        }
-                      ]
-                    };
-                  }
-                  return color;
-                }
-              }
-            },
-            label: {
-              normal: {
-                show: true,
-                position: "left",
-                formatter: "{b}",
-                textStyle: {
-                  color: "#fff",
-                  fontSize: 14
-                }
-              }
-            },
-            data: category,
-            z: 1,
-            animationEasing: "elasticOut"
-          },
-          {
-            // 分隔
-            type: "pictorialBar",
-            itemStyle: {
-              normal: {
-                color: "#061348"
-              }
-            },
-            symbolRepeat: "fixed",
-            symbolMargin: 6,
-            symbol: "rect",
-            symbolClip: true,
-            symbolSize: [1, 21],
-            symbolPosition: "start",
-            symbolOffset: [1, -1],
-            symbolBoundingData: this.total,
-            data: category,
-            z: 2,
-            animationEasing: "elasticOut"
-          },
-          {
-            // 外边框
-            type: "pictorialBar",
-            symbol: "rect",
-            symbolBoundingData: total,
-            itemStyle: {
-              normal: {
-                color: "none"
-              }
-            },
-            label: {
-              normal: {
-                formatter: params => {
-                  var text;
-                  if (params.dataIndex == 1) {
-                    text = "{a|  100%}{f|  " + params.data + "}";
-                  } else if (params.dataIndex == 2) {
-                    text = "{b|  100%}{f|  " + params.data + "}";
-                  } else if (params.dataIndex == 3) {
-                    text = "{c|  100%}{f|  " + params.data + "}";
-                  } else {
-                    text = "{d|  100%}{f|  " + params.data + "}";
-                  }
-                  return text;
-                },
-                rich: {
-                  a: {
-                    color: "red"
-                  },
-                  b: {
-                    color: "blue"
-                  },
-                  c: {
-                    color: "yellow"
-                  },
-                  d: {
-                    color: "green"
-                  },
-                  f: {
-                    color: "#ffffff"
-                  }
-                },
-                position: "right",
-                distance: 0, // 向右偏移位置
-                show: true
-              }
-            },
-            data: datas,
-            z: 0,
-            animationEasing: "elasticOut"
-          },
-          {
-            name: "外框",
-            type: "bar",
-            barGap: "-120%", // 设置外框粗细
-            data: [
-              total,
-              total,
-              total,
-              total,
-              total,
-              total,
-              total,
-              total,
-              total,
-              total,
-              total,
-              total,
-              total,
-              total,
-              total,
-              total,
-              total,
-              total,
-              total,
-              total
-            ],
-            barWidth: 25,
-            itemStyle: {
-              normal: {
-                color: "transparent", // 填充色
-                barBorderColor: "#1C4B8E", // 边框色
-                barBorderWidth: 1, // 边框宽度
-                // barBorderRadius: 0, //圆角半径
                 label: {
-                  // 标签显示位置
-                  show: false,
-                  position: "top" // insideTop 或者横向的 insideLeft
+                  show: true,
+                  position: "outside",
+                  formatter: function (params) {
+                    var percent = ((params.value / total) * 100).toFixed(1);
+                    var name = params.name.replace(/\n/g, "");
+                    if (params.name !== "") {
+                      return name +"("+ params.value + ")\n{white|" + percent + "%}";
+                    } else {
+                      return "";
+                    }
+                  },
+                  rich: {
+                    white: {
+                      align: "center",
+                      padding: [3, 0]
+                    }
+                  }
+                },
+                labelLine: {
+                  length: 15,
+                  length2: 20,
+                  show: true,
+                  color: "#00ffff"
                 }
               }
             },
-            z: 0
+            data: list,
+            animationType: "scale",
+            animationEasing: "elasticOut",
+            animationDelay: function (idx) {
+              return idx * 50;
+            }
+          },
+          {
+            name: "",
+            type: "pie",
+            center: ["49%", "60%"],
+            radius: ["35%", "35%"],
+            itemStyle: {
+              color: "transparant"
+            },
+            startAngle: "90",
+            data: [
+              {
+                value: total,
+                name: "",
+                label: {
+                  normal: {
+                    show: true,
+                    formatter: "{c|{c}} {b|条记录}",
+                    rich: {
+                      c: {
+                        color: "rgb(98,137,169)",
+                        fontSize: 12,
+                        fontWeight: "bold",
+                        lineHeight: 5
+                      },
+                      b: {
+                        color: "rgb(98,137,169)",
+                        fontSize: 14,
+                        lineHeight: 5
+                      }
+                    },
+                    textStyle: {
+                      fontSize: 14,
+                      fontWeight: "bold"
+                    },
+                    position: "center"
+                  }
+                }
+              }
+            ]
           }
         ]
       };
-      const myChart2 = eCharts.init(
-        document.getElementById("echartsResultShow")
-      );
-      myChart2.setOption(option);
+      const myChart = eCharts.init(document.getElementById("echartsResultShow"));
+      myChart.setOption(option);
+      window.addEventListener("resize", function () {
+        myChart.resize();
+      });
     }
   }
 };
@@ -775,7 +662,8 @@ main > aside:first-child {
 }
 
 #mynetwork {
-  flex: 1;
+  width: calc(100% - 300px);
+  height: 100%;
   /*border: 1px solid lightgray;*/
 }
 
@@ -893,68 +781,55 @@ table.legend_table td {
   margin-left: 5px;
   width: calc(100% - 120px);
 }
-
-.topoImageShow {
-  position: relative;
-  margin-top: 12px;
-  height: 80px;
+#echartsResultShow::before {
+  content: "";
+  position: absolute;
+  display: inline-block;
   width: 100%;
-  color: white;
-  border: 0;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
+  height: 15px;
+  left: 0;
+  top: -15px;
+  background: rgba(72, 123, 213, 1);
+  background: linear-gradient(
+      to right,
+      rgba(72, 123, 213, 1) 0%,
+      rgba(72, 123, 213, 0.2) 100%
+  );
+  clip-path: polygon(
+      0 95%,
+      45% 95%,
+      calc(45% + 10px) 0%,
+      100% 0,
+      100% 2px,
+      60% 2px,
+      calc(60% - 10px) 100%,
+      0 100%
+  );
 }
 
-.topoImageShow ul > {
-}
-
-.topoImageShow ul > li {
-  width: 80px;
-  display: flex;
-  flex-wrap: wrap;
-  animation: 15s startToEndLine linear infinite normal;
-  animation-play-state: running;
-}
-
-.topoImageShow img {
-  margin: 0 auto;
-  width: 100%;
-}
-
-.topoImageShow p {
-  margin-top: 5px;
-  width: 100%;
-  text-align: center;
-}
-
-.topoImageShow ul:hover {
-  animation-play-state: paused;
-}
-
-@keyframes startToEndLine {
-  0% {
-    transform: translate3d(400%, 0, 0);
-  }
-  25% {
-    transform: translate3d(100%, 0, 0);
-  }
-  50% {
-    transform: translate3d(-200%, 0, 0);
-  }
-  75% {
-    transform: translate3d(-500%, 0, 0);
-  }
-  100% {
-    transform: translate3d(-800%, 0, 0);
-  }
+#echartsResultShow::after {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 38%;
+  height: 15px;
+  left: 60%;
+  top: -11px;
+  background-image: linear-gradient(
+      to right,
+      rgba(72, 123, 213, 0.5) 0%,
+      rgba(72, 123, 213, 0) 50%,
+      transparent 50%
+  );
+  background-size: 11px 10px;
+  background-repeat: repeat-x;
+  transform: skewX(-35deg);
 }
 
 #echartsResultShow {
-  position: absolute;
+  position: relative;
   width: 300px;
   height: 300px;
-  left: 0;
-  bottom: 270px;
+  margin-top: 50px;
 }
 </style>

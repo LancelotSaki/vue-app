@@ -1,0 +1,37 @@
+body div.mxPopupMenu {
+    position: absolute;
+    border: 0 !important;
+    border-radius: 5px;
+    padding: 1px;
+    box-shadow: 0 1px 4px #a5b7ff;
+    background-color: rgba(46, 54, 56, 0.85);
+    color: white !important;
+}
+body table.mxPopupMenu {
+    border-collapse: collapse;
+    margin: 0px;
+    background-color: rgba(46, 54, 56, 0.85);
+}
+body tr.mxPopupMenuItem {
+    color: white;
+    cursor: default;
+}
+body td.mxPopupMenuItem {
+    padding: 6px 60px 6px 30px;
+    font-family: Arial;
+    font-size: 10pt;
+}
+body td.mxPopupMenuIcon {
+    background-color: white;
+    padding: 0px;
+}
+body tr.mxPopupMenuItemHover {
+    background-color: rgba(46, 54, 56, 0.85);
+    color: orange;
+}
+table.mxPopupMenu hr {
+    border-top: solid 1px #cccccc;
+}
+table.mxPopupMenu tr {
+    font-size: 4pt;
+}
